@@ -4125,3 +4125,7 @@ a.morebtn {
   width: 69%;
 }
 }
+
+.top-message {
+	text-align: right;
+}

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SWEProject.Models;
@@ -23,6 +24,7 @@ namespace MyApp.Namespace
         
 
         public String ErrorMessage {get; set;} 
+        public String Message {get; set;}
         private Table4UContext dbContext;
         public RegisterModel(Table4UContext db)
         {
@@ -53,9 +55,9 @@ namespace MyApp.Namespace
             NoviKorisnik.Sifra = password;
             dbContext.Korisnici.Add(NoviKorisnik);
             await dbContext.SaveChangesAsync();
-            return RedirectToPage("/Login");
 
-
+            HttpContext.Session.SetString("email", NoviKorisnik.eMail);
+            return RedirectToPage("/Index");
         }
     }
 }

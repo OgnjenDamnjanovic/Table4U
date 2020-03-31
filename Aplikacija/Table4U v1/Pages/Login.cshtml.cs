@@ -17,6 +17,7 @@ namespace MyApp.Namespace
         public String Sifra {get; set;}
         [BindProperty]
         public String ErrorMessage {get; set;}
+        public String Message {get; set;}
 
         private Table4UContext dbContext;
 

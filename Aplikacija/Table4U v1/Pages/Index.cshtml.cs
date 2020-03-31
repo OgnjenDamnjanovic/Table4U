@@ -12,9 +12,9 @@ namespace Table4U.Pages
 {
     public class IndexModel : PageModel
     {
+        public String Message {get; set;}
         private readonly Table4UContext db;
         
-        public String eMail {get; set;}
         public IndexModel(Table4UContext dataBase)
         {
             db = dataBase;
@@ -22,12 +22,19 @@ namespace Table4U.Pages
 
         public void OnGet()
         {
-           eMail = HttpContext.Session.GetString("email");
+           String eMail = HttpContext.Session.GetString("email");
+            if (!string.IsNullOrEmpty(eMail))
+            {
+                var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
+                Message = "Welcome, " + korisnik.Ime;
+            }
+            
         }
 
         public void OnGetLogout()
         {
             HttpContext.Session.Remove("email");
+            Message = null;
         }
     }
 }
