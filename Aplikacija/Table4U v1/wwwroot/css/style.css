@@ -1785,7 +1785,7 @@ ul.women_pagenation li a:hover{
 .register-but{
 	margin-top:1em;
 }
-.register-but form input[type="submit"] {
+.register-but {
 	background:#E24425;
 	color: #FFF;
 	font-size: 1.2em;

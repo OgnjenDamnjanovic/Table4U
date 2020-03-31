@@ -27,6 +27,7 @@ namespace Table4U
         {
             services.AddRazorPages();
             services.AddDbContext<Table4UContext>(conf =>conf.UseSqlServer(Configuration.GetConnectionString("Konekcija")));
+            services.AddSession();
 
         }
 
@@ -44,6 +45,7 @@ namespace Table4U
                 app.UseHsts();
             }
 
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

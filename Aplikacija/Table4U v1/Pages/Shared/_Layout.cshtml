@@ -61,7 +61,7 @@
 			<div class="container">
 				<div class="top-menu">
 					<ul>
-						<li class="active"><a href="#Home" class="scroll">Home</a></li>|
+						<li class="active"><a asp-page="./Index">Home</a></li>|
 						<li><a asp-page="./ListedObjects">Popular Restaurants</a></li>|
 						<li><a asp-page="./Contact">Contact</a></li>
 						<div class="clearfix"></div>
@@ -71,7 +71,8 @@
 					<ul>
 						<li><a asp-page="./Login">Login</a>  </li> |
 						<li><a asp-page="./Register">Register</a> </li> |
-						<li><a asp-page="./Help">Help</a></li>
+						<li><a asp-page="./Help">Help</a></li> |
+						<li><a asp-page="./Index" asp-page-handler="Logout">Logout</a></li>
 						<div class="clearfix"></div>
 					</ul>
 				</div>
