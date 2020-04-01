@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SWEProject.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Table4U.Pages
 {
@@ -14,7 +16,8 @@ namespace Table4U.Pages
     {
         public String Message {get; set;}
         private readonly Table4UContext db;
-        
+        [BindProperty]
+        public IList<Lokal> ListaLokala {get; set;}
         public IndexModel(Table4UContext dataBase)
         {
             db = dataBase;
@@ -22,7 +25,8 @@ namespace Table4U.Pages
 
         public void OnGet()
         {
-           String eMail = HttpContext.Session.GetString("email");
+            ListaLokala = db.Lokali.ToList();
+            String eMail = HttpContext.Session.GetString("email");
             if (!string.IsNullOrEmpty(eMail))
             {
                 var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
@@ -30,9 +34,20 @@ namespace Table4U.Pages
             }
             
         }
+        /*public async Task OnGetAsync()
+        {
+           ListaLokala = await db.Lokali.ToListAsync();
+           String eMail = HttpContext.Session.GetString("email");
+            if (!string.IsNullOrEmpty(eMail))
+            {
+                var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
+                Message = "Welcome, " + korisnik.Ime;
+            }
+        }*/
 
         public void OnGetLogout()
-        {
+        { 
+            ListaLokala = db.Lokali.ToList();
             HttpContext.Session.Remove("email");
             Message = null;
         }

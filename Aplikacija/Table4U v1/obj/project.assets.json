@@ -4877,19 +4877,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nikola\\.nuget\\packages\\": {}
+    "C:\\Users\\urrke\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Table4U.csproj",
+      "projectUniqueName": "C:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Table4U.csproj",
       "projectName": "Table4U",
-      "projectPath": "E:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Table4U.csproj",
-      "packagesPath": "C:\\Users\\Nikola\\.nuget\\packages\\",
-      "outputPath": "E:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\obj\\",
+      "projectPath": "C:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Table4U.csproj",
+      "packagesPath": "C:\\Users\\urrke\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Nikola\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\urrke\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.0"
@@ -4944,7 +4944,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
