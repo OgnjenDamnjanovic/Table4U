@@ -31,6 +31,7 @@ namespace MyApp.Namespace
 
         public IActionResult OnPostLogin()
         {
+            
             var korisnici = dbContext.Korisnici.ToList();
             Korisnik k = korisnici.Where(x=>x.eMail == eMail && x.Sifra == Sifra).FirstOrDefault();
             if(k!=null)

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SWEProject.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Table4U.Pages
 {
@@ -16,6 +16,11 @@ namespace Table4U.Pages
     {
         public String Message {get; set;}
         private readonly Table4UContext db;
+      
+        [BindProperty]
+        public SelectList listaGradRestoranJSON { get; set; }
+        [BindProperty]
+        public SelectList listaGradova { get; set; }
         [BindProperty]
         public IList<Lokal> ListaLokala {get; set;}
         public IndexModel(Table4UContext dataBase)
@@ -32,6 +37,15 @@ namespace Table4U.Pages
                 var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
                 Message = "Welcome, " + korisnik.Ime;
             }
+            var sviRestorani=db.Lokali.ToList();
+            var listaGradRestoran=new List<string>();
+            listaGradova=new SelectList(db.Lokali.Select(lokal =>lokal.Grad).Distinct().ToList());
+            foreach(var restoran in sviRestorani)
+            {
+              
+                listaGradRestoran.Add($"{{\"naziv\":\"{restoran.Naziv}\",\"grad\":\"{restoran.Grad}\"}}");
+            }
+            listaGradRestoranJSON=new SelectList(listaGradRestoran.ToList());
             
         }
         /*public async Task OnGetAsync()

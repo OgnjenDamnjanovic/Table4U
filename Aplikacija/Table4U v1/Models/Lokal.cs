@@ -14,6 +14,7 @@ namespace SWEProject.Models
         [DataType(DataType.Time)]
         public DateTime closeTime { get; set; }
         public string Adresa { get; set; }
+        public string Grad { get; set; }
         public long latitude { get; set; }
         public long longitude { get; set; }
         public int maxKapacitet { get; set; }
@@ -24,7 +25,7 @@ namespace SWEProject.Models
         public IList<Sto> listaStolova { get; set; }
         public IList<Dogadjaj> listaDogadjaja { get; set; }
         public IList<Recenzija> listaRecenzija {get; set;}
-
+        public string nazivSlike { get; set; }
 
     }
 

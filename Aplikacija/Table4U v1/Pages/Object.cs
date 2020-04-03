@@ -11,6 +11,7 @@ namespace MyApp.Namespace
 {
     public class ObjectModel : PageModel
     {
+        
         public String Message {get; set;}
         private readonly Table4UContext db;
         
@@ -20,6 +21,7 @@ namespace MyApp.Namespace
         }
         public void OnGet()
         {
+            
             String eMail = HttpContext.Session.GetString("email");
             if (!string.IsNullOrEmpty(eMail))
             {

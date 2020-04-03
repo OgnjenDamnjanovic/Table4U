@@ -1,7 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="eng">
 <head>
-
+ <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - empty</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 	<!--<title>Table4U</title>-->
 		<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -31,6 +35,28 @@
 				});
 			});
 		</script>
+		
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+<style>
+  .ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  html .ui-autocomplete {
+    height: 100px;
+  }
+  </style>
+  
+
+
+
 </head>
 
 <body>
@@ -81,7 +107,8 @@
 	</div>
 	
     </header>
-
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -102,5 +129,6 @@
 
     @RenderSection("Scripts", required: false)
     
+	  <script type="text/javascript" src="js/smartSearchBox.js"></script>
 </body>
 </html>

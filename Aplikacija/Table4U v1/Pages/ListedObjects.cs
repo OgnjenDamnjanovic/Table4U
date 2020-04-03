@@ -13,13 +13,14 @@ namespace MyApp.Namespace
     {
         public String Message {get; set;}
         private readonly Table4UContext db;
-        
+        public string  test { get; set; }
         public ListedObjectsModel(Table4UContext dataBase)
         {
             db = dataBase;
         }
-        public void OnGet()
+        public void OnGet(string city,string name)
         {
+            test=city+name;
             String eMail = HttpContext.Session.GetString("email");
             if (!string.IsNullOrEmpty(eMail))
             {

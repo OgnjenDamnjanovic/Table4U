@@ -19,15 +19,21 @@
 						<form>
 						  <ul class="navmain">
 							<li><span>Location Name</span>
-							 <input type="text" class="text" value="Belgrade" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Belgrade';}">
+							<select  id="select-hidden-cityRestaurant" asp-items="@Model.listaGradRestoranJSON" style="display:none">
+                            </select>
+							<select  id="select-hidden-cityDistinct" asp-items="@Model.listaGradova" style="display:none">
+                            </select>
+						       
+							 <input type="text" class="text location" value="Niš" >
 							</li>
 							<li><span>Place Name</span>
-							 <input type="text" class="text" value="Boutique" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Boutique';}">
+							 <input type="text" class="text restaurant" value="Meze" >
 							</li>
 						  </ul>
 						</form>
+						<div class="srch"><button></button></div>
 						</div>
-	    <div class="srch"><button></button></div>
+	    
 				</div>
 			</div>
 		</div>
@@ -179,15 +185,16 @@
 					</div>
 
 				<!-- LISTA TOP OBJEKATA -->
-				<table class="table table-naj">
+				<table class="table table-naj" id="bootstrap-override-table-naj">
 					@foreach (var o in Model.ListaLokala)
 					{
 						<tr>
+							<td class="redSlika"><img class="table-naj-slika" src="@o.nazivSlike" style="width:150px;height:150px;"></td>
 							<td class="redIme"><a asp-page="./Object">@o.Naziv</a></td>
-							<td class="redAdresa">@o.Adresa</td>
-							<td class="redVremeP">@o.openTime.ToString("h tt")</td>
+							<td class="redAdresa">@o.Adresa , @o.Grad</td>
+    						<td class="redVremeP">@o.openTime.ToString("h tt")</td>
 							<td class="redVremeK">@o.closeTime.ToString("h tt")</td>
-							<td><a class="morebtn hvr-rectangle-in dugme_u_tabeli" asp-page="./Object">Reserve</a></td>
+							<td class="redReserve"><a class="morebtn hvr-rectangle-in dugme_u_tabeli" asp-page="./Object">Reserve</a></td>
 						</tr>
 					}
 				</table>
@@ -341,3 +348,34 @@
 						});
 					</script>
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<script>
+
+document.querySelector(".srch").onclick=function()
+{
+	let loc;
+	let rest;
+	let locInput=document.querySelector(".navmain .location");
+	let restInput=document.querySelector(".navmain .restaurant");
+	
+	if(window.getComputedStyle(locInput).color=='rgb(192, 192, 192)'&&window.getComputedStyle(locInput).fontWeight==400&&locInput.value=="Niš")
+	{
+		loc="";
+		console.log("prvi prosao");
+	}
+	else 
+	loc=locInput.value;
+
+	if(window.getComputedStyle(restInput).color=='rgb(192, 192, 192)'&&window.getComputedStyle(restInput).fontWeight==400&&restInput.value=="Meze")
+	{
+		rest="";
+		console.log("drugi prosao");
+	}
+	else 
+	rest=restInput.value;
+	console.log(loc+":loc "+rest+":rest")
+let str=`https://localhost:5001/ListedObjects?city=${loc}&name=${rest}`
+window.location.href=str;
+
+}
+
+</script>

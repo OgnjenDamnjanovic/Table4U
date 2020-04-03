@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Table4U.csproj",
+  "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Table4U.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -14364,68 +14364,68 @@
   "RootNamespace": "Table4U",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Login.cshtml",
-      "TargetPath": "Pages\\Login.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Shared\\_Layout.cshtml",
-      "TargetPath": "Pages\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Register.cshtml",
-      "TargetPath": "Pages\\Register.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Pages\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Help.cshtml",
-      "TargetPath": "Pages\\Help.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\ListedObjects.cshtml",
-      "TargetPath": "Pages\\ListedObjects.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Privacy.cshtml",
-      "TargetPath": "Pages\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Contact.cshtml",
-      "TargetPath": "Pages\\Contact.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Error.cshtml",
-      "TargetPath": "Pages\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\_ViewStart.cshtml",
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\_ViewStart.cshtml",
       "TargetPath": "Pages\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Object.cshtml",
-      "TargetPath": "Pages\\Object.cshtml",
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Shared\\_Layout.cshtml",
+      "TargetPath": "Pages\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\Index.cshtml",
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Register.cshtml",
+      "TargetPath": "Pages\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\_ViewImports.cshtml",
+      "TargetPath": "Pages\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Help.cshtml",
+      "TargetPath": "Pages\\Help.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Index.cshtml",
       "TargetPath": "Pages\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\urrke\\Documents\\Projekat\\3\\Aplikacija\\Table4U v1\\Pages\\_ViewImports.cshtml",
-      "TargetPath": "Pages\\_ViewImports.cshtml",
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Error.cshtml",
+      "TargetPath": "Pages\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Contact.cshtml",
+      "TargetPath": "Pages\\Contact.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Object.cshtml",
+      "TargetPath": "Pages\\Object.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Privacy.cshtml",
+      "TargetPath": "Pages\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\Login.cshtml",
+      "TargetPath": "Pages\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\Table4U v1\\Pages\\ListedObjects.cshtml",
+      "TargetPath": "Pages\\ListedObjects.cshtml",
       "FileKind": "mvc"
     }
   ],

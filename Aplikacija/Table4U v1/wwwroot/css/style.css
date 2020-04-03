@@ -1,5 +1,41 @@
-
 /*--DODATO!!!--*/
+#bootstrap-override-table-naj td{
+vertical-align: middle;
+
+}
+.table-naj-slika{
+	max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.redIme{
+	font-size: 30px;
+	font-family: 'Lobster Two', cursive;
+}
+ .redAdresa,.redVremeP,.redVremeK{
+	font-size: 23px;
+}
+@media screen and (max-width:630px){
+	 
+	.redIme{
+		font-size: 25px;
+		font-family: 'Lobster Two', cursive;
+	}
+	 .redAdresa,.redVremeP,.redVremeK{
+		font-size: 18px;
+	}
+	.table-naj-slika{
+		max-width: 75px;
+		height: 75px;
+	
+	}
+	
+
+
+
+}
+  
 .ordering-section-grids{
 	display: flex;
 	flex-wrap: wrap;
@@ -12,13 +48,7 @@
 .tekst{
 	margin-left: 8px;
 }
-.redIme{
-	font-size: 25px;
-	font-family: 'Lobster Two', cursive;
-}
-.redAdresa, .redVremeP, .redVremeK{
-	font-size: 20px;
-}
+
 .dugme_u_tabeli{
 	float: right;
 }
