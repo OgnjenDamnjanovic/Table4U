@@ -6,125 +6,41 @@
 <head>
     <title>Table4U | Listed objects</title>
 </head>
-<div>@Model.test</div>
+
 <div class="Popular-Restaurants-content">
 		<div class="Popular-Restaurants-grids">
 			<div class="container">
-				<div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
+
+			@for(int i=0; i<Model.VrsteObjekata.Count(); i++)
+			{
+				<h3 class="r-titles">@Model.VrsteObjekata[i]</h3>
+
+				@foreach (var lok in Model.MatricaLokala[i])
+				{
+					<div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
 					<div class="col-md-3 restaurent-logo">
-						<img src="images/restaurent-logo1.jpg" class="img-responsive" alt="" />
+						<img src=@lok.nazivSlike class="img-responsive" alt="" />
 					</div>
 					<div class="col-md-2 restaurent-title">
 						<div class="logo-title">
-							<h4><a href="#">pizza hut</a></h4>
+							<h4><a asp-page="/Object" asp-route-id=@lok.Id>@lok.Naziv</a></h4>
 						</div>
 						<div class="rating">
-							<span>ratings</span>
-							<a href="#"> <img src="images/star1.png" class="img-responsive" alt="">(004)</a>
+							<label>ratings</label>
+							<div><label>@lok.Ocena</label> <label>(@lok.brOcena)</label></div>
+							<div><label>open: @lok.openTime.ToString("h tt")</label> </div>
+							<label>close: @lok.closeTime.ToString("h tt")</label>
 						</div>
 					</div>
 					<div class="col-md-7 buy">
-						<span>$45</span>
-						<a class="morebtn hvr-rectangle-in" href="orders-list.html">buy</a>
+						<a class="morebtn hvr-rectangle-in" href=#>reserve</a>
 					</div>
 					<div class="clearfix"></div>
 				</div>
-				<div class="Popular-Restaurants-grid wow fadeInLeft" data-wow-delay="0.4s">
-					<div class="col-md-3 restaurent-logo">
-						<img src="images/restaurent-logo2.jpg" class="img-responsive" alt="" />
-					</div>
-					<div class="col-md-2 restaurent-title">
-						<div class="logo-title logo-title-1">
-							<h4><a href="#">Subway</a></h4>
-						</div>
-						<div class="rating">
-							<span>ratings</span>
-							<a href="#"> <img src="images/star2.png" class="img-responsive" alt="">(005)</a>
-						</div>
-					</div>
-					<div class="col-md-7 buy">
-						<span>$45</span>
-						<a class="morebtn hvr-rectangle-in" href="orders-list.html">buy</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
-					<div class="col-md-3 restaurent-logo">
-						<img src="images/restaurent-logo3.jpg" class="img-responsive" alt="" />
-					</div>
-					<div class="col-md-2 restaurent-title">
-						<div class="logo-title logo-title-2">
-							<h4><a href="#">Barista</a></h4>
-						</div>
-						<div class="rating">
-							<span>ratings</span>
-							<a href="#"> <img src="images/star1.png" class="img-responsive" alt="">(004)</a>
-						</div>
-					</div>
-					<div class="col-md-7 buy">
-						<span>$45</span>
-						<a class="morebtn hvr-rectangle-in" href="orders-list.html">buy</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="Popular-Restaurants-grid wow fadeInLeft" data-wow-delay="0.4s">
-					<div class="col-md-3 restaurent-logo">
-						<img src="images/restaurent-logo4.jpg" class="img-responsive" alt="" />
-					</div>
-					<div class="col-md-2 restaurent-title">
-						<div class="logo-title logo-title-3">
-							<h4><a href="#">papa johns</a></h4>
-						</div>
-						<div class="rating">
-							<span>ratings</span>
-							<a href="#"> <img src="images/star2.png" class="img-responsive" alt="">(005)</a>
-						</div>
-					</div>
-					<div class="col-md-7 buy">
-						<span>$45</span>
-						<a class="morebtn hvr-rectangle-in" href="orders-list.html">buy</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
-					<div class="col-md-3 restaurent-logo">
-						<img src="images/restaurent-logo5.jpg" class="img-responsive" alt="" />
-					</div>
-					<div class="col-md-2 restaurent-title">
-						<div class="logo-title logo-title-4">
-							<h4><a href="#">Domino's pizza</a></h4>
-						</div>
-						<div class="rating">
-							<span>ratings</span>
-							<a href="#"> <img src="images/star1.png" class="img-responsive" alt="">(004)</a>
-						</div>
-					</div>
-					<div class="col-md-7 buy">
-						<span>$45</span>
-						<a class="morebtn hvr-rectangle-in" href="orders-list.html">buy</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="Popular-Restaurants-grid wow fadeInLeft" data-wow-delay="0.4s">
-					<div class="col-md-3 restaurent-logo">
-						<img src="images/restaurent-logo6.jpg" class="img-responsive" alt="" />
-					</div>
-					<div class="col-md-2 restaurent-title">
-						<div class="logo-title logo-title-5">
-							<h4><a href="#">kfc</a></h4>
-						</div>
-						<div class="rating">
-							<span>ratings</span>
-							<a href="#"> <img src="images/star2.png" class="img-responsive" alt="">(005)</a>
-						</div>
-					</div>
-					<div class="col-md-7 buy">
-						<span>$45</span>
-						<a class="morebtn hvr-rectangle-in" href="orders-list.html">buy</a>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
+				}
+			}
+				
+			<!--<a href="#"> <img src="images/star1.png" class="img-responsive" alt="">(004)</a>-->
 		</div>
 	</div>
 	<div class="contact-section" id="contact">

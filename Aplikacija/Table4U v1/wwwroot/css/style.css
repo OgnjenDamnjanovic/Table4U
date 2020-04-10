@@ -3,6 +3,15 @@
 vertical-align: middle;
 
 }
+
+.r-titles{
+	color:#000000;
+	font-size:2em;
+	font-weight:500;
+	font-family: 'Lobster Two', cursive;
+	margin:5px 0 12px 0;
+}
+
 .table-naj-slika{
 	max-width: 100%;
     width: 100%;
