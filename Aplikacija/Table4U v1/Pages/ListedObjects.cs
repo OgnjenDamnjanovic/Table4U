@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SWEProject.Models;
 
 namespace MyApp.Namespace
@@ -15,34 +16,72 @@ namespace MyApp.Namespace
         private readonly Table4UContext db;
         public IList<String>  VrsteObjekata { get; set; }
         public IList<List<Lokal>> MatricaLokala {get; set;}
+        [BindProperty(SupportsGet=true)]
+        public String IzabranaVrsta {get; set;}
+        public SelectList Lista {get; set;}
+        public String City {get; set;}
+        public String Name {get; set;}
+
         public ListedObjectsModel(Table4UContext dataBase)
         {
             db = dataBase;
         }
         public void OnGet(string city,string name)
         {
-            //test=city+name;
+            City = city;
+            Name = name;
+
+            //test=City+Name;
             String eMail = HttpContext.Session.GetString("email");
             if (!string.IsNullOrEmpty(eMail))
             {
                 var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
                 Message = "Welcome, " + korisnik.Ime;
             }
-
-            if(string.IsNullOrEmpty(city) && string.IsNullOrEmpty(name))
-            {
-                VrsteObjekata = db.Lokali.Select(x=>x.Tip).Distinct().ToList();
+            IQueryable<String> qLista = db.Lokali.Select(x=>x.Tip).Distinct();
+            //VrsteObjekata = db.Lokali.Select(x=>x.Tip).Distinct().ToList();
+            Lista = new SelectList(qLista.ToList());
+            if(string.IsNullOrEmpty(City) && string.IsNullOrEmpty(Name))
+            { 
+                VrsteObjekata = qLista.ToList();
+                if(!string.IsNullOrEmpty(IzabranaVrsta) && IzabranaVrsta!="0")
+                {
+                    VrsteObjekata.Clear();
+                    VrsteObjekata.Add(IzabranaVrsta);
+                }
+                MatricaLokala = new List<List<Lokal>>(VrsteObjekata.Count());
+                for(int i=0; i<VrsteObjekata.Count(); i++)
+                {
+                    MatricaLokala.Add(db.Lokali.Where(x=>x.Tip == VrsteObjekata[i]).ToList());                
+                }
             }
-            else if(string.IsNullOrEmpty(name))
+            else if(string.IsNullOrEmpty(Name))
             {
-                VrsteObjekata = db.Lokali.Where(x=>x.Grad == city).Select(x=>x.Tip).Distinct().ToList();
+                VrsteObjekata = db.Lokali.Where(x=>x.Grad == City).Select(x=>x.Tip).Distinct().ToList();
+                if(!string.IsNullOrEmpty(IzabranaVrsta) && IzabranaVrsta!="0")
+                {
+                    VrsteObjekata.Clear();
+                    VrsteObjekata.Add(IzabranaVrsta);
+                }
+                MatricaLokala = new List<List<Lokal>>(VrsteObjekata.Count());
+                for(int i=0; i<VrsteObjekata.Count(); i++)
+                {
+                    //var lokali = db.Lokali.Where(x=>x.Grad == City && x.T)
+                    MatricaLokala.Add(db.Lokali.Where(x=>x.Grad == City && x.Tip == VrsteObjekata[i]).ToList());                
+                }
             }
-            else if(string.IsNullOrEmpty(city))
+            else if(string.IsNullOrEmpty(City))
             {
-                List<Lokal> lokali = db.Lokali.Where(x=>x.Naziv == name).ToList();
+                List<Lokal> lokali = db.Lokali.Where(x=>x.Naziv == Name).ToList();
                 if(lokali!=null)
                 {
                     VrsteObjekata = lokali.Select(x=>x.Tip).Distinct().ToList();
+                    if(!string.IsNullOrEmpty(IzabranaVrsta) && IzabranaVrsta!="0")
+                    {
+                        VrsteObjekata.Clear();
+                        VrsteObjekata.Add(IzabranaVrsta);
+                        lokali = lokali.Where(x=>x.Tip == IzabranaVrsta).ToList();
+                    }
                     MatricaLokala = new List<List<Lokal>>(VrsteObjekata.Count());
                     MatricaLokala.Add(lokali);
                 }
@@ -50,7 +89,7 @@ namespace MyApp.Namespace
             }
             else
             {
-                Lokal lokal = db.Lokali.Where(x=>x.Naziv==name && x.Grad==city).FirstOrDefault();
+                Lokal lokal = db.Lokali.Where(x=>x.Naziv==Name && x.Grad==City).FirstOrDefault();
                 if(lokal!=null)
                 {
                     VrsteObjekata = new List<String>();
@@ -61,11 +100,7 @@ namespace MyApp.Namespace
                 }
                 return;
             }
-            MatricaLokala = new List<List<Lokal>>(VrsteObjekata.Count());
-            for(int i=0; i<VrsteObjekata.Count(); i++)
-            {
-                MatricaLokala.Add(db.Lokali.Where(x=>x.Tip == VrsteObjekata[i]).ToList());                
-            }
+            
         }
 
         public void OnGetLogout()
