@@ -4,19 +4,19 @@
 }
 
 <head>
-    <title>Table4U | Listed objects</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Table4U | Places</title>
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
 </head>
 
 @if(string.IsNullOrEmpty(Model.City) || string.IsNullOrEmpty(Model.Name))
 {
 <form method="get">
-	<div class="input-group">
-		<select asp-for="IzabranaVrsta" asp-items="Model.Lista" class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+	<div class="input-group1">
+		<select asp-for="IzabranaVrsta" asp-items="Model.Lista" class="selectPretraga" id="inputGroupSelect04" aria-label="Example select with button addon">
 			<option value="0">All</option>
 		</select>
 		<div class="input-group-append">
-    		<button class="btn btn-outline-secondary" type="submit">Search</button>
+    		<button class="btnPretraga" type="submit">Search</button>
   		</div>
 	</div>
 
@@ -45,15 +45,15 @@
 							<h4><a asp-page="/Object" asp-route-id=@lok.Id>@lok.Naziv</a></h4>
 						</div>
 						<div class="rating">
-							<label>@lok.Grad</label>
-							<div><label>ratings: </label>
+							<label>City: @lok.Grad</label>
+							<div><label>Rating: </label>
 							<label>@lok.Ocena</label> <label>(@lok.brOcena)</label></div>
-							<div><label>open: @lok.openTime.ToString("h tt")</label> </div>
-							<label>close: @lok.closeTime.ToString("h tt")</label>
+							<div><label>Open: @lok.openTime.ToString("h tt")</label> </div>
+							<label>Close: @lok.closeTime.ToString("h tt")</label>
 						</div>
 					</div>
 					<div class="col-md-7 buy">
-						<a class="morebtn hvr-rectangle-in" href=#>reserve</a>
+						<a class="morebtn hvr-rectangle-in" asp-page="/Object" asp-route-Id="@lok.Id">Reserve</a>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -141,14 +141,6 @@
 
     <script type="text/javascript">
 						$(document).ready(function() {
-							/*
-							var defaults = {
-					  			containerID: 'toTop', // fading element id
-								containerHoverID: 'toTopHover', // fading element hover id
-								scrollSpeed: 1200,
-								easingType: 'linear' 
-					 		};
-							*/
 							
 							$().UItoTop({ easingType: 'easeOutQuart' });
 							

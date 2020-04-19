@@ -11,8 +11,12 @@ namespace MyApp.Namespace
 {
     public class ObjectModel : PageModel
     {
-        
+
         public String Message {get; set;}
+
+        [BindProperty]
+        public IList<Lokal> ListaLokala {get; set;}
+
         private readonly Table4UContext db;
         
         public ObjectModel(Table4UContext dataBase)
@@ -21,7 +25,7 @@ namespace MyApp.Namespace
         }
         public void OnGet()
         {
-            
+            ListaLokala = db.Lokali.ToList();
             String eMail = HttpContext.Session.GetString("email");
             if (!string.IsNullOrEmpty(eMail))
             {
@@ -32,6 +36,7 @@ namespace MyApp.Namespace
 
         public void OnGetLogout()
         {
+            ListaLokala = db.Lokali.ToList();
             HttpContext.Session.Remove("email");
             Message = null;
         }

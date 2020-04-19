@@ -1,27 +1,234 @@
 /*--DODATO!!!--*/
-#bootstrap-override-table-naj td{
-vertical-align: middle;
 
+	/*Listed objects strana*/
+
+	.input-group1{
+		display: flex;
+		flex-direction: row;
+		margin-top: 20px;
+		width:100%;
+	}
+
+	.input-group-append{
+		width:20%;
+	}
+
+	.selectPretraga{
+		width:80%;
+		font-family: inherit;
+    	font-size: inherit;
+		line-height: inherit;
+		margin: 0;
+    	font: inherit;
+		color: inherit;
+		text-rendering: auto;
+		letter-spacing: normal;
+		word-spacing: normal;
+		text-indent: 0px;
+    	text-shadow: none;
+    	display: inline-block;
+    	text-align: start;
+		-webkit-appearance: menulist;
+		align-items: center;
+    	white-space: pre;
+    	-webkit-rtl-ordering: logical;
+    	background-color: -internal-light-dark-color(white, black);
+		cursor: default;
+		border-radius: 0px;
+    	border-width: 1px;
+    	border-style: solid;
+    	border-color: rgb(169, 169, 169);
+    	border-image: initial;
+	}
+
+	.btnPretraga{
+		display: inline-block;
+    	padding: 6px 12px;
+    	margin-bottom: 0;
+    	font-size: 14px;
+    	font-weight: normal;
+    	line-height: 1.42857143;
+    	text-align: center;
+    	white-space: nowrap;
+    	vertical-align: middle;
+    	cursor: pointer;
+    	border: 1px solid transparent;
+		border-radius: 4px;
+		font-family: inherit;
+		-webkit-appearance: button;
+		overflow: visible;
+		margin: 0;
+    	font: inherit;
+		color: inherit;
+		background-color: buttonface;
+		width:100%;
+	}
+
+	.r-titles{
+		color:#000000;
+		font-size:2em;
+		font-weight:500;
+		font-family: 'Lobster Two', cursive;
+		margin:5px 0 12px 0;
+	}
+	/*Kraj listed objects*/
+
+	/*Slajdsou na pocetnoj strani za predstojece dogadjaje*/
+	.mySlides {
+		display: none;
+		width:60%;
+		max-width: 400px;
+		height:200px;
+	}
+	/* Slideshow container */
+	.slideshow-container {
+	  width: 100%;
+	  /*max-width: 400px;*/
+	  height:200px;
+	  float:left;
+  	  position: relative;
+  	  margin: auto;
+	}
+	
+	/* Caption text */
+	.text1, .text2, .text3 {
+	  color: black;
+	  font-size: 20px;
+	  font-family: 'Lobster Two';
+	  padding: 8px 12px;
+	  float:left;
+	  width: 100%;
+	  max-width:400px;
+	  bottom: 8px;
+	  text-align: center;
+	}
+	
+	/* The dots/bullets/indicators */
+	.dot {
+	  height: 15px;
+	  width: 15px;
+	  margin: 0 2px;
+	  background-color: #bbb;
+	  border-radius: 50%;
+	  display: inline-block;
+	  transition: background-color 0.6s ease;
+	}
+	.redDog{
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.dugmence{
+		display: flex;
+		justify-content: center;
+	}
+	.dugme1{
+		border: none;
+  		outline: none;
+  		padding: 0.3em 1.6em;
+  		color: #fff;
+  		background: #5BBD50;
+  		font-size: 1.4em;
+  		font-weight: 700;
+		font-family: 'Lobster Two', cursive;
+		border-radius: 20px;
+		max-width: 120px;
+		width:100%;
+		justify-content: center;
+		margin-right: 0;
+	}
+	.active1 {
+	  background-color: #717171;
+	}
+	.slajd{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+	.tacke{
+		text-align:center;
+		margin-top:220px;
+		width:100%;
+	}
+	
+	/* Fading animation */
+	.fade {
+	  -webkit-animation-name: fade;
+	  -webkit-animation-duration: 7.5s;
+	  animation-name: fade;
+	  animation-duration: 7.5s;
+	}
+	
+	@-webkit-keyframes fade {
+	  from {opacity: 1} 
+	  to {opacity: .7}
+	}
+	
+	@keyframes fade {
+	  from {opacity: 1} 
+	  to {opacity: .7}
+	}
+	/*KRAJ Slajdsou na pocetnoj strani za predstojece dogadjaje*/
+
+@media screen and (width:375px){
+	.ordering-section-grids{
+		margin-right:20px;
+	}
+	.col-md-3.ordering-section-grid{
+		margin-right: 20px;
+	}
+	.ordering-section-grid-process{
+		margin-right: 20px;
+		margin-left: 10px;
+	}
+	.text1, .text2, .text3 {
+		color: black;
+		font-size: 13px;
+		font-family: 'Lobster Two';
+		padding: 8px 12px;
+		float:left;
+		width: 100%;
+		max-width:400px;
+		bottom: 8px;
+		text-align: center;
+	  }
 }
 
-.input-group{
-	margin-top: 20px;
+@media screen and (width:360px){
+	.ordering-section-grids{
+		margin-right:20px;
+	}
+	.col-md-3.ordering-section-grid{
+		margin-right: 20px;
+	}
+	.ordering-section-grid-process{
+		margin-right: 20px;
+		margin-left: 10px;
+	}
+	.tekst{
+		margin-left:0;
+	}
+	.text1, .text2, .text3 {
+		color: black;
+		font-size: 13px;
+		font-family: 'Lobster Two';
+		padding: 8px 12px;
+		float:left;
+		width: 100%;
+		max-width:400px;
+		bottom: 8px;
+		text-align: center;
+	  }
 }
-
-.r-titles{
-	color:#000000;
-	font-size:2em;
-	font-weight:500;
-	font-family: 'Lobster Two', cursive;
-	margin:5px 0 12px 0;
-}
-
 .table-naj-slika{
 	max-width: 100%;
     width: 100%;
     height: auto;
 }
-
+#bootstrap-override-table-naj td{
+	vertical-align: middle;
+	}
 .redIme{
 	font-size: 30px;
 	font-family: 'Lobster Two', cursive;
@@ -29,7 +236,7 @@ vertical-align: middle;
  .redAdresa,.redVremeP,.redVremeK{
 	font-size: 23px;
 }
-@media screen and (max-width:630px){
+ @media screen and (max-width:640px){
 	 
 	.redIme{
 		font-size: 25px;
@@ -44,11 +251,18 @@ vertical-align: middle;
 	
 	}
 	
-
-
-
+	.text1, .text2, .text3 {
+		color: black;
+		font-size: 15px;
+		font-family: 'Lobster Two';
+		padding: 8px 12px;
+		float:left;
+		width: 100%;
+		max-width:400px;
+		bottom: 8px;
+		text-align: center;
+	  }
 }
-  
 .ordering-section-grids{
 	display: flex;
 	flex-wrap: wrap;
@@ -64,6 +278,19 @@ vertical-align: middle;
 
 .dugme_u_tabeli{
 	float: right;
+	border: none;
+  	outline: none;
+  	padding: 0.3em 1.6em;
+  	color: #fff;
+  	background: #5BBD50;
+  	font-size: 1.4em;
+  	font-weight: 700;
+	font-family: 'Lobster Two', cursive;
+	border-radius: 20px;
+  	-webkit-border-radius: 20px;
+  	-moz-border-radius: 20px;
+  	-o-border-radius: 20px;
+  	text-decoration:none;
 }
 .ordering-section-grid{
 	margin-left: 15px;
@@ -102,6 +329,13 @@ vertical-align: middle;
 }
 .banner{
 	background: url("../images/banner.jpg") no-repeat;
+}
+.table-naj{
+	width:100%;
+}
+/*prazan div na contact strani*/
+.prazan{
+	padding-bottom: 300px;
 }
 /*--KRAJ DODATOG!!!--*/
 
@@ -398,7 +632,7 @@ a.simpleCart_empty {
 	margin: 0 auto;
 }
 .dotted-line {
-	background: url(../images/dotted-line.png) no-repeat 176px 14px;
+	/*background: url(../images/dotted-line.png) no-repeat 176px 14px;*/
 	margin:1em 0 2.5em 0;
 }
 .ordering-section-grids {
@@ -565,7 +799,7 @@ a.simpleCart_empty {
 	background: #fff;
 }
 .special-offers-section-grids {
-	padding-bottom: 6em;
+	padding-bottom: 1em;
 }
 .service-section-top-row{
 	border-top:2px solid #F1F1F1;
@@ -968,7 +1202,7 @@ ul.qty li p {
 	margin: 0.3em 0;
 	position:relative;
 }
-.offer-text  span{
+/*.offer-text  span{
 	width: 20px;
 	height: 15px;
 	background: url("../images/img-sprite.png") no-repeat -260px -58px;
@@ -976,7 +1210,7 @@ ul.qty li p {
 	position: absolute;
 	top: 85%;
 	right: 43%;
-}
+}*/
 .offer-text h4{
 	color:#5BBD50;
 	font-weight:700;
@@ -998,6 +1232,7 @@ ul.qty li p {
 	background:#E24425;
 	font-size:15px;
 	font-weight:600;
+	width: 78px;
 	text-transform:uppercase;
 	margin-top:1em;
 }
@@ -1440,6 +1675,21 @@ h2.resp-accordion:hover{
 	color: #FFF;
 }
 @media only screen and (max-width:480px) {
+
+	.text1, .text2, .text3 {
+		color: black;
+		font-size: 13px;
+		font-family: 'Lobster Two';
+		padding: 8px 12px;
+		float:left;
+		width: 100%;
+		max-width:400px;
+		bottom: 8px;
+		text-align: center;
+	}
+.container{
+	width: 100%;
+}
 .sap_tabs{
 	padding-top:0;
 }
@@ -2395,7 +2645,7 @@ address {
 }
 /*-- popular-restaurent--*/
 .Popular-Restaurants-content{
-	padding:3em 0;
+	padding-top:3em;
 }
 .restaurent-title h4{
 	color:#000000;
@@ -2503,6 +2753,9 @@ a.morebtn{
 }
 /*-- responsive-design --*/
  @media screen and (max-width:1366px){
+	.container{
+		width: 100%;
+	}
 	.banner {
 		min-height: 350px;
 	}
@@ -2539,7 +2792,7 @@ a.morebtn{
 	}
 	/*--DODATO--*/
 	.ordering-section-grids{
-		margin-left: 30px;
+		margin-left: 10px;
 	}
 	.ordering-section-grid{
 		margin-left: 7px;
@@ -2574,6 +2827,9 @@ a.morebtn{
 	}
 }
 	 @media screen and (max-width:1280px){
+	.container{
+		width: 100%;
+	}
 	.banner-info-head h1 {
 		font-size: 2.6em;
 	}
@@ -2598,6 +2854,9 @@ a.morebtn{
 
 }
 @media screen and (max-width:1024px){
+	.container{
+		width: 100%;
+	}
 	.line {
 		background: url(../images/line.png) no-repeat -29px 17px;
 	}
@@ -2658,7 +2917,7 @@ a.morebtn{
 		font-size: 1.6em;
 	}
 	.dotted-line {
-		background: url(../images/dotted-line.png) no-repeat 76px 13px;
+		/*background: url(../images/dotted-line.png) no-repeat 76px 13px;*/
 		margin: 0.5em 0 2.2em 0;
 	}
 	.ordering-section-grids {
@@ -2703,7 +2962,7 @@ a.morebtn{
 		right: 30em;
 	}
 	.special-offers-section-grids {
-		padding-bottom: 5em;
+		padding-bottom: 1em;
 	}
 	span.middle-dotted-line {
 		left: 31.5em;
@@ -2807,6 +3066,9 @@ a.morebtn{
 	}
 }
 @media screen and (max-width:1000px){
+	.container{
+		width: 100%;
+	}
 	.queries p {
 		font-size: 1.1em;
 	}
@@ -2888,7 +3150,7 @@ a.morebtn{
 		left: 126px;
 	}
 	.dotted-line {
-		background: url(../images/dotted-line.png) no-repeat -29px 10px;
+		/*background: url(../images/dotted-line.png) no-repeat -29px 10px;*/
 		margin: 0.5em 0 2em 0;
 	}
 	.ordering-section-grid {
@@ -3112,9 +3374,6 @@ a.morebtn{
 	.service-section-top-row-grids {
 		border-radius: 6px;
 	}
-	.container {
-		width: 735px;
-	}
 	.ordering-section-grid {
 		min-height: 170px;
 	}
@@ -3239,7 +3498,7 @@ a.morebtn{
 }
 @media screen and (max-width:768px){
 	.container {
-		width: 720px;
+		width: 100%;
 	}
 	.ordering-section-grid {
 		min-height: 170px;
@@ -3284,7 +3543,7 @@ a.morebtn{
 		font-size: 1.3em;
 	}
 	.dotted-line {
-		background: url(../images/dotted-line.png) no-repeat -48px 10px;
+		/*background: url(../images/dotted-line.png) no-repeat -48px 10px;*/
 		margin: 0.3em 0 2em 0;
 	}
 	.logo img {
@@ -3313,7 +3572,11 @@ a.morebtn{
 }
 @media screen and (max-width:640px){
 	.container {
-		width: 593px;
+		width: 100%;
+	}
+	.table-red{
+		display: flex;
+		flex-wrap: wrap;
 	}
 	.logo img {
 		width: 75%;
@@ -3358,7 +3621,7 @@ a.morebtn{
 		font-size: 1.2em;
 	}
 	.dotted-line {
-		background: url(../images/dotted-line.png) no-repeat -112px 9px;
+		/*background: url(../images/dotted-line.png) no-repeat -112px 9px;*/
 	}
 	.ordering-section {
 		padding: 1.5em 0 0 0;
@@ -3424,7 +3687,7 @@ a.morebtn{
 		margin-top: 5.8em;
 	}
 	.special-offers-section-grids {
-		padding-bottom: 3.5em;
+		padding-bottom: 1em;
 	}
 	span.middle-dotted-line {
 		left: 19em;
@@ -3568,7 +3831,7 @@ a.morebtn{
 }
  @media screen and (max-width:480px){
 	.container {
-		width: 433px;
+		width: 100%;
 	}
 	.ordering-section-grid-process label {
 		display: none;
@@ -3579,7 +3842,7 @@ a.morebtn{
 	.footer p {
 		font-size: 14px;
 	}
-	..footer {
+	.footer {
 		padding: 1.5em 0;
 	}
 	.contact-section-grid {
@@ -3642,7 +3905,7 @@ a.morebtn{
 		margin: 0 2% 2% 0;
 	}
 	.dotted-line {
-		background: url(../images/dotted-line.png) no-repeat -192px 9px;
+		/*background: url(../images/dotted-line.png) no-repeat -192px 9px;*/
 	}
 	.offer {
 		padding: 12px;
@@ -4062,7 +4325,7 @@ a.morebtn{
 		margin-top: 3.5em;
 	}
 	.dotted-line {
-		background: url(../images/dotted-line.png) no-repeat -260px 9px;
+		/*background: url(../images/dotted-line.png) no-repeat -260px 9px;*/
 	}
 	.ordering-section-head h3 {
 		font-size: 1.3em;

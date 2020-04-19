@@ -15,14 +15,27 @@ namespace Table4U.Pages
     public class IndexModel : PageModel
     {
         public String Message {get; set;}
+
         private readonly Table4UContext db;
       
         [BindProperty]
+        public IList<Dogadjaj> ListaDogadjaja {get; set;}
+
+        [BindProperty]
+        public List<Dogadjaj> ListaDog {get;set;}
+
+        [BindProperty]
+        public List<Lokal> ListaLok {get;set;}
+
+        [BindProperty]
         public SelectList listaGradRestoranJSON { get; set; }
+
         [BindProperty]
         public SelectList listaGradova { get; set; }
+        
         [BindProperty]
         public IList<Lokal> ListaLokala {get; set;}
+
         public IndexModel(Table4UContext dataBase)
         {
             db = dataBase;
@@ -30,7 +43,44 @@ namespace Table4U.Pages
 
         public void OnGet()
         {
+            var i=0;
+            ListaDog = new List<Dogadjaj>();
+            ListaLok = new List<Lokal>();
             ListaLokala = db.Lokali.ToList();
+            ListaDogadjaja=db.Dogadjaji.ToList();
+            var Lista = ListaDogadjaja.OrderBy(x=>x.Datum);
+            var Lista2 = ListaLokala.OrderByDescending(x=>x.Ocena);
+            ListaDogadjaja=Lista.ToList();
+            ListaLokala=Lista2.ToList();
+            if(ListaDogadjaja.Count>5)
+            {
+                for(i=0;i<5;i++)
+                {
+                    ListaDog.Add(ListaDogadjaja.ElementAt(i));
+                }
+            }
+            else
+            {
+                for(i=0;i<ListaDogadjaja.Count;i++)
+                {
+                    ListaDog.Add(ListaDogadjaja.ElementAt(i));
+                }
+            }
+            if(ListaLokala.Count>5)
+            {
+                for(i=0;i<5;i++)
+                {
+                    ListaLok.Add(ListaLokala.ElementAt(i));
+                }
+            }
+            else
+            {
+                for(i=0;i<ListaLokala.Count;i++)
+                {
+                    ListaLok.Add(ListaLokala.ElementAt(i));
+                }
+            }
+
             String eMail = HttpContext.Session.GetString("email");
             if (!string.IsNullOrEmpty(eMail))
             {
@@ -48,20 +98,46 @@ namespace Table4U.Pages
             listaGradRestoranJSON=new SelectList(listaGradRestoran.ToList());
             
         }
-        /*public async Task OnGetAsync()
-        {
-           ListaLokala = await db.Lokali.ToListAsync();
-           String eMail = HttpContext.Session.GetString("email");
-            if (!string.IsNullOrEmpty(eMail))
-            {
-                var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
-                Message = "Welcome, " + korisnik.Ime;
-            }
-        }*/
 
         public void OnGetLogout()
         { 
+            var i=0;
+            ListaDog = new List<Dogadjaj>();
+            ListaLok = new List<Lokal>();
             ListaLokala = db.Lokali.ToList();
+            ListaDogadjaja=db.Dogadjaji.ToList();
+            var Lista = ListaDogadjaja.OrderBy(x=>x.Datum);
+            var Lista2 = ListaLokala.OrderBy(x=>x.Ocena);
+            ListaDogadjaja=Lista.ToList();
+            ListaLokala=Lista2.ToList();
+            if(ListaDogadjaja.Count>5)
+            {
+                for(i=0;i<5;i++)
+                {
+                    ListaDog.Add(ListaDogadjaja.ElementAt(i));
+                }
+            }
+            else
+            {
+                for(i=0;i<ListaDogadjaja.Count;i++)
+                {
+                    ListaDog.Add(ListaDogadjaja.ElementAt(i));
+                }
+            }  
+            if(ListaLokala.Count>5)
+            {
+                for(i=0;i<5;i++)
+                {
+                    ListaLok.Add(ListaLokala.ElementAt(i));
+                }
+            }
+            else
+            {
+                for(i=0;i<ListaLokala.Count;i++)
+                {
+                    ListaLok.Add(ListaLokala.ElementAt(i));
+                }
+            }     
             HttpContext.Session.Remove("email");
             Message = null;
         }
