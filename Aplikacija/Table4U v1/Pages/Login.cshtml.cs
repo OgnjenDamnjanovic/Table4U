@@ -11,6 +11,7 @@ namespace MyApp.Namespace
 {
     public class LoginModel : PageModel
     {
+        public Korisnik TKorisnik {get; set;}
         [BindProperty]
         public String eMail {get; set;}
         [BindProperty]
@@ -31,13 +32,15 @@ namespace MyApp.Namespace
 
         public IActionResult OnPostLogin()
         {
-            
+            TKorisnik = dbContext.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             var korisnici = dbContext.Korisnici.ToList();
             Korisnik k = korisnici.Where(x=>x.eMail == eMail && x.Sifra == Sifra).FirstOrDefault();
             if(k!=null)
             {
                 HttpContext.Session.SetString("email", eMail);
-                return RedirectToPage("/Index");
+                if(k.tipKorisnika=="Manager")
+                    return RedirectToPage("/Manager");
+                else return RedirectToPage("/Index");
             }
             else
             {   

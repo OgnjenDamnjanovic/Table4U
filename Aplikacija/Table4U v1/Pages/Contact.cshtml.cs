@@ -11,6 +11,7 @@ namespace MyApp.Namespace
 {
     public class ContactModel : PageModel
     {
+        public Korisnik TKorisnik {get; set;}
         public String Message {get; set;}
         private readonly Table4UContext db;
         
@@ -21,10 +22,18 @@ namespace MyApp.Namespace
         public void OnGet()
         {
             String eMail = HttpContext.Session.GetString("email");
+            TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             if (!string.IsNullOrEmpty(eMail))
             {
-                var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
-                Message = "Welcome, " + korisnik.Ime;
+                if(TKorisnik.tipKorisnika=="Manager")
+                {
+                    Message = null;
+                }
+                else
+                {
+                    var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
+                    Message = "Welcome, " + korisnik.Ime;
+                }
             }
         }
 

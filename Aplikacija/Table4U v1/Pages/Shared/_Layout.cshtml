@@ -3,7 +3,7 @@
 <head>
  <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--<title>@ViewData["Title"] - empty</title>-->
+    <title>@ViewData["Title"] - empty</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 	<!--<title>Table4U</title>-->
@@ -21,6 +21,7 @@
 	<!--Animation-->
 	<script src="js/wow.min.js"></script>
 	<link href="css/animate.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script>
 		new WOW().init();
 	</script>
@@ -68,22 +69,52 @@
 					<a asp-page="./Index"><img src="images/logo.png" class="img-responsive" alt="" /></a>
 				</div>
 				<div class="special-offers-section-head">
-					<h4 class="top-message">@Model.Message</h4>
+					@if(Model.TKorisnik!=null && Model.TKorisnik.tipKorisnika=="Manager")
+					{
+						@if(!string.IsNullOrEmpty(Model.Message))
+						{
+							<h6 class="top-message"><a asp-page="./Index">Go to customer version</a></h6>
+						}
+						else
+						{
+							<h6 class="top-message"><a class="top-message" asp-page="./Manager">Go to bussines version</a></h6>
+						}
+					}
+					else 
+					{
+						<h4 class="top-message">@Model.Message</h4>
+					}
 				</div>
 				<div class="clearfix"></div>
 		</div>
+		<div class="content">
 			<div class="menu-bar">
 			<div class="container">
 				<div class="top-menu">
-					<ul>
-						<li class="active"><a asp-page="./Index">Home</a></li>|
-						<li><a asp-page="./ListedObjects">Places</a></li>|
-						<li><a asp-page="./Contact">Contact</a></li>
+					
+					@if(Model.TKorisnik!=null && Model.TKorisnik.tipKorisnika=="Manager" && !string.IsNullOrEmpty(Model.Message))
+					{
+						<ul>
+							<li class="active"><a asp-page="./Manager">Dashboard</a></li>|
+							<li><a asp-page="./ListedReservations">Reservations</a></li>|
+							<li><a>Events</a></li> |
+							<li><a>Seat map</a></li> |
+							<div class="clearfix"></div>
+						</ul>
+					}
+					else
+					{
+						<ul>
+							<li class="active"><a asp-page="./Index">Home</a></li>|
+							<li><a asp-page="./ListedObjects">Top Places</a></li>|
+							<li><a asp-page="./Contact">Contact</a></li> 
 						<div class="clearfix"></div>
 					</ul>
+					}
+						
 				</div>
 				<div class="login-section">
-					@if(string.IsNullOrEmpty(Model.Message))
+					@if(Model.TKorisnik==null)
 					{
 					<ul>
 						<li><a asp-page="./Login">Login</a>  </li> |
@@ -92,7 +123,7 @@
 						<div class="clearfix"></div>
 					</ul>
 					}
-					@if(!string.IsNullOrEmpty(Model.Message))
+					@if(Model.TKorisnik!=null)
 					{
 						<ul>
 							<li><a asp-page="./User">My Profile</a></li> |
@@ -104,10 +135,21 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
+			</div>
 		</div>
 	</div>
 	
     </header>
+
+	<!--Menadzer
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#">About</a>
+		<a href="#">Services</a>
+		<a href="#">Clients</a>
+		<a href="#">Contact</a>
+	</div> -->
+
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <div class="container">
@@ -128,7 +170,21 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+	<!--<script>
+		function openNav() {
+		document.getElementById("mySidenav").style.width = "180px";
+		//document.getElementById("main").style.marginLeft = "250px";
+		}
+
+		/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+		function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+		//document.getElementById("main").style.marginLeft = "0";
+		}
+	</script>-->
+
     @RenderSection("Scripts", required: false)
     
+	  
 </body>
 </html>

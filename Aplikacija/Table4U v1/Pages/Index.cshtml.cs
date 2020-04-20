@@ -15,6 +15,7 @@ namespace Table4U.Pages
     public class IndexModel : PageModel
     {
         public String Message {get; set;}
+		public Korisnik TKorisnik {get; set;}
 
         private readonly Table4UContext db;
       
@@ -82,10 +83,18 @@ namespace Table4U.Pages
             }
 
             String eMail = HttpContext.Session.GetString("email");
+            TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             if (!string.IsNullOrEmpty(eMail))
             {
-                var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
-                Message = "Welcome, " + korisnik.Ime;
+                if(TKorisnik.tipKorisnika=="Manager")
+                {
+                    Message = null;
+                }
+                else
+                {
+                    var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
+                    Message = "Welcome, " + korisnik.Ime;
+                }
             }
             var sviRestorani=db.Lokali.ToList();
             var listaGradRestoran=new List<string>();

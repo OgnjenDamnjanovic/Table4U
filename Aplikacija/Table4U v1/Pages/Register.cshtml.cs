@@ -11,6 +11,7 @@ namespace MyApp.Namespace
 {
     public class RegisterModel : PageModel
     {
+        public Korisnik TKorisnik {get; set;}
         public Korisnik NoviKorisnik {get; set;}
         
         [BindProperty(Name="firstname")]
@@ -36,6 +37,7 @@ namespace MyApp.Namespace
 
         public async Task<IActionResult> OnPost()
         {
+            //TKorisnik = dbContext.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             NoviKorisnik = new Korisnik();
             var korisnici = dbContext.Korisnici.ToList();
             var k = korisnici.Where(x=>x.eMail == email).FirstOrDefault();

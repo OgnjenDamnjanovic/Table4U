@@ -11,6 +11,7 @@ namespace MyApp.Namespace
 {
     public class HelpModel : PageModel
     {
+        public Korisnik TKorisnik {get; set;}
         public String Message {get; set;}
         private readonly Table4UContext db;
         
@@ -26,6 +27,7 @@ namespace MyApp.Namespace
                 var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
                 Message = "Welcome, " + korisnik.Ime;
             }
+            TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
         }
 
         public void OnGetLogout()

@@ -12,6 +12,7 @@ namespace MyApp.Namespace
 {
     public class ListedObjectsModel : PageModel
     {
+        public Korisnik TKorisnik {get; set;}
         public String Message {get; set;}
         private readonly Table4UContext db;
         public IList<String>  VrsteObjekata { get; set; }
@@ -33,11 +34,20 @@ namespace MyApp.Namespace
 
             //test=City+Name;
             String eMail = HttpContext.Session.GetString("email");
+            TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             if (!string.IsNullOrEmpty(eMail))
             {
-                var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
-                Message = "Welcome, " + korisnik.Ime;
+                if(TKorisnik.tipKorisnika=="Manager")
+                {
+                    Message = null;
+                }
+                else
+                {
+                    var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
+                    Message = "Welcome, " + korisnik.Ime;
+                }
             }
+            
             IQueryable<String> qLista = db.Lokali.Select(x=>x.Tip).Distinct();
             //VrsteObjekata = db.Lokali.Select(x=>x.Tip).Distinct().ToList();
             Lista = new SelectList(qLista.ToList());
