@@ -19,12 +19,11 @@ namespace MyApp.Namespace
         [BindProperty]
         public String ErrorMessage {get; set;}
         public String Message {get; set;}
+        private Table4UContext db;
 
-        private Table4UContext dbContext;
-
-        public LoginModel(Table4UContext db)
+        public LoginModel(Table4UContext dataBase)
         {
-            dbContext = db;
+            db = dataBase;
         }
         public void OnGet()
         {
@@ -32,8 +31,8 @@ namespace MyApp.Namespace
 
         public IActionResult OnPostLogin()
         {
-            TKorisnik = dbContext.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
-            var korisnici = dbContext.Korisnici.ToList();
+            TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
+            var korisnici = db.Korisnici.ToList();
             Korisnik k = korisnici.Where(x=>x.eMail == eMail && x.Sifra == Sifra).FirstOrDefault();
             if(k!=null)
             {

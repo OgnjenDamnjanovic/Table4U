@@ -13,7 +13,6 @@ namespace MyApp.Namespace
     {
         public Korisnik TKorisnik {get; set;}
         public Korisnik NoviKorisnik {get; set;}
-        
         [BindProperty(Name="firstname")]
         public String firstname {get; set;}
         [BindProperty(Name="lastname")]
@@ -22,11 +21,10 @@ namespace MyApp.Namespace
         public String email {get; set;}
         [BindProperty(Name="password")]
         public String password {get; set;}
-        
-
         public String ErrorMessage {get; set;} 
         public String Message {get; set;}
         private Table4UContext dbContext;
+
         public RegisterModel(Table4UContext db)
         {
             dbContext = db;
@@ -37,7 +35,6 @@ namespace MyApp.Namespace
 
         public async Task<IActionResult> OnPost()
         {
-            //TKorisnik = dbContext.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             NoviKorisnik = new Korisnik();
             var korisnici = dbContext.Korisnici.ToList();
             var k = korisnici.Where(x=>x.eMail == email).FirstOrDefault();
@@ -46,10 +43,6 @@ namespace MyApp.Namespace
                 ErrorMessage = "This email address is already used";
                 return Page();
             }
-            /*if(NoviKorisnik.Sifra != ConfSifra)
-            {
-                return Page();
-            }*/
             NoviKorisnik.tipKorisnika = "Gost";
             NoviKorisnik.Ime =firstname;
             NoviKorisnik.Prezime = lastname;

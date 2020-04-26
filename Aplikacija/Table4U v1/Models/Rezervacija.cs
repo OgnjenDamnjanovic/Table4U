@@ -13,7 +13,7 @@ namespace SWEProject.Models
         [JsonIgnore]
         public Lokal Lokal { get; set; }
         public DateTime Vreme { get; set; }
-        public DateTime VremeKreiranja {get; set; }
+        public DateTime VremeKreiranja { get; set; }
         public Sto Sto { get; set; }
     }
 

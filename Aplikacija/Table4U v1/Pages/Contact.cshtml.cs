@@ -27,7 +27,7 @@ namespace MyApp.Namespace
             {
                 if(TKorisnik.tipKorisnika=="Manager")
                 {
-                    Message = null;
+                    Message=null;
                 }
                 else
                 {

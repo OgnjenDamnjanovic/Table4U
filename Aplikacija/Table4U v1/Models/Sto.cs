@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace SWEProject.Models
@@ -9,6 +11,7 @@ namespace SWEProject.Models
         public bool Slobodan { get; set; }
         [JsonIgnore]
         public Lokal Lokal { get; set; }
+
 
     }
 }

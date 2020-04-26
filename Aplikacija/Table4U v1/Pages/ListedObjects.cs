@@ -39,7 +39,7 @@ namespace MyApp.Namespace
             {
                 if(TKorisnik.tipKorisnika=="Manager")
                 {
-                    Message = null;
+                    Message=null;
                 }
                 else
                 {
@@ -47,7 +47,7 @@ namespace MyApp.Namespace
                     Message = "Welcome, " + korisnik.Ime;
                 }
             }
-            
+
             IQueryable<String> qLista = db.Lokali.Select(x=>x.Tip).Distinct();
             //VrsteObjekata = db.Lokali.Select(x=>x.Tip).Distinct().ToList();
             Lista = new SelectList(qLista.ToList());

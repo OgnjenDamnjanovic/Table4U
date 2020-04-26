@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SWEProject.Models
 {
@@ -15,8 +16,8 @@ namespace SWEProject.Models
         public DateTime closeTime { get; set; }
         public string Adresa { get; set; }
         public string Grad { get; set; }
-        public float latitude { get; set; }
-        public float longitude { get; set; }
+        public decimal latitude { get; set; }
+        public decimal longitude { get; set; }
         public int maxKapacitet { get; set; }
         public int trenutniKapacitet { get; set; }
         public float Ocena {get; set;} = 0;
@@ -28,7 +29,11 @@ namespace SWEProject.Models
         public string nazivSlike { get; set; }
         public string email {get;set;}
         public string opis {get;set;}
-
+        public string slika1 {get;set;}
+        public string slika2 {get;set;}
+        public string slika3 {get;set;}
+        public string slika4 {get;set;}
+        public string slika5 {get;set;}
     }
 
 }

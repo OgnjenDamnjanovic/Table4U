@@ -1,140 +1,939 @@
-/*--DODATO ZA MENADZERA--*/
-/* The alert message box */
-.alert {
-  padding: 20px;
-  background-color: #2196F3;
-  color: white;
-  margin-bottom: 15px;
-}
-
-/* The close button */
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-/* When moving the mouse over the close button */
-.closebtn:hover {
-  color: black;
-}
-
-.col-content{
-	margin-top: 10px;
-	margin-left: 20px;
-	border-bottom: 1px solid;
-}
-
-
-.chart-div{
-	width: 800px;
-	height: 400px;
-}
-
-.container-chart{
-	display: flex;
-	justify-content: center;
-	padding-top: 20px;
-}
-
-/* Float four columns side by side */
-.column {
-  float: left;
-  width: 33%;
-  padding: 0 10px;
-}
-
-/* Remove extra left and right margins, due to padding in columns */
-.row1 {
-	margin: 0 -5px;
-}
-
-/* Clear floats after the columns */
-.row1:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the counter cards */
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f1f1;
-}
-
-/* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
-}
-
-/* The side navigation menu */
-.sidenav {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  left: 0;
-  top: 0;
-  background-color: #111; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-}
-
-/* The navigation menu links */
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left .5s;
-  padding: 20px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
-
-
-
-
 /*--DODATO!!!--*/
 
-	/*Listed objects strana*/
+	/*MANAGER STRANA*/
+
+	/* The alert message box */
+	.alert {
+	  padding: 20px;
+	  background-color: #2196F3;
+	  color: white;
+	  margin-bottom: 15px;
+	}
+	
+	/* The close button */
+	.closebtn {
+	  margin-left: 15px;
+	  color: white;
+	  font-weight: bold;
+	  float: right;
+	  font-size: 22px;
+	  line-height: 20px;
+	  cursor: pointer;
+	  transition: 0.3s;
+	}
+	
+	/* When moving the mouse over the close button */
+	.closebtn:hover {
+	  color: black;
+	}
+	
+	.col-content{
+		margin-top: 10px;
+		margin-left: 20px;
+		border-bottom: 1px solid;
+	}
+	
+	
+	.chart-div{
+		width: 800px;
+		height: 400px;
+	}
+	
+	.container-chart{
+		display: flex;
+		justify-content: center;
+		padding-top: 20px;
+	}
+	
+	/* Float four columns side by side */
+	.column {
+	  float: left;
+	  width: 33%;
+	  padding: 0 10px;
+	}
+	
+	/* Remove extra left and right margins, due to padding in columns */
+	.row1 {
+		margin: 0 -5px;
+	}
+	
+	/* Clear floats after the columns */
+	.row1:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+	
+	/* Style the counter cards */
+	.card1 {
+	  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+	  padding: 16px;
+	  text-align: center;
+	  background-color: #f1f1f1;
+	}
+	
+	/* Responsive columns - one column layout (vertical) on small screens */
+	@media screen and (max-width: 600px) {
+	  .column {
+	    width: 100%;
+	    display: block;
+	    margin-bottom: 20px;
+	  }
+	}
+	
+	/* The side navigation menu */
+	.sidenav {
+	  height: 100%; /* 100% Full-height */
+	  width: 0; /* 0 width - change this with JavaScript */
+	  position: fixed; /* Stay in place */
+	  z-index: 1; /* Stay on top */
+	  left: 0;
+	  top: 0;
+	  background-color: #111; /* Black*/
+	  overflow-x: hidden; /* Disable horizontal scroll */
+	  padding-top: 60px; /* Place content 60px from the top */
+	  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+	}
+	
+	/* The navigation menu links */
+	.sidenav a {
+	  padding: 8px 8px 8px 32px;
+	  text-decoration: none;
+	  font-size: 25px;
+	  color: #818181;
+	  display: block;
+	  transition: 0.3s;
+	}
+	
+	/* When you mouse over the navigation links, change their color */
+	.sidenav a:hover {
+	  color: #f1f1f1;
+	}
+	
+	/* Position and style the close button (top right corner) */
+	.sidenav .closebtn {
+	  position: absolute;
+	  top: 0;
+	  right: 25px;
+	  font-size: 36px;
+	  margin-left: 50px;
+	}
+	
+	/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+	#main {
+	  transition: margin-left .5s;
+	  padding: 20px;
+	}
+	
+	/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+	@media screen and (max-height: 450px) {
+	  .sidenav {padding-top: 15px;}
+	  .sidenav a {font-size: 18px;}
+	}
+
+	/*KRAJ MANAGER STRANE*/
+
+	/*OBJECT STRANA*/
+	
+	.naziv-objekta{
+		color:#515151;
+	  	font-size: 40px;
+	  	font-family: 'Lobster Two';
+	  	padding-top: 20px;
+	  	float:left;
+		text-align: left;
+	}
+	.container1{
+		display: flex;
+		flex-direction: column;
+	}
+	.slika{
+		width:400px;
+		height:400px;
+	}
+	.lokacija, .informacije, .recenzije{
+		color:#515151;
+	  	font-size: 33px;
+	  	font-family: 'Lobster Two';
+	  	text-align: left;
+		float: left;
+		margin-bottom: 10px;
+	}
+	.slika-opis{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-top: 30px;
+	}
+	.infos{
+		display: flex;
+		flex-direction: row;
+	}
+	.imenaInfo, .vrInfo{
+		display: flex;
+		flex-direction: column;
+	}
+	.info{
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		margin-left: 200px;
+		width:520px;
+	}
+	.info1, .info2, .info3, .info4, .info5, .info6{
+		font-size: 23px;
+		display: flex;
+		flex-wrap: wrap;
+		margin-bottom: 5px;
+		color:#717171;
+	  	font-family: 'Lobster Two';
+		/*text-align-last: justify;*/
+	}
+	.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+		font-size: 23px;
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: 10px;
+		margin-bottom: 5px;
+		/*text-align-last: justify;*/
+	}
+	
+	#Prikazi, #Sakrij{
+		float: left;
+		border: none;
+  		outline: none;
+  		padding: 0.3em 1.6em;
+  		color: #fff;
+  		background: #5BBD50;
+  		font-size: 1.4em;
+  		font-weight: 700;
+		font-family: 'Lobster Two', cursive;
+		border-radius: 20px;
+  		-webkit-border-radius: 20px;
+  		-moz-border-radius: 20px;
+  		-o-border-radius: 20px;
+		  text-decoration:none;
+		margin-top: 30px;
+		width:200px;
+	}
+
+	.instrukcije{
+		display: flex;
+		flex-direction: column;
+		margin-left: 15px;
+		padding-bottom: 30px;
+	}
+
+	.instrTekst{
+		font-size: 23px;
+		display: flex;
+		flex-wrap: wrap;
+		color:#515151;
+	  	font-family: 'Lobster Two';
+	}
+
+	.instr1,.instr2,.instr3,.instr4,.instr5{
+		font-size: 18px;
+		display: flex;
+		flex-wrap: wrap;
+		color:#717171;
+	  	font-family: 'Lobster Two';
+	}
+
+	.card,#calendar{
+		width:100%;
+		height:400px;
+	}
+	#Glavni{
+		width:100%;
+		margin-top:40px;
+	}
+	.container2{
+		width:100%;
+	}
+
+	.rezervacija-forma{
+		margin-top: 580px;
+		margin-left: 20px;
+	}
+
+	.prvi-red-rez{
+		display: flex;
+		flex-direction: row;
+		width:100%;
+		justify-content: center;
+	}
+
+	#datum{
+		display: flex;
+		flex-direction: row;
+	}
+
+	.datumTekst, .specTekst{
+		margin-right: 30px;
+		font-size: 22px;
+		display: flex;
+		flex-wrap: wrap;
+		color:#717171;
+	  	font-family: 'Lobster Two';
+	}
+
+	#godina,#dan,#mesec{
+		margin-left: 20px;
+		width:150px;
+	}
+
+	#checkForma{
+		margin-top: 9px;
+	}
+
+	.rucno{
+		margin-top: 5px;
+	}
+
+	.rez-podaci{
+		margin-top: 40px;
+		display: flex;
+		width:100%;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	#slobodniTermini,#brMesta{
+		margin-left: 20px;
+		width:150px;
+	}
+
+	.dugme-rez{
+		margin-top: 40px;
+		display: flex;
+		width:100%;
+		justify-content: center;
+	}
+
+	.btnRez{
+		border: none;
+  		outline: none;
+		padding: 0.3em 1.6em;
+  		color: #fff;
+  		background: #5BBD50;
+  		font-size: 1.4em;
+  		font-weight: 700;
+		font-family: 'Lobster Two', cursive;
+		border-radius: 20px;
+	}
+
+	#mapa{
+		width:100%;
+		height:400px;
+	}
+
+	.recenzije-lokacija{
+		margin-top: 40px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width:100%;
+		height: 500px;
+	}
+
+	.recenzije1{
+		width:60%;
+		display: flex;
+		flex-direction: column;
+		min-width: 350px;
+	}
+
+	.location1{
+		width:40%;
+		display: flex;
+		flex-direction: column;
+		min-width: 350px;
+	}
+
+	.komentari{
+		margin:4px, 4px; 
+		padding:4px;  
+		height:350px; 
+        overflow-x: hidden; 
+        overflow-x: auto; 
+		text-align:justify; 
+		margin-right:30px;
+	}
+
+	#dodajRec{
+		border: none;
+  		outline: none;
+		padding: 0.3em 1.6em;
+  		color: #fff;
+  		background: #5BBD50;
+  		font-size: 1.4em;
+  		font-weight: 700;
+		font-family: 'Lobster Two', cursive;
+		border-radius: 20px;
+		width:30%;
+	}
+
+	.kontejner{
+		display: flex;
+		flex-direction: row;
+		width:100%;
+	}
+
+	.recTekst{
+		width:70%;
+		height:200px;
+	}
+
+	#tekstKom{
+		width:100%;
+		height:200px;
+		text-align: start;
+	}
+
+	.ratingDugme{
+		display: flex;
+		flex-direction: column;
+		width: 30%;
+	}
+
+	.selRating, #potvrdiRec{
+		margin-left:60px;
+	}
+
+	.dugmiciRez{
+		display: flex;
+		flex-direction: row;
+	}
+
+	#potvrdiRec, #otkaziRec{
+		margin-top:140px;
+		border: none;
+  		outline: none;
+		padding: 0.3em 1.6em;
+  		color: #fff;
+  		background: #5BBD50;
+  		font-size: 1.4em;
+  		font-weight: 700;
+		font-family: 'Lobster Two', cursive;
+		border-radius: 20px;
+		width:50%;
+	}
+
+	.donji-deo{
+		margin-bottom: 100px;
+	}
+
+	.srednji-deo{
+		margin-top: 100px;
+		margin-bottom: 50px;
+	}
+
+	#slideshow1,#slideshow3 {
+		margin: 20px auto;
+		position: relative;
+		width: 550px;
+		height: 300px;
+		padding: 10px;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+	  }
+	  
+	#slideshow1 > div,
+	#slideshow3 > div {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		right: 10px;
+		bottom: 10px;
+	}
+
+	.slikaSlajdObj{
+		width:100%;
+		height: 80%;
+	}
+
+	.adresaObj{
+		display: flex;
+		justify-content: center;
+		font-size: 23px;
+		flex-wrap: wrap;
+		color:#515151;
+	  	font-family: 'Lobster Two';
+	}
+
+	.slicniLok, .nemaSlicnih{
+		display: flex;
+		justify-content: center;
+		color:#515151;
+	  	font-size: 33px;
+	  	font-family: 'Lobster Two';
+	}
+
+	#Prikazi1{
+		display: flex;
+		flex-direction: row;
+	}
+
+	.labelPomoc{
+		margin-top: 40px;
+		margin-left: 10px;
+		display: flex;
+		font-size: 11px;
+		flex-wrap: wrap;
+		color:#919191;
+	  	font-family: 'Lobster Two';
+	}
+
+	.galerija{
+		display: flex;
+		justify-content: center;
+		color:#515151;
+	  	font-size: 33px;
+	  	font-family: 'Lobster Two';
+		margin-bottom: 10px;
+	}
+
+	.kontejner1 {
+		display: flex;
+		width: 100%;
+		padding: 4% 2%;
+		box-sizing: border-box;
+		height: 500px;
+	  }
+	  
+	.boks {
+		flex: 1;
+		overflow: hidden;
+		transition: .5s;
+		margin: 0 2%;
+		box-shadow: 0 20px 30px rgba(0,0,0,.1);
+		line-height: 0;
+	}
+	  
+	.boks > img {
+		width: 200%;
+		height: 100%;
+		object-fit: cover; 
+		transition: .5s;
+	}
+	  
+	.boks:hover { flex: 1 1 50%; }
+	.boks:hover > img {
+		width: 100%;
+		height: 100%;
+	}
+
+	.zadnji-deo{
+		margin-top:40px;
+	}
+
+	@media screen and (max-width:1295px){
+		.naziv-objekta{
+			margin-left: 100px;
+		}
+		.slika{
+			width:350px;
+			height:350px;
+			margin-left: 100px;
+		}
+		.info{
+			margin-left: 150px;
+			width:480px;
+		}
+		.info1, .info2, .info3, .info4, .info5, .info6{
+			font-size: 21px;
+		}
+		.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+			font-size: 21px;
+		}
+		.srednji-deo{
+			margin-top: 60px;
+			margin-bottom: 0px;
+		}
+		.galerija{
+			margin-bottom: 0px;
+		}
+		.kontejner1{
+			padding-top: 30px;
+		}
+		.donji-deo{
+			margin-left: 40px;
+			margin-right: 40px;
+		}
+	}
+
+	@media screen and (max-width:1166px){
+		.naziv-objekta{
+			margin-left: 40px;
+		}
+		.slika{
+			width:350px;
+			height:350px;
+			margin-left: 40px;
+		}
+		.info{
+			margin-left: 100px;
+			width:450px;
+		}
+		.info1, .info2, .info3, .info4, .info5, .info6{
+			font-size: 19px;
+		}
+		.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+			font-size: 19px;
+		}
+		#Prikazi, #Sakrij{
+			font-size: 19px;
+			width:180px;
+		}
+		.kontejner1{
+			height: 450px;
+		}
+	}
+	@media screen and (max-width:1002px){
+		.recenzije-lokacija
+		{
+			height:900px;
+		}
+		.location1{
+			margin-top: 40px;
+			width:70%;
+			height:400px;
+		}
+		.recenzije1{
+			width:100%;
+			height:400px;
+		}
+		#FormaRec{
+			margin-top: 50px;
+			margin-bottom: 30px;
+		}
+	}
+	@media screen and (max-width:986px){
+		.slika{
+			width:300px;
+			height:300px;
+		}
+		.info{
+			margin-left: 70px;
+			width:400px;
+		}
+		.labelPomoc{
+			margin-top: 25px;
+		}
+		.donji-deo{
+			margin-bottom: 70px;
+		}
+		#Prikazi, #Sakrij{
+			font-size: 19px;
+			width:180px;
+			margin-top: 20px;
+		}
+		.srednji-deo{
+			margin-top: 50px;
+			margin-bottom: 0px;
+		}
+		.kontejner1{
+			height:400px;
+		}
+	}
+
+	@media screen and (max-width:856px){
+		.naziv-objekta{
+			margin-left: 20px;
+		}
+		.slika{
+			width:250px;
+			height:250px;
+			margin-left: 20px;
+		}
+		.info{
+			margin-left: 60px;
+			width:350px;
+		}
+		.info1, .info2, .info3, .info4, .info5, .info6{
+			font-size: 17px;
+		}
+		.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+			font-size: 17px;
+		}
+		#Prikazi,#Sakrij{
+			margin-top: 20px;
+			font-size: 17px;
+			width:160px;
+		}
+		.labelPomoc{
+			margin-top: 23px;
+		}
+		.boks:hover { flex: 4 4 50%; }
+	}
+
+	@media screen and (max-width: 767px){
+		.rezervacija-forma{
+			margin-top: 100px;
+		}
+	}
+
+	@media screen and (max-width: 726px){
+		.naziv-objekta{
+			margin-left: 15px;
+		}
+		.slika{
+			width:240px;
+			height:240px;
+			margin-left: 15px;
+		}
+		.info{
+			margin-left: 50px;
+			width:280px;
+		}
+		.info1, .info2, .info3, .info4, .info5, .info6{
+			font-size: 15px;
+		}
+		.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+			font-size: 15px;
+		}
+		#Prikazi, #Sakrij{
+			font-size: 15px;
+			width:140px;
+			margin-top: 15px;
+		}
+		.kontejner1{
+			height:350px;
+		}
+	}
+	
+	@media screen and (max-width:640px){
+		.naziv-objekta{
+			font-size: 30px;
+			padding-top: 20px;
+		}
+		.slika{
+			width:200px;
+			height:200px;
+		}
+		.lokacija, .informacije{
+			font-size: 28px;
+			margin-bottom: 7px;
+		}
+		.galerija, .recenzije,.slicniLok{
+			font-size: 28px;
+		}
+		.slika-opis{
+			margin-top: 20px;
+		}
+		.info{
+			margin-left: 13px;
+			width: 300px;
+		}
+		.info1, .info2, .info3, .info4, .info5, .info6{
+			font-size: 16px;
+			margin-bottom: 4px;
+		}
+		.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+			font-size: 16px;
+			margin-left: 6px;
+			margin-bottom: 4px;
+		}
+		#Prikazi,#Sakrij{
+			margin-top: 15px;
+			font-size: 16px;
+			width:140px;
+		}
+		.kontejner1{
+			height:300px;
+		}
+		#slideshow1{
+			width:400px;
+			height:280px;
+		}
+		.adresaObj{
+			font-size: 18px;
+		}
+	}
+
+	@media screen and (max-width:575px)
+	{
+		.naziv-objekta{
+			font-size: 23px;
+			padding-top: 10px;
+		}
+		.slika{
+			width:170px;
+			height:170px;
+		}
+		.lokacija, .informacije{
+			font-size: 18px;
+			margin-bottom: 7px;
+		}
+		.galerija, .recenzije,.slicniLok{
+			font-size: 18px;
+		}
+		.slika-opis{
+			margin-top: 20px;
+		}
+		.info{
+			margin-left: 10px;
+			width: 250px;
+		}
+		#Glavni{
+			margin-top: 10px;
+		}
+		.info1, .info2, .info3, .info4, .info5, .info6{
+			font-size: 15px;
+			margin-bottom: 3px;
+		}
+		.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+			font-size: 15px;
+			margin-left: 4px;
+			margin-bottom: 3px;
+		}
+		#Prikazi,#Sakrij{
+			margin-top: 15px;
+			font-size: 15px;
+			width:140px;
+		}
+	}
+
+
+	@media screen and (width:375px){
+		.naziv-objekta{
+			  font-size: 28px;
+			  padding-top: 18px;
+		}
+		.slika{
+			width:290px;
+			height:290px;
+		}
+		.card{
+			width:100%;
+		}
+		#Glavni{
+			margin-top: 15px;
+		}
+		.info{
+			margin-top: 20px;
+			margin-left: 10px;
+		}
+		.info1, .info2, .info3, .info4, .info5, .info6{
+			font-size: 18px;
+			margin-bottom: 3px;
+		}
+		.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+			font-size: 18px;
+			margin-left: 5px;
+			margin-bottom: 3px;
+		}
+		.lokacija, .informacije{
+			font-size: 22px;
+			margin-bottom: 3px;
+		}
+		.galerija, .recenzije,.slicniLok{
+			font-size: 22px;
+		}
+		#Prikazi, #Sakrij{
+			font-size: 18px;
+			border-radius: 10px;
+			-webkit-border-radius: 10px;
+			-moz-border-radius: 10px;
+			-o-border-radius: 10px;
+			margin-top: 8px;
+			width:190px;
+			margin-left: 75px;
+		}
+	}
+
+	@media screen and (width:360px){
+		.naziv-objekta{
+			font-size: 28px;
+			padding-top: 18px;
+		}
+		.slika{
+			width:280px;
+			height:280px;
+		}
+		.card{
+			width:100%;
+		}
+		#Glavni{
+			margin-top: 15px;
+		}
+		#Prikazi, #Sakrij{
+			font-size:18px;
+			width:180px;
+			margin-left: 65px;
+		}
+		.info{
+			margin-top: 20px;
+		}
+		.lokacija, .informacije{
+			font-size: 22px;
+			margin-bottom: 3px;
+		}
+		.galerija, .recenzije, .slicniLok{
+			font-size: 22px;
+		}
+		.info1, .info2, .info3, .info4, .info5, .info6{
+			font-size: 18px;
+			margin-bottom: 3px;
+		}
+		.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+			font-size: 18px;
+			margin-left: 5px;
+			margin-bottom: 3px;
+		}
+	}
+
+	@media screen and (max-width:240px){
+		.naziv-objekta{
+			font-size: 20px;
+			padding-top: 10px;
+		}
+		.slika{
+			width:150px;
+			height:150px;
+		}
+		.lokacija, .informacije{
+			font-size: 16px;
+			margin-bottom: 7px;
+		}
+		.galerija, .recenzije,.slicniLok{
+			font-size: 16px;
+		}
+		.slika-opis{
+			margin-top: 20px;
+		}
+		.info{
+			margin-left: 10px;
+			width: 180px;
+		}
+		#Glavni{
+			margin-top: 10px;
+		}
+		.info1, .info2, .info3, .info4, .info5, .info6{
+			font-size: 14px;
+			margin-bottom: 3px;
+		}
+		.iinfo1, .iinfo2, .iinfo3, .iinfo4, .iinfo5, .iinfo6{
+			font-size: 14px;
+			margin-left: 4px;
+			margin-bottom: 3px;
+		}
+		#Prikazi,#Sakrij{
+			margin-top: 10px;
+			font-size: 14px;
+			width:120px;
+		}
+	}
+
+	@media screen and (max-width:302px){
+		.rezervacija-forma{
+			margin-top: 150px;
+		}
+	}
+
+	/*KRAJ OBJECT STRANE*/
+
+	/*Listed Objects strana*/
 
 	.input-group1{
 		display: flex;
@@ -303,6 +1102,7 @@
 	  from {opacity: 1} 
 	  to {opacity: .7}
 	}
+
 	/*KRAJ Slajdsou na pocetnoj strani za predstojece dogadjaje*/
 
 @media screen and (width:375px){

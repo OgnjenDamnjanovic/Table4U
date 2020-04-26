@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MyApp.Namespace
 {
-    public class UserModel : PageModel
+    public class ListedReservationsModel : PageModel
     {
         public void OnGet()
         {
