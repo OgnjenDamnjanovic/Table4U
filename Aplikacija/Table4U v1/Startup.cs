@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using SWEProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Newtonsoft;
 namespace Table4U
 {
     public class Startup
@@ -28,6 +29,9 @@ namespace Table4U
             services.AddRazorPages();
             services.AddDbContext<Table4UContext>(conf =>conf.UseSqlServer(Configuration.GetConnectionString("Konekcija")));
             services.AddSession();
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
+
+            //services.AddMvc().AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
         }
 

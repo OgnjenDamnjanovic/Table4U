@@ -14,6 +14,7 @@ namespace SWEProject.Models
         public DbSet<Dogadjaj> Dogadjaji { get; set; }
         public DbSet<Rezervacija> Rezervacije { get; set; }
         public DbSet<Sto> Stolovi { get; set; }
+        public DbSet<Recenzija> Recenzije {get; set;}
         
     }
 
