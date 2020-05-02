@@ -108,11 +108,11 @@ namespace Table4U.Migrations
                     b.Property<string>("email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("latitude")
-                        .HasColumnType("real");
+                    b.Property<decimal>("latitude")
+                        .HasColumnType("[decimal](18, 15)");
 
-                    b.Property<float>("longitude")
-                        .HasColumnType("real");
+                    b.Property<decimal>("longitude")
+                        .HasColumnType("[decimal](18, 15)");
 
                     b.Property<int>("maxKapacitet")
                         .HasColumnType("int");
@@ -124,6 +124,21 @@ namespace Table4U.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("opis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("slika1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("slika2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("slika3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("slika4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("slika5")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("trenutniKapacitet")
@@ -162,7 +177,7 @@ namespace Table4U.Migrations
 
                     b.HasIndex("LokalId");
 
-                    b.ToTable("Recenzija");
+                    b.ToTable("Recenzije");
                 });
 
             modelBuilder.Entity("SWEProject.Models.Rezervacija", b =>
@@ -182,6 +197,9 @@ namespace Table4U.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Vreme")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("VremeKreiranja")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -210,6 +228,21 @@ namespace Table4U.Migrations
 
                     b.Property<int>("brojMesta")
                         .HasColumnType("int");
+
+                    b.Property<int>("gsHeight")
+                        .HasColumnType("int");
+
+                    b.Property<int>("gsWidth")
+                        .HasColumnType("int");
+
+                    b.Property<int>("gsX")
+                        .HasColumnType("int");
+
+                    b.Property<int>("gsY")
+                        .HasColumnType("int");
+
+                    b.Property<string>("oznaka")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

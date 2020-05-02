@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Table4U.Migrations
 {
-    public partial class V1 : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,12 +18,21 @@ namespace Table4U.Migrations
                     openTime = table.Column<DateTime>(nullable: false),
                     closeTime = table.Column<DateTime>(nullable: false),
                     Adresa = table.Column<string>(nullable: true),
-                    latitude = table.Column<long>(nullable: false),
-                    longitude = table.Column<long>(nullable: false),
+                    Grad = table.Column<string>(nullable: true),
+                    latitude = table.Column<decimal>(type: "[decimal](18, 15)", nullable: false),
+                    longitude = table.Column<decimal>(type: "[decimal](18, 15)", nullable: false),
                     maxKapacitet = table.Column<int>(nullable: false),
                     trenutniKapacitet = table.Column<int>(nullable: false),
-                    Ocena = table.Column<int>(nullable: false),
-                    brOcena = table.Column<int>(nullable: false)
+                    Ocena = table.Column<float>(nullable: false),
+                    brOcena = table.Column<int>(nullable: false),
+                    nazivSlike = table.Column<string>(nullable: true),
+                    email = table.Column<string>(nullable: true),
+                    opis = table.Column<string>(nullable: true),
+                    slika1 = table.Column<string>(nullable: true),
+                    slika2 = table.Column<string>(nullable: true),
+                    slika3 = table.Column<string>(nullable: true),
+                    slika4 = table.Column<string>(nullable: true),
+                    slika5 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -84,7 +93,12 @@ namespace Table4U.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     brojMesta = table.Column<int>(nullable: false),
                     Slobodan = table.Column<bool>(nullable: false),
-                    LokalId = table.Column<int>(nullable: true)
+                    LokalId = table.Column<int>(nullable: true),
+                    oznaka = table.Column<string>(nullable: true),
+                    gsX = table.Column<int>(nullable: false),
+                    gsY = table.Column<int>(nullable: false),
+                    gsHeight = table.Column<int>(nullable: false),
+                    gsWidth = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -98,7 +112,7 @@ namespace Table4U.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Recenzija",
+                name: "Recenzije",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -111,15 +125,15 @@ namespace Table4U.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recenzija", x => x.Id);
+                    table.PrimaryKey("PK_Recenzije", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Recenzija_Korisnici_KorisnikId",
+                        name: "FK_Recenzije_Korisnici_KorisnikId",
                         column: x => x.KorisnikId,
                         principalTable: "Korisnici",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Recenzija_Lokali_LokalId",
+                        name: "FK_Recenzije_Lokali_LokalId",
                         column: x => x.LokalId,
                         principalTable: "Lokali",
                         principalColumn: "Id",
@@ -135,6 +149,7 @@ namespace Table4U.Migrations
                     KorisnikId = table.Column<int>(nullable: false),
                     LokalId = table.Column<int>(nullable: false),
                     Vreme = table.Column<DateTime>(nullable: false),
+                    VremeKreiranja = table.Column<DateTime>(nullable: false),
                     StoId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -171,13 +186,13 @@ namespace Table4U.Migrations
                 column: "mojLokalId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recenzija_KorisnikId",
-                table: "Recenzija",
+                name: "IX_Recenzije_KorisnikId",
+                table: "Recenzije",
                 column: "KorisnikId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recenzija_LokalId",
-                table: "Recenzija",
+                name: "IX_Recenzije_LokalId",
+                table: "Recenzije",
                 column: "LokalId");
 
             migrationBuilder.CreateIndex(
@@ -207,7 +222,7 @@ namespace Table4U.Migrations
                 name: "Dogadjaji");
 
             migrationBuilder.DropTable(
-                name: "Recenzija");
+                name: "Recenzije");
 
             migrationBuilder.DropTable(
                 name: "Rezervacije");

@@ -11,7 +11,9 @@ function selectToArray(queryStringSelect)
 }
 
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded",searchBoxesInit);
+
+function searchBoxesInit() {
 
 let listaCity=selectToArray("#select-hidden-cityDistinct");
 
@@ -34,18 +36,18 @@ $(".navmain .restaurant").autocomplete({
     source: listaRestaurantNaziv,
     }
 );
-});
+};
 
 
 
-document.querySelector(".navmain .location").onfocus=function(){
+document.querySelector(".navmain .location").onfocus=function locationFocus(){
 
     this.value ="";
     this.style.color="rgb(122,122,122)";
     this.style.fontWeight="600";
 }
 
-document.querySelector(".navmain .location").onblur =function(){ 
+document.querySelector(".navmain .location").onblur = function switchAutocompleteLocation(){ 
 
     if(this.value=="")
     {   
@@ -103,7 +105,7 @@ document.querySelector(".navmain .location").onblur =function(){
 
 
 
- document.querySelector(".navmain .restaurant").onblur =function(){
+ document.querySelector(".navmain .restaurant").onblur =function switchAutocompleteRestaurant(){
     if(this.value=="")
     {
         let listaCity=selectToArray("#select-hidden-cityDistinct");
@@ -148,7 +150,7 @@ document.querySelector(".navmain .location").onblur =function(){
     $( ".navmain .location" ).autocomplete("option", "source", listaFiltered );
     }
 }
-document.querySelector(".navmain .restaurant").onfocus=function(){
+document.querySelector(".navmain .restaurant").onfocus=function restaurantFocus(){
 
     this.value ="";
     this.style.color="rgb(122,122,122)";
