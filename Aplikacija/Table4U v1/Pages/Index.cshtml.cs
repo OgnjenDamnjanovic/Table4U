@@ -17,17 +17,13 @@ namespace Table4U.Pages
         public Korisnik TKorisnik {get; set;}
         public String Message {get; set;}
         private readonly Table4UContext db;
-        [BindProperty]
         public IList<Dogadjaj> ListaDogadjaja {get; set;}
-        [BindProperty]
         public List<Dogadjaj> ListaDog {get;set;}
-        [BindProperty]
         public List<Lokal> ListaLok {get;set;}
         [BindProperty]
         public SelectList listaGradRestoranJSON { get; set; }
         [BindProperty]
         public SelectList listaGradova { get; set; }
-        [BindProperty]
         public IList<Lokal> ListaLokala {get; set;}
 
         public IndexModel(Table4UContext dataBase)

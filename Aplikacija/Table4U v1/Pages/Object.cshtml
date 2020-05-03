@@ -6,23 +6,8 @@
     <title>Table4U | @Model.lokal.Naziv</title>
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--flex slider-->
-    <script defer src="js/jquery.flexslider.js"></script>
-    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-    <script>
-	    // Can also be used with $(document).ready()
-	    $(window).load(function() {
-	        $('.flexslider').flexslider({
-		        animation: "slide",
-		        controlNav: "thumbnails"
-	        });
-	    });
-    </script>
-    <!--flex slider-->
-
-<script src="js/imagezoom.js"></script>
 </head>
 <div class="container1">
     <div class="naziv-objekta">@Model.lokal.Naziv</div>
@@ -92,57 +77,78 @@
                 </div>
             </div>
         </div>
-        <div class="rezervacija-forma" id="Forma" style="display:none;">
+        <div class="FormaDogadjaj" style="display:none">
+            <div class="podaciDog">
+                <div class="tipDog">Type: </div>
+                <div class="opisDog">Description: </div>
+                <div class="startDog">Start: </div>
+            </div>
+        </div>
+        <form method="post" class="rezervacija-forma" id="Forma" style="display:none;" asp-page-handler="Rez" onsubmit="return ValidacijaRez()">
             <div class="prvi-red-rez">
                 <div class="datumTekst">Date: </div>
                 <input type="checkbox" id="checkForma" name="checkForma">
                 <label for="checkForma" class="rucno">Select manually</label>
                 <div id="datum">
-                    <select id="godina" disabled="true"></select>
-                    <select id="mesec" disabled="true"></select>
-                    <select id="dan" disabled="true"></select>
+                    <div id="valid">
+                    <select id="godina" disabled="true" asp-for="@Model.year"></select>
+                    <label class="error2" style="visibility:hidden;">Wrong year!</label>
+                    </div>
+                    <div id="valid">
+                    <select id="mesec" disabled="true" asp-for="@Model.month"></select>
+                    <label class="error2" style="visibility:hidden;">Wrong month!</label>
+                    </div>
+                    <div id="valid">
+                    <select id="dan" disabled="true" asp-for="@Model.day"></select>
+                    <label class="error2" style="visibility:hidden;">Wrong day!</label>
+                    </div>
                 </div>
+                <input type="hidden" id="godIn" asp-for="@Model.year">
+                <input type="hidden" id="mesIn" asp-for="@Model.month">
+                <input type="hidden" id="danIn" asp-for="@Model.day">
+                <input type="hidden" id="idIn" value="@Model.lokal.Id" asp-for="@Model.idObj">
             </div>
             <div class="rez-podaci">
                 <div class="specTekst">Specifications: </div>
-                <select id="brMesta" onchange="">
-                    <option>Num. of seats</option>
+                <div id="valid">
+                <select id="brMesta" asp-for="@Model.brMesta" onchange="getTime(this.value)">
+                    <option value="0">Num. of seats</option>
                     @for (int i = 0; i < Model.listabrMesta.Count; i++)
                     {
-                        <option id="@i">@Model.listabrMesta[i]</option>
+                        <option value="@Model.listabrMesta[i]" id="@i">@Model.listabrMesta[i]</option>
                     }
                 </select>
-                <select id="slobodniTermini"> 
-                    <option>Time</option>
+                <label class="error2" style="visibility:hidden;">Wrong number of seats!</label>
+                </div>
+                <div id="valid">
+                <select id="slobodniTermini" asp-for="@Model.vreme"> 
+                    <option value="0">Time</option>
                 </select>
+                <label class="error2" style="visibility:hidden;">Wrong time!</label>
+                </div>
             </div>
             <div class="dugme-rez">
-                <button class="btnRez">Reserve</button>
+                <button type="submit" class="btnRez">Reserve</button>
             </div>
-        </div>
+        </form>
         <input id = "lat" type="hidden" value="@Model.lokal.latitude">
         <input id = "lng" type="hidden" value="@Model.lokal.longitude">
     </div>
     <div class="srednji-deo">
         <div class="galerija">Gallery</div>
-        <div class="kontejner1">
-            <div class="boks">
-                <img src="images/restaurent-logo2.jpg">
-                <!--<span>Enterier</span>-->
-            </div>
-            <div class="boks">
-                <img src="images/restaurent-logo1.jpg">
-                <!--<span>Exterier</span>-->
-            </div>
-            <div class="boks">
-                <img src="images/restaurent-logo3.jpg">
-                <!--<span>Garden</span>-->
-            </div>
-            <!--<div class="boks">
-                <img src="images/restaurent-logo4.jpg">
-                <span>Event</span>
-            </div>-->
-        </div>
+            @if(@Model.listaSlika.Count==0){
+                <div>There are no images in this Gallery.</div>
+            }
+            else{
+                <div class="kontejner1">
+                @foreach (var slika in @Model.listaSlika)
+                {
+                    <div class="boks">
+                        <img src="@slika">
+                    </div>
+                }
+                </div>
+            }
     </div>
     <div class="donji-deo">
         <div class="recenzije-lokacija">
@@ -175,13 +181,15 @@
                 <div id = "mapa"></div>
             </div>
         </div>
-        <div id="FormaRec" style="display:none;" method="post" action="">
+        <form id="FormaRec" style="display:none;" method="post" asp-page-handler="Rec" onsubmit="return ValidacijaRec()" >
             <div class="kontejner">
                 <div class="recTekst">
-                    <input type="text" id="tekstKom" placeholder="Enter comment..">
+                    <input type="hidden" id="idIn1" value="@Model.lokal.Id" asp-for="@Model.idObj">
+                    <input type="text" id="tekstKom" placeholder="Enter comment.." asp-for="@Model.komentar">
+                    <label class="error3" style="visibility:hidden;">Pogresan unos!</label>
                 </div>
                 <div class="ratingDugme">
-                    <select class="selRating" id="selRating">
+                    <select class="selRating" id="selRating" asp-for="@Model.rejting">
                         <option value="0">Rating</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -189,13 +197,14 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
+                    <label class="error1" style="visibility:hidden;">Pogresan izbor!</label>
                     <div class="dugmiciRez">
-                        <button id="potvrdiRec" type="submit">Submit</button>
-                        <button id="otkaziRec" type="submit">Discard</button>
+                        <button id="otkaziRec" type="button" >Discard</button>
+                        <button id="potvrdiRec" type="submit" >Submit</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
         <div class="zadnji-deo">
             <div class="slicniLok">Similar places</div>
             @if(@Model.slicniLokali.Count==0)
@@ -295,57 +304,16 @@
 	</div>
 </div>
 
+<input type="hidden" id="proba">
+
 <script src="js/script.js"></script>
-<script src="js/kalendar.js"></script>
-<script src="js/daysInMonth.js"></script>
-<script src="js/freeze.js"></script>
 <script src="js/map.js"></script>
-<script>
-        $(document).ready(function(){
-            $("#Prikazi").click(function(){
-                $("#Forma").css("display","block");
-                $("#Glavni").css("display","block");
-                $("#Prikazi1").css("display","none");
-                $("#Sakrij").css("display","block");
-            });
-            $("#Sakrij").click(function(){
-                $("#Forma").css("display","none");
-                $("#Glavni").css("display","none");
-                $("#Prikazi1").css("display","block");
-                $("#Sakrij").css("display","none");
-            });
-            /*$("#dodajRec").click(function(){
-                $("#FormaRec").css("display","block");
-                $("#dodajRec").css("display","none");
-                //$("#dodajRecInfo").css("display","block");
-            });*/
-            $("#dodajRec").click(function(){
-                $("#FormaRec").css("display","block");
-                $("#dodajRec").css("display","none");
-                //$("#dodajRecInfo").css("display","block");
-                //var sirina = $(window).width();
-                if($(window).width()<=1002)
-                {
-                    $("#dodajRecInfo").css("display","block");
-                }
-                else
-                {
-                    $("#dodajRecInfo").css("display","none");
-                }
-            });
-            $("#potvrdiRec").click(function(){
-                $("#FormaRec").css("display","none");
-                $("#dodajRec").css("display","block");
-                $("#dodajRecInfo").css("display","none");
-            });
-            $("#otkaziRec").click(function(){
-                $("#FormaRec").css("display","none");
-                $("#dodajRec").css("display","block");
-                $("#dodajRecInfo").css("display","none");
-            });
-            
-        });
-</script>
+<script src="js/rezervacija.js"></script>
+<script src="js/objectForms.js"></script>
+<script src="js/kalendar.js"></script> 
+<script src="js/validacijaRec.js"></script>
+<script src="js/validacijaRez.js"></script>
+
 <script>
     $("#slideshow1 > div:gt(0)").hide();
 
@@ -360,4 +328,3 @@
 </script>
 
 
-	

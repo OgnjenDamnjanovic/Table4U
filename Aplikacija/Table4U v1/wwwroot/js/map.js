@@ -1,3 +1,4 @@
+(function prikaziLokaciju(){
 var lat = document.getElementById('lat').value;
 var lng = document.getElementById('lng').value;
 
@@ -26,3 +27,4 @@ var markerVectorLayer = new ol.layer.Vector({
   source: vectorSource,
 });
 map.addLayer(markerVectorLayer);
+})();

@@ -6,8 +6,40 @@ let months = ["January", "February", "March", "April", "May", "June", "July", "A
 let monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
 
-//DODATO
-function count(){
+$('#mesec').change(function popuniDane(){
+    var broj =0;
+    var index = $("#mesec").get(0).selectedIndex;
+    if(index==2){
+        broj = 28;
+    }
+    else if(index==4 || index==6 || index==9 || index==11){
+        broj = 30;
+    }
+    else if(index==0){
+        broj=0;
+    }
+    else{
+        broj=31;
+    }
+    $('#dan').empty();
+    var selekt = document.getElementById('dan');
+    var opcija1 = document.createElement("option");
+    opcija1.appendChild( document.createTextNode("Day") );
+    opcija1.value="Day";
+    selekt.appendChild(opcija1);
+    if(broj!=0)
+    {
+        for(var i=1;i<=broj;i++)
+        {
+            var opcija = document.createElement("option");
+            opcija.appendChild( document.createTextNode(i) );
+            opcija.value = i; 
+            selekt.appendChild(opcija);
+        }
+    }
+});
+
+function countDay(){
     //pravi selekt listu sa brojem dana u mesecu
     var numItems = $('.dugme-u-kalendaru').length;
     var selekt = document.getElementById('dan');
@@ -25,7 +57,7 @@ function count(){
     }
 }
 
-function deleteOpt(){
+function clearDay(){
     //prazni selekt listu
     $('#dan').empty();
 }
@@ -47,13 +79,13 @@ function countMonth(){
     }
 }
 
-function clearMonth(){
+function showTitleMonth(){
     //da bi se vratio na Month u listi meseca prilikom klikne na sledeci mesec, da ne bi ostao prethodno stisnuti
     var selekt1 = document.getElementById('mesec');
     selekt1.value="Month";
 }
 
-function clearYear(){
+function showTitleYear(){
     var selekt1 = document.getElementById('godina');
     selekt1.value="Year";
 }
@@ -73,9 +105,85 @@ function countYear(){
     }
 }
 
+function nabavi(){
+    document.getElementById('proba').value="";
+    var mesecText = document.getElementById('monthAndYear');
+    var niz = mesecText.innerHTML.split(" ");
+    var mesec = niz[0];
+    var d = new Date();
+    var lokalId = document.getElementById('idIn').value;
+    var nadji = months.indexOf(mesec);
+    if(nadji!=-1)
+    {
+        if(nadji >= d.getMonth() || parseInt(niz[1])>d.getFullYear())
+        {
+            $.ajax({
+                type: "GET",
+                url: '/Object?Id='+lokalId+'&handler=Nabavi',
+                beforeSend: function (xhr) {
+                xhr.setRequestHeader("XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                data: {id:lokalId, date:mesec},
+                success: function (response) {
+                    document.getElementById('proba').value=response;
+                    obojiDogadjaje();
+                }
+            })
+        }
+    }
+}
+
+function obojiDogadjaje(){
+    var podaci = document.getElementById('proba').value;
+    var niz = podaci.split("|");
+    if(podaci!="|,|,|,|")
+    {
+      var nizDatumi = niz[0].split(",");
+      for(var i=0;i<(nizDatumi.length)-1;i++)
+      {
+        var polje = document.getElementById(parseInt(nizDatumi[i]));
+        polje.style.backgroundColor='#5BBD50';
+      }
+    }
+}
+
+function ocisti()
+{
+    $('#brMesta').prop('selectedIndex',0);
+    $('#slobodniTermini').prop('selectedIndex',0);
+}
+
+$('#checkForma').click(function checkSelect(){
+  var dan = document.getElementById('dan');
+  var mesec = document.getElementById('mesec');
+  var godina = document.getElementById('godina');
+  ocisti();
+  if (this.checked == false){
+      dan.disabled=true;
+      mesec.disabled=true;
+      godina.disabled=true;
+      dan.value="Day";
+      mesec.value="Month";
+      godina.value="Year";
+      obojiDogadjaje();
+    } else {
+      dan.disabled=false;
+      mesec.disabled=false;
+      godina.disabled=false;
+      $(".dugme-u-kalendaru").each(function() {
+          this.style.backgroundColor = '#fff';
+        });
+      obojiDogadjaje();
+      dan.value="Day";
+      mesec.value="Month";
+      godina.value="Year";
+    }
+});
+
 function showCal(){
     //poziva se kad se klikne na dugme Show calendar, popunjava liste Day i Month
-    count();
+    countDay();
     countMonth();
     countYear();
     var check = document.getElementById('checkForma');
@@ -83,39 +191,44 @@ function showCal(){
     document.getElementById('dan').disabled=true;
     document.getElementById('mesec').disabled=true;
     document.getElementById('godina').disabled=true;
+    nabavi();
+    ocisti();
 }
 
 function hideCal(){
     //poziva se kad se klikne na dugme Hide calendar, prazni liste Day i Month
-    deleteOpt();
+    clearDay();
     $('#mesec').empty();
     $('#godina').empty();
+    ocisti();
 }
-
-//KRAJ DODATOG
 
 function next() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
     showCalendar(currentMonth, currentYear);
-    //dodato
     $.getScript("js/kalendar.js"); //ponovo ucitava skriptu pri svakom kliku na dugme
-    deleteOpt();
-    count();
-    clearMonth();
-    clearYear();
+    clearDay();
+    countDay();
+    showTitleMonth();
+    showTitleYear();
+    nabavi();
+    $('#brMesta').prop('selectedIndex',0);
+    $('#slobodniTermini').prop('selectedIndex',0);
 }
 
 function previous() {
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
     showCalendar(currentMonth, currentYear);
-    //dodato
     $.getScript("js/kalendar.js");
-    deleteOpt();
-    count();
-    clearMonth();
-    clearYear();
+    clearDay();
+    countDay();
+    showTitleMonth();
+    showTitleYear();
+    nabavi();
+    $('#brMesta').prop('selectedIndex',0);
+    $('#slobodniTermini').prop('selectedIndex',0);
 }
 
 function showCalendar(month, year) {
@@ -145,7 +258,6 @@ function showCalendar(month, year) {
         for (let j = 0; j < 7; j++) {
             if (i === 0 && j < firstDay) {
                 let cell = document.createElement("td");
-                //cell.className="dugme-u-kalendaru1";
                 let cellText = document.createTextNode("");
                 cell.appendChild(cellText);
                 row.appendChild(cell);
@@ -161,8 +273,7 @@ function showCalendar(month, year) {
                 let cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.style.color="red";
-                    //cell.classList.add("bg-danger");
-                } // color today's date
+                }
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 date++;

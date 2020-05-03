@@ -181,7 +181,7 @@
 								<div class="text1 fade">Address: @d.Lokal.Adresa,@d.Lokal.Grad</div>
 								<div class="text2 fade">Time: @d.Datum</div>
 								<div class="text3 fade">Description: @d.Opis</div>
-								<div class="dugmence"><a type="submit" class="dugme1 fade" asp-page="./Object" asp-route-Id="@d.Lokal.Id" asp-route-IdDog="@d.Id">Reserve</a></div>
+								<div class="dugmence"><a type="submit" class="dugme1 fade" asp-page="./Object" asp-route-Id="@d.Lokal.Id">Reserve</a></div>
 								</div>
 							</div>
 							}
@@ -201,7 +201,7 @@
 			<div class="container">
 				<div class="col-md-8 top-cuisines">
 					<div class="top-cuisine-head">
-						<h3>Popular Places</h3>
+						<h3>Top-Rated Places</h3>
 					</div>
 
 				<!-- LISTA TOP OBJEKATA -->
@@ -210,7 +210,7 @@
 					{
 						<tr class="table-red">
 							<td class="redSlika"><img class="table-naj-slika" src="@o.nazivSlike" style="width:150px;height:150px;"></td>
-							<td class="redIme"><a asp-page="./Object">@o.Naziv</a></td>
+							<td class="redIme">@o.Naziv</td>
 							<td class="redAdresa">@o.Adresa,@o.Grad</td>
     						<td class="redVremeP">Open: @o.openTime.ToString("h tt")</td>
 							<td class="redVremeK">Close: @o.closeTime.ToString("h tt")</td>
