@@ -72,7 +72,7 @@ namespace MyApp.Namespace
             validImageCount++;
               if(!string.IsNullOrEmpty(slika5))
             validImageCount++;
-           //provera za noviLokal
+          
             if(validImageCount<3||string.IsNullOrEmpty(glavnaSlika)||!validTableLayout(tableLayout)||!validNoviLokal())
             return RedirectToPage();
 

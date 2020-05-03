@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/grid-stack.css"/>
- 
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 
 <script src="js/jquery.validate.js"></script>
 </head>
@@ -464,9 +464,13 @@ window.onload = function(){
 					var searchControl = L.esri.Geocoding.geosearch().addTo(mymap);
 
  					var results = L.layerGroup().addTo(mymap);
+					 
 
   					searchControl.on('results', function (data) {
    					 results.clearLayers();
+						if ($(marker._icon).hasClass('hideThisMarker'))
+							return;
+
 					
    					 for (var i = data.results.length - 1; i >= 0; i--) {
     				  			marker.setLatLng(data.results[i].latlng);
