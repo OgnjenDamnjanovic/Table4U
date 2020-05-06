@@ -49,7 +49,7 @@ namespace MyApp.Namespace
         public async Task<IActionResult> OnGetAsync()
         {  
           
-             if(string.IsNullOrEmpty(HttpContext.Session.GetString("p_firstname"))||string.IsNullOrEmpty(HttpContext.Session.GetString("p_lastname"))||string.IsNullOrEmpty(HttpContext.Session.GetString("p_email"))||string.IsNullOrEmpty(HttpContext.Session.GetString("p_password")))
+           if(string.IsNullOrEmpty(HttpContext.Session.GetString("p_firstname"))||string.IsNullOrEmpty(HttpContext.Session.GetString("p_lastname"))||string.IsNullOrEmpty(HttpContext.Session.GetString("p_email"))||string.IsNullOrEmpty(HttpContext.Session.GetString("p_password")))
             {  
               return RedirectToPage("/Register");
             }

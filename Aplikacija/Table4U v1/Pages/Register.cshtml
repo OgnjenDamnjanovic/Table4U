@@ -34,12 +34,12 @@
 						<input asp-for="lastname" type="text"  id="lastname" name="lastname" >
 							<label class="error" style="visibility: hidden;">This field is required.</label>
 					 </div>
-				      <span style="visibility: hidden;font-size:17px ">I need this</span>
+				    
 					 <div class="wow fadeInRight" id="register-form-email-c" data-wow-delay="0.4s">
 						 <span>Email Address<label>*</label></span>
 						 <input asp-for="email" id="email" name="email" type="text" > 
-						 	<label class="error" style="visibility: hidden;">This field is required.</label>
-						 <label>@Model.ErrorMessage</label>
+						 	<label class="error error-hidden" style="visibility: hidden;">This field is required.</label>
+						 <label id="adressTaken">@Model.ErrorMessage</label>
 					 </div>
 
 
@@ -48,6 +48,14 @@
 					   <a class="Business" href="#">
 						   <script src="js/validateEmail.js"></script>
 						  <script>
+							  window.onload=()=>
+							  {			let errmsg=document.querySelector("#register-form-email-c").querySelectorAll("label")[2];
+							 		
+								  if(errmsg.innerHTML=="This email address is already used")
+								  {
+									document.querySelector("#email").onfocus=()=>{ errmsg.innerHTML="";}
+								  }
+							  }
 							  function isNullOrWhitespace( input ) {
 
     						if (typeof input === 'undefined' || input == null) return true;
@@ -228,7 +236,7 @@
       					 
 						}
 						</script>
-						 <label class="checkbox"><input type="checkbox" name="wantBusiness" value="Business" onclick="changeRegisterButtonText()"><i> </i>Create business account, I want to advertise my restaurant</label>
+						 <label class="checkbox"><input type="checkbox" name="wantBusiness" value="Business" onclick="changeRegisterButtonText()"><i> </i><label class="register-cb-label">Create business account, I want to advertise my restaurant</label></label>
 						
 					   </a>
 					 </div> 

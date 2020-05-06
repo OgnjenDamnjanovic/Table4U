@@ -9,7 +9,8 @@
       },
 	  removable: '#trash',
       removeTimeout: 100,
-      acceptWidgets: '.newWidget'
+      acceptWidgets: '.newWidget',
+      
 
 
 
@@ -68,7 +69,7 @@
     grid.on('change', function tableResize(e, items) { 
      
       
-      if(items[0].el.getAttribute("data-gs-width")=="1")
+      if(items[0].el.getAttribute("data-gs-width")=="1"||items[0].el.getAttribute("data-gs-height")=="1")
           {
              
             items[0].el.querySelector(".table-label").style.fontSize="16px";
@@ -78,8 +79,8 @@
           if((items[0].el.getAttribute("data-gs-width")=="2"||items[0].el.getAttribute("data-gs-width")=="3")&&items[0].el.getAttribute("data-gs-height")=="2")
           {
              
-            items[0].el.querySelector(".table-label").style.fontSize="37px";
-            items[0].el.querySelector(".table-capacity").style.fontSize="32px";
+            items[0].el.querySelector(".table-label").style.fontSize="32px";
+            items[0].el.querySelector(".table-capacity").style.fontSize="25px";
           }
 
 
