@@ -84,7 +84,7 @@ namespace MyApp.Namespace
             TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             if (!string.IsNullOrEmpty(eMail))
             {
-                if(TKorisnik.tipKorisnika=="Manager")
+                if(TKorisnik.tipKorisnika=="Menadzer")
                 {
                     Message=null;
                 }

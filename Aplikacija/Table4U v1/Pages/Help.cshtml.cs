@@ -22,12 +22,19 @@ namespace MyApp.Namespace
         public void OnGet()
         {
             String eMail = HttpContext.Session.GetString("email");
+            TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             if (!string.IsNullOrEmpty(eMail))
             {
-                var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
-                Message = "Welcome, " + korisnik.Ime;
+                if(TKorisnik.tipKorisnika=="Menadzer")
+                {
+                    Message=null;
+                }
+                else
+                {
+                    var korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
+                    Message = "Welcome, " + korisnik.Ime;
+                }
             }
-            TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
         }
 
         public void OnGetLogout()

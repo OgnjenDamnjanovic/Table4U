@@ -37,7 +37,7 @@ namespace MyApp.Namespace
             if(k!=null)
             {
                 HttpContext.Session.SetString("email", eMail);
-                if(k.tipKorisnika=="Manager")
+                if(k.tipKorisnika=="Menadzer")
                     return RedirectToPage("/Manager");
                 else return RedirectToPage("/Index");
             }
