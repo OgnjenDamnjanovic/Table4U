@@ -2,3 +2,97 @@
 @model MyApp.Namespace.ListedReservationsModel
 @{
 }
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+</head>
+
+<h4>Today reservations</h4>
+<table class="res-table">
+    <thead>
+        
+        @foreach (var vreme in Model.ListaVremena)
+        {
+            <th colspan="4">@vreme</th>
+        }
+    </thead>
+    <tbody>
+        @foreach (var lista in Model.matOznaka)
+        {
+            <tr>
+                @for(int i=0; i<lista.Count(); i++)
+                {
+                    @if(i==0)
+                    {
+                        <td colspan="4">@lista[i]</td>
+                    }
+                    else if(lista[i]=="-")
+                    {
+                        <td>@lista[i]</td>
+                    }
+                    else
+                    {
+                        <td colspan="8" style="background-color: #f2f2f2;">@lista[i]</td>
+                    }
+                    
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4>Upcoming reservations</h4>
+<table id="example" class="display" width="100%">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Date/time</td>
+            <td>People</td>
+            <td>Table</td>
+        </tr>
+    </thead>
+</table>
+
+
+
+<script>
+function Rezervacija (ime, adresa, datum, brojMesta, sto) {
+    this.ime=ime;
+    this.adresa=adresa;
+    this.datum=datum;
+    this.brojMesta=brojMesta;
+    this.sto = sto;
+};
+
+var dataSet = new Array();
+var n = @Model.ListaRez.Count();
+var listaImena = @Html.Raw(Json.Serialize(Model.ListaImena));
+var listaAdresa = @Html.Raw(Json.Serialize(Model.ListaAdresa));
+var listaDatuma = @Html.Raw(Json.Serialize(Model.ListaDatuma));
+var listaBrojMesta = @Html.Raw(Json.Serialize(Model.ListaBrojMesta));
+var listaStolova = @Html.Raw(Json.Serialize(Model.ListaStolova));
+
+for(let i=0; i<n; i++){
+    dataSet.push(new Rezervacija(listaImena[i],listaAdresa[i],listaDatuma[i],listaBrojMesta[i],listaStolova[i]));
+}
+//dataSet = JSON.stringify(dataSet);
+//conslole.log(dataSet);
+ 
+$(document).ready(function() {
+    $('#example').DataTable( {
+        data: dataSet,
+        columns: [
+            { data: 'ime' },
+            { data: 'adresa' },
+            { data: 'datum' },
+            { data: 'brojMesta' },
+            { data: 'sto' }
+        ],
+        searching: false
+    } );
+} );
+</script>
