@@ -2,3 +2,137 @@
 @model MyApp.Namespace.SeatMapModel
 @{
 }
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack.min.css" />
+<link rel="stylesheet" href="css/grid-stack.css"/>
+<script src="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack.all.js"></script>
+<script src="js/grid-stack.js"></script>
+
+<div class="grid-stack">
+    @foreach (var sto in Model.ListaStolova)
+    {
+        @if(sto.Slobodan==true)
+        {
+            <div class="grid-stack-item" data-gs-x="@sto.gsX" data-gs-y="@sto.gsY" data-gs-width=@sto.gsWidth data-gs-height=@sto.gsHeight  data-gs-auto-position="false">
+                <div class="grid-stack-item-content" onclick="tableClick(this)" tableId=@sto.Id>@sto.oznaka</div>
+            </div>
+        }
+        else
+        {
+            <div class="grid-stack-item" data-gs-x="@sto.gsX" data-gs-y="@sto.gsY" data-gs-width=@sto.gsWidth data-gs-height=@sto.gsHeight  data-gs-auto-position="false">
+                <div class="grid-stack-item-content" onclick="tableClick(this)" tableId=@sto.Id style="background-color: #fe5f55">@sto.oznaka</div>
+            </div>
+        }
+    }
+
+</div>
+
+
+<div id="myModal" class="modal1">
+
+  <div class="modal-content1">
+    <div class="modal-header1">
+      <span class="close5">&times;</span>
+      <h2>Today reservations</h2>
+    </div>
+    <div class="modal-body1">
+    </div>
+  </div>
+
+</div>
+
+<script>
+    var x = setInterval(function() {
+        $.ajax({
+            type: "GET",
+            url: '/SeatMap?handler=Ref',
+            beforeSend: function (xhr) {
+            xhr.setRequestHeader("XSRF-TOKEN",
+                $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            success: function (response) {
+                var stolovi = document.querySelectorAll(".grid-stack-item-content");
+                for(var i=0; i<stolovi.length; i++)
+                {
+                    stolovi[i].style="background-color: #18bc9c";
+                }
+                if(response.length!=0)
+                {
+                    for(var i=0; i<stolovi.length; i++)
+                    {
+                        var tableId = stolovi[i].getAttribute('tableId');
+                        for(var j=0;j<response.length;j++)
+                        {
+                            if(tableId == response[j])
+                                stolovi[i].style="background-color: #fe5f55";
+                        }
+                    }
+                }
+            }
+        });
+    }, 60000);
+    
+</script>
+
+
+<script>
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close5")[0];
+
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+
+<script type="text/javascript">
+    var grid = GridStack.init({
+        float: true,
+        staticGrid: true
+    });
+    //grid.movable('.grid-stack-item', false);
+    //grid.resizable('.grid-stack-item', false);
+</script>
+
+<script>
+    function tableClick(object){
+        var tableId = object.getAttribute('tableId');
+        //alert(tableId);
+        $.ajax({
+            type: "GET",
+            url: '/SeatMap?handler=Proveri',
+            beforeSend: function (xhr) {
+            xhr.setRequestHeader("XSRF-TOKEN",
+                $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            data: "Id="+tableId,
+            success: function (response) {
+                var divPrikaz = document.querySelector(".modal-body1");
+                divPrikaz.innerHTML = " ";
+                if(response.length!=0){
+                    for(var i=0;i<response.length;i++)
+                    {
+                        var lab = document.createElement("p");
+                        lab.innerHTML = response[i];
+                        divPrikaz.appendChild(lab);
+                    }
+                }
+                else
+                {
+                    var lab = document.createElement("label");
+                    lab.innerHTML = "No reservations to show!";
+                    divPrikaz.appendChild(lab);
+                }
+            }
+        });
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+</script>
