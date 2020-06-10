@@ -105,6 +105,7 @@ namespace MyApp.Namespace
         public List<string> napuniListu()
         {
             List<string> vremena = new List<string>();
+            List<string> vremena1 = new List<string>();
             string time;
             string[] cetvrtSat = {"00","15","30","45"};
             for(int i=12;i<24;i++){
@@ -120,19 +121,27 @@ namespace MyApp.Namespace
                 vremena.Add(("24:0"+i).ToString());
             }
 
-            return vremena;
+            var lista = vremena.OrderBy(x=>x);
+            
+            foreach(var l in lista)
+                vremena1.Add(l);
+
+            return vremena1;
         }
 
         public ActionResult OnGetProveri(int sto, int id, String date)
         {
             var lokal1 = db.Lokali.Include(x=>x.listaStolova).Include(x=>x.listaRezervacija).Where(x=>x.Id==id).FirstOrDefault();
             var brstolova = lokal1.listaStolova.Where(x=>x.brojMesta==sto).ToList().Count();
-
             List<string> listakon = new List<string>();
-            List<string> vremena=new List<string>();
 
             if(!date.Equals("Year-0-Day"))
             {
+                List<string> vremena=new List<string>();
+                List<string> vremena2 = new List<string>();
+                List<int> idStolova = new List<int>();
+                List<int> idStolova2 = new List<int>();
+                
                 string[] datum = date.Split("-");
                 int dan = Int32.Parse(datum[2]);
                 int mesec = Int32.Parse(datum[1]);
@@ -141,32 +150,132 @@ namespace MyApp.Namespace
                 vremena=napuniListu();
                 var rezervacije = lokal1.listaRezervacija.Where(x=>x.Sto.brojMesta==sto).
                 Where(x=>x.Vreme.Year.Equals(godina) && x.Vreme.Month == mesec && x.Vreme.Day.Equals(dan)).ToList();
+                
+                foreach(var a in lokal1.listaStolova.Where(x=>x.brojMesta==sto).OrderBy(x=>x.Id).ToList())
+                {
+                    idStolova.Add(a.Id);
+                }
 
-                foreach(var r in rezervacije)
-                {
-                    if(r.Vreme.TimeOfDay.Minutes.Equals(0))
-                        vremena.Add((r.Vreme.TimeOfDay.Hours + ":00").ToString());
-                    else
-                        vremena.Add((r.Vreme.TimeOfDay.Hours + ":" + r.Vreme.TimeOfDay.Minutes).ToString());
+                foreach(var r in rezervacije){
+                    idStolova2.Add(r.Sto.Id);
+                    if(r.Vreme.TimeOfDay.Minutes.Equals(0)){
+                        vremena2.Add((r.Vreme.TimeOfDay.Hours + ":00").ToString());
+                    }
+                    else{
+                        vremena2.Add((r.Vreme.TimeOfDay.Hours + ":" + r.Vreme.TimeOfDay.Minutes).ToString());
+                    }
+                }
+
+                int[,] matrica = new int[vremena.Count,brstolova];
+                for(var i=0;i<vremena.Count;i++){
+                    for(var j=0;j<brstolova;j++){
+                        matrica[i,j]=0;
+                    }
+                }
+
+
+                for(var i=0;i<vremena2.Count;i++){
+                    for(var j=0;j<vremena.Count;j++){
+                        if(vremena.ElementAt(j).Equals(vremena2[i]))
+                        {
+                            var index = idStolova.IndexOf(idStolova2[i]);
+                            matrica[j,index]=1;
+                        }
+                    }
+                }
+
+                for(var k=8;k<vremena.Count-9;k++){
+                    List<int> lista4 = new List<int>();
+                    var broj=0;
+                    for(var i=k;i<k+8;i++){
+                        for(var j=0;j<brstolova;j++){
+                            if(matrica[i,j]==1){
+                                broj++;
+                                lista4.Add(idStolova[j]);
+                            }
+                        }
+                    }
+                    for(var i=k-1;i>k-8;i--){
+                        for(var j=0;j<brstolova;j++){
+                            if(matrica[i,j]==1){
+                                broj++;
+                                lista4.Add(idStolova[j]);
+                            }
+                        }
+                    }
+                    var lista5 = lista4.Distinct();
+                    if(broj>=brstolova && lista5.Count()==brstolova)
+                        listakon.Add(vremena.ElementAt(k));
                 }
                 
-                var grupisano = vremena.GroupBy(x=>x).Select(group => new { 
-                             Count = group.Count(),
-                             Key = group.Key
-                        }).OrderBy(x=>x.Key);
-                
-                for(int k=8;k<=grupisano.Count()-9;k++)
-                {
-                    int broj=0;
-                    for(int i=k;i<=k+7;i++)
-                        broj=broj+((grupisano.ElementAt(i).Count)-1);
-                    for(int j=k-1;j>=k-7;j--)
-                       broj=broj+((grupisano.ElementAt(j).Count)-1);
-                    if(broj>=brstolova)
-                        listakon.Add(grupisano.ElementAt(k).Key);
-                }
             }
             return new JsonResult(listakon);
+        }
+
+        public async Task<IActionResult> OnPostObrisiAsync(int id)
+        {
+            var rec = db.Recenzije.Where(x=>x.Id==id).FirstOrDefault();
+            if(rec!=null)
+            {
+                db.Recenzije.Remove(rec);
+                await db.SaveChangesAsync();
+            }
+            return Redirect(("/Object?Id="+idObj).ToString());
+        }
+
+        public async Task<IActionResult> OnPostObrisiLokalAsync(int id)
+        {
+            var lokal = db.Lokali.Where(x=>x.Id==id).Include(x=>x.listaDogadjaja).Include(x=>x.listaRecenzija)
+            .Include(x=>x.listaRezervacija).Include(x=>x.listaStolova).FirstOrDefault();
+            var recenzije = db.Recenzije.Where(x=>x.Lokal.Id==id).ToList();
+            var dogadjaji = db.Dogadjaji.Where(x=>x.Lokal.Id==id).ToList();
+            var rezervacije = db.Rezervacije.Where(x=>x.Lokal.Id==id).ToList();
+            var stolovi = db.Stolovi.Where(x=>x.Lokal.Id==id).ToList();
+            
+            if(lokal!=null)
+            {
+                if(lokal.listaRecenzija.Count>0)
+                {
+                    foreach(var a in recenzije)
+                    {
+                        db.Recenzije.Remove(a);
+                        await db.SaveChangesAsync();
+                    }
+                }
+                if(lokal.listaRezervacija.Count>0)
+                {
+                    foreach(var b in rezervacije)
+                    {
+                        db.Rezervacije.Remove(b);
+                        await db.SaveChangesAsync();
+                    }
+                }
+                if(lokal.listaStolova.Count>0)
+                {
+                    foreach(var c in stolovi)
+                    {
+                        db.Stolovi.Remove(c);
+                        await db.SaveChangesAsync();
+                    }
+                }
+                if(lokal.listaDogadjaja.Count>0)
+                {
+                    foreach(var d in dogadjaji)
+                    {
+                        db.Dogadjaji.Remove(d);
+                        await db.SaveChangesAsync();
+                    }
+                }
+                var k = db.Korisnici.Where(x=>x.mojLokal.Id==id).FirstOrDefault();
+                if(k!=null)
+                {
+                    db.Korisnici.Remove(k);
+                    await db.SaveChangesAsync();
+                }
+                db.Lokali.Remove(lokal);
+                await db.SaveChangesAsync();
+            }
+            return RedirectToPage("/Index");
         }
 
         public async Task<IActionResult> OnPostRez()
@@ -175,8 +284,10 @@ namespace MyApp.Namespace
             var brstolova = lokal1.listaStolova.Where(x=>x.brojMesta==brMesta).ToList().Count();
             var rezervacije = lokal1.listaRezervacija.Where(x=>x.Sto.brojMesta==brMesta).
             Where(x=>x.Vreme.Year.Equals(year) && x.Vreme.Month==month && x.Vreme.Day.Equals(day)).ToList();
+
             String eMail = HttpContext.Session.GetString("email");
             TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
+
             List<string> vremena = new List<string>();
             List<int> idStolova = new List<int>();
             vremena=napuniListu();
@@ -184,9 +295,9 @@ namespace MyApp.Namespace
             var niz = vreme.Split(":");
             if(niz[1].Equals("00"))
                 niz[1]="0";
-
+            
             //prikupljamo Id-eve svih stolova sa istim brojem mesta
-            foreach(var a in lokal1.listaStolova.Where(x=>x.brojMesta==brMesta).ToList())
+            foreach(var a in lokal1.listaStolova.Where(x=>x.brojMesta==brMesta).OrderBy(x=>x.Id).ToList())
             {
                 idStolova.Add(a.Id);
             }
@@ -202,8 +313,8 @@ namespace MyApp.Namespace
 
             //grupisemo vremena u listi
             var grupisano = vremena.GroupBy(x=>x).Select(group => new { 
-                             Count = group.Count(),
-                             Key = group.Key
+                                Count = group.Count(),
+                                Key = group.Key
                         }).OrderBy(x=>x.Key);   
 
             //trazimo prosledjeno vreme
@@ -239,7 +350,7 @@ namespace MyApp.Namespace
             }
             
             /*if(idStolova.Count==0)
-                neko je u medjuvremenu rezervisao*/
+            neko je u medjuvremenu rezervisao*/
 
             if(TKorisnik==null)
                 return RedirectToPage("./Login");

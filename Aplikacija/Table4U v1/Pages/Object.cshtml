@@ -10,7 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <div class="container1">
-    <div class="naziv-objekta">@Model.lokal.Naziv</div>
+    <form class="prvi" method="post">
+        <div class="naziv-objekta">@Model.lokal.Naziv</div>
+        @if(Model.TKorisnik!=null && Model.TKorisnik.tipKorisnika.Equals("Admin"))
+        {
+            <button class="obrisi" type="submit" asp-route-id="@Model.lokal.Id" asp-page-handler="ObrisiLokal">Delete</button>
+        }
+    </form>
     <div class="gornji-deo">
         <div class="slika-opis">
             <div>
@@ -46,7 +52,7 @@
         <div id="Glavni" style="display:none;">
             <div class="instrukcije">
                 <div class="instrTekst">Instructions for reserving:</div>
-                <div class="instr1">Step1: Choose Your date by clicking on a date in calendar(or manually, selecting the checkbox).</div>
+                <div class="instr1">Step1: Choose Your date by clicking on a date in calendar(or manually, select the checkbox).</div>
                 <div class="instr2">Step2: Choose number of seats You need.</div>
                 <div class="instr3">Step3: Choose Your time.</div>
                 <div class="instr4">Step4: Click on Reserve.</div>
@@ -128,7 +134,27 @@
                 </div>
             </div>
             <div class="dugme-rez">
-                <button type="submit" class="btnRez">Reserve</button>
+                @if(Model.TKorisnik!=null)
+                {
+                    @if(Model.TKorisnik.tipKorisnika.Equals("Menadzer"))
+                    {
+                        <button type="submit" class="btnRez" disabled="true">Reserve</button>
+                        <label class="error2">Admin does not have permissions for this action!</label>
+                    }
+                    else if(Model.TKorisnik.tipKorisnika.Equals("Admin"))
+                    {
+                        <button type="submit" class="btnRez" disabled="true">Reserve</button>
+                        <label class="error2">Admin does not have permissions for this action!</label>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btnRez">Reserve</button>
+                    }
+                }
+                else
+                {
+                    <button type="submit" class="btnRez">Reserve</button>
+                }
             </div>
         </form>
         <input id = "lat" type="hidden" value="@Model.lokal.latitude">
@@ -154,7 +180,8 @@
         <div class="recenzije-lokacija">
             <div class="recenzije1">
                 <div class="recenzije">Comments and ratings</div>
-                <div class="komentari">
+                <form class="komentari" method="post">
+                    <input type="hidden" value="@Model.lokal.Id" asp-for="@Model.idObj">
                     <table class="table">
                         <thead>
                             <th>Rating</th>
@@ -167,13 +194,41 @@
                                 <tr>
                                     <td>@r.Ocena</td>
                                     <td>@r.Datum.ToString("d/M/yyyy")</td>
-                                    <td>@r.Komentar</td>
+                                    @if(Model.TKorisnik!=null && Model.TKorisnik.tipKorisnika.Equals("Admin"))
+                                    {
+                                        <td>@r.Komentar</td>
+                                        <td><button type="submit" asp-route-Id="@r.Id" asp-page-handler="Obrisi">Delete</button></td>
+                                    }
+                                    else
+                                    {
+                                        <td>@r.Komentar</td>
+                                    }
                                 </tr>
                             }
                         </tbody>
                     </table>
-                </div>
-                <button id="dodajRec">Add comment</button>
+                </form>
+                @if(Model.TKorisnik!=null)
+                {
+                    @if(Model.TKorisnik.tipKorisnika.Equals("Menadzer"))
+                    {
+                        <button id="dodajRec" disabled="true">Add comment</button>
+                        <label class="error2">Business acounts do not have permissions for this action!</label>
+                    }
+                    else if(Model.TKorisnik.tipKorisnika.Equals("Admin"))
+                    {
+                        <button id="dodajRec" disabled="true">Add comment</button>
+                        <label class="error2">Admin does not have permissions for this action!</label>
+                    }
+                    else
+                    {
+                        <button id="dodajRec">Add comment</button>
+                    }
+                }
+                else
+                {
+                    <button id="dodajRec">Add comment</button>
+                }
                 <label id="dodajRecInfo" style="display:none;">The form for adding a review is under Location.</label>
             </div>
             <div class="location1">
@@ -185,8 +240,8 @@
             <div class="kontejner">
                 <div class="recTekst">
                     <input type="hidden" id="idIn1" value="@Model.lokal.Id" asp-for="@Model.idObj">
-                    <input type="text" id="tekstKom" placeholder="Enter comment.." asp-for="@Model.komentar">
-                    <label class="error3" style="visibility:hidden;">Pogresan unos!</label>
+                    <textarea id="tekstKom" placeholder="Enter comment.." maxlength="100" asp-for="@Model.komentar"></textarea>
+                    <label class="error3" style="visibility:hidden;">Wrong input!</label>
                 </div>
                 <div class="ratingDugme">
                     <select class="selRating" id="selRating" asp-for="@Model.rejting">
@@ -197,7 +252,7 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <label class="error1" style="visibility:hidden;">Pogresan izbor!</label>
+                    <label class="error1" style="visibility:hidden;">Wrong choice!</label>
                     <div class="dugmiciRez">
                         <button id="otkaziRec" type="button" >Discard</button>
                         <button id="potvrdiRec" type="submit" >Submit</button>
