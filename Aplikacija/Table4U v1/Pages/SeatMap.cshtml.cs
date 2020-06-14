@@ -22,9 +22,11 @@ namespace MyApp.Namespace
         {
             db = dataBase;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             String eMail = HttpContext.Session.GetString("email");
+            if(eMail==null)
+                return RedirectToPage("/Login");
             Message = "Manager";
             TKorisnik = db.Korisnici.Include(x=>x.mojLokal).Where(x=>x.eMail == eMail).FirstOrDefault();
             //TKorisnik = db.Korisnici.Include(kor=>kor.mojLokal).Where(x=>x.Id==3).FirstOrDefault();
@@ -44,6 +46,7 @@ namespace MyApp.Namespace
                 }
 
             }
+            return Page();
         }
 
         public ActionResult OnGetProveri(int Id)
@@ -67,7 +70,7 @@ namespace MyApp.Namespace
         public ActionResult OnGetRef()
         {
             List<String> rezultat = new List<string>();
-             String eMail = HttpContext.Session.GetString("email");
+            String eMail = HttpContext.Session.GetString("email");
             Message = "Manager";
             TKorisnik = db.Korisnici.Include(x=>x.mojLokal).Where(x=>x.eMail == eMail).FirstOrDefault();
             //TKorisnik = db.Korisnici.Include(kor=>kor.mojLokal).Where(x=>x.Id==3).FirstOrDefault();
@@ -87,6 +90,44 @@ namespace MyApp.Namespace
 
             }
             return  new JsonResult(rezultat);
+        }
+
+        public IActionResult OnGetReserve(int id)
+        {
+            Rezervacija r = new Rezervacija();
+            r.Vreme = DateTime.Now;
+            r.VremeKreiranja = DateTime.Now;
+            String eMail = HttpContext.Session.GetString("email");
+            Message = "Manager";
+            TKorisnik = db.Korisnici.Include(x=>x.mojLokal).Where(x=>x.eMail == eMail).FirstOrDefault();
+            //TKorisnik = db.Korisnici.Include(kor=>kor.mojLokal).Where(x=>x.Id==3).FirstOrDefault();
+            r.Korisnik = TKorisnik;
+            r.Lokal = TKorisnik.mojLokal;
+            r.Sto = db.Stolovi.Where(x=>x.Id == id).FirstOrDefault();
+            db.Rezervacije.Add(r);
+            db.SaveChanges();
+            return RedirectToPage();
+            //da li postoji rezervacija u narednih 2h
+        }
+
+        public IActionResult OnGetRelease(int id)
+        {
+            
+            String eMail = HttpContext.Session.GetString("email");
+            Message = "Manager";
+            TKorisnik = db.Korisnici.Include(x=>x.mojLokal).Where(x=>x.eMail == eMail).FirstOrDefault();
+            //TKorisnik = db.Korisnici.Include(kor=>kor.mojLokal).Where(x=>x.Id==3).FirstOrDefault();
+            lokal = db.Lokali.Where(x=>x.Id == TKorisnik.mojLokal.Id).Include(x=>x.listaStolova).Include(x=>x.listaRezervacija).ThenInclude(x=>x.Sto).FirstOrDefault();
+
+            Rezervacija r = lokal.listaRezervacija.Where(x=>x.Sto.Id == id && x.Vreme<DateTime.Now && x.Vreme>DateTime.Now.AddHours(-2)).FirstOrDefault();
+            if(r!=null)
+            {
+                db.Rezervacije.Remove(r);
+                db.SaveChanges();
+            }
+
+
+            return RedirectToPage();
         }
     }
 }

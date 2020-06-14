@@ -27,9 +27,11 @@ namespace MyApp.Namespace
         {
             db = dataBase;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             String eMail = HttpContext.Session.GetString("email");
+            if(eMail==null)
+                return RedirectToPage("/Login");
             Message = "Manager";
             TKorisnik = db.Korisnici.Include(x=>x.mojLokal).Where(x=>x.eMail == eMail).FirstOrDefault();
             var id = TKorisnik.mojLokal.Id;
@@ -56,6 +58,7 @@ namespace MyApp.Namespace
             }
 
             NajnovijeRez = MojLokal.listaRezervacija.OrderByDescending(x=>x.VremeKreiranja).Take(3).ToList();
+            return Page();
         }
 
         public void OnGetLogout()

@@ -2,6 +2,9 @@
 @model MyApp.Namespace.ListedEventsModel
 @{
 }
+<head>
+  <link href="css/all.css" rel="stylesheet"> <!--load all styles -->
+</head>
 
 <div class="register">
 <form id="signupForm" method="post" action=""> 
@@ -38,10 +41,11 @@
       <div class="column2">
         <div class="card1">
 		  <input id="ev-id" type="hidden" value=@d.Id>
-          <h4 id="ev-type">@d.Vrsta</h4>
+          <h4 id="ev-type">@d.Vrsta  <a asp-page-handler="Delete" asp-route-id="@d.Id" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fas fa-trash-alt"></i></a></h4>  
 		  <label id="ev-date" date=@d.Datum.ToString("yyyy-MM-ddTHH:mm") >@d.Datum.ToString("dd.MM.yyyy, HH:mm")</label>
 		  <p id="ev-desc">@d.Opis</p>
           <button type="submit" class="finish-but" id="edit-but" style="margin-left: 0" onclick="editClick(this)">Edit</button>
+		  
         </div>
       </div>
 </div>

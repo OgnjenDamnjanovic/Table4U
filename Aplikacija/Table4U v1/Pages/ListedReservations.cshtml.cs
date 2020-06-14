@@ -33,9 +33,11 @@ namespace MyApp.Namespace
         {
             db = dataBase;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             String eMail = HttpContext.Session.GetString("email");
+            if(eMail==null)
+                return RedirectToPage("/Login");
             Message = "Manager";
             TKorisnik = db.Korisnici.Include(x=>x.mojLokal).Where(x=>x.eMail == eMail).FirstOrDefault();
             //TKorisnik = db.Korisnici.Include(kor=>kor.mojLokal).Where(x=>x.Id==2).FirstOrDefault();
@@ -110,6 +112,8 @@ namespace MyApp.Namespace
                 }
                 matOznaka.Add(pom);
             }
+
+            return Page();
 
         }
 

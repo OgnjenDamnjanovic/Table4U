@@ -23,15 +23,17 @@ namespace MyApp.Namespace
         {
             db = dataBase;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             String eMail = HttpContext.Session.GetString("email");
+            if(eMail==null)
+                return RedirectToPage("/Login");
             Message = "Manager";
             TKorisnik = db.Korisnici.Include(x=>x.mojLokal).Where(x=>x.eMail == eMail).FirstOrDefault();
             //TKorisnik = db.Korisnici.Include(kor=>kor.mojLokal).Where(x=>x.Id==3).FirstOrDefault();
             Lokal lokal = db.Lokali.Where(x=>x.Id == TKorisnik.mojLokal.Id).Include(x=>x.listaStolova).Include(x=>x.listaDogadjaja).Include(x=>x.listaRezervacija).ThenInclude(x=>x.Sto).FirstOrDefault();
             listaDogadjaja = lokal.listaDogadjaja.Where(x=>x.Datum > DateTime.Now).ToList();
-            
+            return Page();
         }
 
         public IActionResult OnPost()
@@ -39,6 +41,7 @@ namespace MyApp.Namespace
             if(trDogadjaj.Id==0)
             {
                 String eMail = HttpContext.Session.GetString("email");
+                Message = "Manager";
                 TKorisnik = db.Korisnici.Include(x=>x.mojLokal).Where(x=>x.eMail == eMail).FirstOrDefault();
                 //TKorisnik = db.Korisnici.Include(kor=>kor.mojLokal).Where(x=>x.Id==3).FirstOrDefault();
                 trDogadjaj.Lokal = TKorisnik.mojLokal;
@@ -52,6 +55,17 @@ namespace MyApp.Namespace
                 db.SaveChanges();
                 return RedirectToPage();
             }
+        }
+
+        public async Task<IActionResult> OnGetDeleteAsync(int id)
+        {
+            var dog = await db.Dogadjaji.FindAsync(id);
+            if(dog!=null)
+            {
+                db.Dogadjaji.Remove(dog);
+                await db.SaveChangesAsync();
+            }
+            return RedirectToPage();
         }
 
 
