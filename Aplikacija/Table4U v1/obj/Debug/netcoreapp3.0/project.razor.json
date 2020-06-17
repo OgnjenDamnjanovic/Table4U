@@ -14399,6 +14399,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ManageUsers.cshtml",
+      "TargetPath": "Pages\\ManageUsers.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ListedEvents.cshtml",
       "TargetPath": "Pages\\ListedEvents.cshtml",
       "FileKind": "mvc"

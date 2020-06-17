@@ -1,0 +1,62 @@
+﻿@page
+@model MyApp.Namespace.ManageUsersModel
+@{
+}
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+</head>
+
+<form method="POST">
+<table id="manageCustomers" class="display customers">
+    <thead>
+        <th>ID</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Email</th>
+        <th></th>
+    </thead>
+    <tbody>
+@foreach (var klijent in Model.customers)
+{
+    <tr>
+        <td>@klijent.Id</td>
+        <td>@klijent.Ime</td>
+        <td>@klijent.Prezime</td>
+        <td>@klijent.eMail</td>
+        <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
+    </tr>
+}
+   </tbody>
+</table>
+
+<table id="manageManagers" class="display managers">
+ <thead>
+        <th>ID</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Email</th>
+        <th></th>
+    </thead>
+    <tbody>
+@foreach (var klijent in Model.managers)
+{
+    <tr>
+        <td>@klijent.Id</td>
+        <td>@klijent.Ime</td>
+        <td>@klijent.Prezime</td>
+        <td>@klijent.eMail</td>
+        <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
+    </tr>
+}
+   </tbody>
+   
+</table>
+</form>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function () {
+    $('#manageCustomers').DataTable();
+    $('#manageManagers').DataTable();
+} );
+</script>
+<script src="https://kit.fontawesome.com/42e45ec991.js" crossorigin="anonymous"></script>
