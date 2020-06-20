@@ -1743,6 +1743,85 @@ border-width: 2px;
 	}
 
 	/*--OBJECT STRANA--*/
+	
+	/*USER STRANA*/
+
+	#signupForm1 h3
+	{
+		font-size: 18.2px;
+		font-weight: 600;
+		margin: 0;
+		padding-bottom: 15px;
+		color: rgb(0,0,0);
+	}
+
+	#signupForm1
+	{
+		display: flex;
+		flex-direction: column;
+	}
+
+	.register-but1 {
+		background:#E24425;
+		color: #FFF;
+		font-size: 1.2em;
+		padding: 0.6em 2em;
+		transition: 0.5s all;
+		-webkit-transition: 0.5s all;
+		-moz-transition: 0.5s all;
+		-o-transition: 0.5s all;
+		float:right;
+		width:17%;
+		min-width: 50px;
+		border:none;
+		margin-left: 5%;
+	}
+
+	.nema-rez{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	.predstojece-rez{
+		margin-top:15px;
+		margin-bottom: 15px;
+		font-size: 25px;
+	}
+
+	#rez{
+		font-size: 17px;
+		background:#E24425;
+		color: #FFF;
+		margin-top: 10px;
+		transition: 0.5s all;
+		-webkit-transition: 0.5s all;
+		-moz-transition: 0.5s all;
+		-o-transition: 0.5s all;
+		min-width: 100px;
+		width:18%;
+		border:none;
+		margin-bottom: 50px;
+	}
+
+	#rez1{
+		font-size: 15px;
+		margin-left: 5%;
+		margin-top: 10px;
+		cursor:pointer;
+	}
+
+	.checkbox1{
+		margin-left: 5%;
+	}
+
+	.otkaziRez{
+		font-size: 15px;
+		background:#E24425;
+		color: #FFF;
+		border:none;
+	}
+
+	/*--USER STRANA--*/
 
 	/*LISTEDOBJECTS STRANA*/
 
