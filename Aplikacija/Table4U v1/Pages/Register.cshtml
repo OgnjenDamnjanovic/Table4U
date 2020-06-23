@@ -9,14 +9,7 @@
 	<script src="js/jquery.js"></script>
 
 </head>
-<div id="bi-registration-successful"class="modal">
-<div class="modal-content reg-succ">
 
-<div><label>Registration successful</label></div>
-
-</div>
-</div>
-<label  id="login-successful" style="display: none;">@Model.loginSuccessful</label>
 <div class="content">
 	<div class="main">
 	   <div class="container">
@@ -134,12 +127,7 @@
 						document.addEventListener("DOMContentLoaded", function validateRegisterForm(event){
 							
 							
-							if(document.querySelector("#login-successful").innerHTML!="-")
-								{
-									document.querySelector("#bi-registration-successful").style.display="block";
-									setTimeout(()=>{window.location.href="/Index";},2500);
-									
-								}
+						
 					
 							let element=document.querySelector("#firstname");
 					element.onfocus=function()
@@ -217,26 +205,10 @@
 						
 					}
 					});
-
-							  
-							  
-							  function changeRegisterButtonText()
-						{
-	   					 if(document.querySelector(".Business input").checked)
-       					 {
-								document.querySelector(".register-but").innerHTML="Next";
-							
-							
-						 }
-      					  else 
-							{
-								 document.querySelector(".register-but").innerHTML="Submit"
-								
-							}
-      					 
-						}
+	  
+						
 						</script>
-						 <label class="checkbox"><input type="checkbox" name="wantBusiness" value="Business" onclick="changeRegisterButtonText()"><i> </i><label class="register-cb-label">Create business account, I want to advertise my restaurant</label></label>
+						 <label class="checkbox"><input type="checkbox" name="wantBusiness" value="Business" ><i> </i><label class="register-cb-label">Create business account, I want to advertise my restaurant</label></label>
 						
 					   </a>
 					 </div> 

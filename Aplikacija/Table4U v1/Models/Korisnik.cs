@@ -14,7 +14,9 @@ namespace SWEProject.Models
         //public IList<Lokal> favRestorani { get; set; }
         public Lokal mojLokal { get; set; }
         //public IList<Recenzija> listaRecenzija {get; set;}
-        
+        public int brojPrijava { get; set; }=0;
+        public bool validanNalog { get; set; }
+        public string hash { get; set; }
 
 
     }

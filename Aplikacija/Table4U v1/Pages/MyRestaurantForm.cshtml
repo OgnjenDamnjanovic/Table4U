@@ -52,8 +52,17 @@
 	<div class="main">
 	   <div class="container">
 		  <div class="register">
+			  <div style="width:100%;display: flex;flex-direction:row;justify-content:space-between;">	<h3>PROVIDE INFORMATIONS ABOUT YOUR BUSINESS</h3>
+			  	<form  id="cancel"method="POST">
+					   <input type="hidden" value="@Model.email" asp-for="email" name="email">
+				<input type="hidden" name="guid" value="@Model.guid" asp-for="guid">
+						<a id="a-cancel"style="margin-right:15px;text-decoration: underline;font-size:15px" >I don't want business account</a>
+					<button style="display:none;"type="submit" asp-page-handler="customer"class="register-but" id="bi-cancel">I don't want business account</button>
+				
+					</form>
+					</div>
 		  	  <form id="signupForm" method="post" action="" enctype="multipart/form-data"> 
-				<h3>PROVIDE INFORMATIONS ABOUT YOUR BUSINESS</h3>
+			
 				<div class="bi-name-type h-container">
 					<span  class="bi-name v-container wow fadeInLeft">
 						<div class="form-element-label">NAME*</div>
@@ -579,13 +588,12 @@ window.onload = function(){
   <script src="js/jquery.ui.touch-punch.min.js"></script>
 <script src="js/grid-stack.js"></script>
 
-
+				
 				<input type="hidden" id="mapLongitude" value="" asp-for="noviLokal.longitude">
 				<input type="hidden" id="mapLatitude" value="" asp-for="noviLokal.latitude">
 				<div class="bi-buttons wow fadeInLeft">
-					<button type="submit" asp-page-handler="back"class="register-but"id="bi-back">back</button>
-					<button type="submit" asp-page-handler="next"class="register-but" id="bi-finish">finish</button>
-					
+						<button type="submit" asp-page-handler="next"class="register-but" id="bi-finish">finish</button>
+				
 				</div>
 				<script src="js/validateEmail.js"></script>
 				<script>
@@ -863,40 +871,16 @@ window.onload = function(){
 });
 					document.querySelector("#table-layout-serialized").value=tableLayoutSerialized;
 					
-
-
-
-
-						
-					
-				
-				
 					return true;						
-			
-
-
-						
 					}
-				document.addEventListener("DOMContentLoaded", function validateRegisterForm(event){
-							
-							
-							if(document.querySelector("#login-successful").innerHTML!="-")
-								{
-									document.querySelector("#bi-registration-successful").style.display="block";
-									setTimeout(()=>{window.location.href="/Index";},2500);
-									
-								}});
+		
 					
 				</script>
 				 
-<div id="bi-registration-successful"class="modal">
-<div class="modal-content reg-succ">
 
-<div><label>Registration successful</label></div>
 
-</div>
-</div>
-<label  id="login-successful" style="display: none;">@Model.loginSuccessful</label>				 
+		 <input type="hidden" value="@Model.email" asp-for="email" name="email">
+				<input type="hidden" name="guid" value="@Model.guid" asp-for="guid">
 
 <input asp-for="tableLayout" style="display: none;" id="table-layout-serialized" value="">
  <input asp-for="slika1" style="display: none;" id="img-src-1" value="">
@@ -920,7 +904,15 @@ window.onload = function(){
 					   <div class="clearfix"> </div>
 				   </form>
 				</div>-->
-				
+				<script>document.querySelector("#a-cancel").onclick=()=>
+				{
+					if (confirm("Are you sure? This cannot be reverted!")) {
+					document.querySelector("#bi-cancel").click();}
+					else 
+					return;
+				}</script>
+			
+			
 		   </div>
 	     </div>
 	    </div>

@@ -1,0 +1,35 @@
+﻿@page
+@model MyApp.Namespace.SuccessModel
+@{
+}<br /><br /><br /><br /><br /><br />
+<h1>Your email has been verified.</h1><br /><br />
+<h1>Thank you for registering</h1><br /><br /><br /><br /><br />
+<span style="font-size: xx-large;">Redirecting in <span class="timer">5</span2></span><br /><br /><br /><br /><br /><br />
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded",()=>
+								{
+									
+									setInterval(()=>{
+                                        let timer=document.querySelector(".timer");
+                                        let tr=parseInt(timer.innerHTML);
+                                        if(tr==1)
+                                        {
+                                            window.location.href="/Index";
+                                            
+
+                                        }
+                                        else if(tr==0)
+                                        return;
+                                        timer.innerHTML=--tr;
+                                       
+									
+									
+								},1000);
+
+                                
+								});
+</script>

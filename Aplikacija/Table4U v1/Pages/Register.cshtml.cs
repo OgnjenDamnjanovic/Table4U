@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +18,8 @@ namespace MyApp.Namespace
        
         [BindProperty]
         public Korisnik TKorisnik { get; set; }
+       
+    
         
         [BindProperty(Name="firstname")]
         public String firstname {get; set;}
@@ -32,16 +37,47 @@ namespace MyApp.Namespace
         public string ErrorMessage {get; set;} 
         [BindProperty]
         public string  Message { get; set; }
-        [BindProperty]
-        public string loginSuccessful { get; set; }="-";
+      
         private Table4UContext dbContext;
         public RegisterModel(Table4UContext db)
         {
             dbContext = db;
         }
-        public async Task OnGetAsync()
+        public IActionResult OnGetAsync(string mail, string hash)
         {   
+           
             ErrorMessage="";
+            if(mail!=null &&hash!=null)
+            {
+                Korisnik zaAktivaciju=dbContext.Korisnici.Where(korisnik =>korisnik.eMail==mail&&korisnik.hash==hash).FirstOrDefault();
+                if(zaAktivaciju==null||zaAktivaciju.tipKorisnika!="Gost")
+                return RedirectToPage("/Index");
+                else if(zaAktivaciju.validanNalog)
+                {
+                     HttpContext.Session.SetString("email", zaAktivaciju.eMail);
+                     
+                     return RedirectToPage("/Success");
+                }
+                else
+                {
+                    zaAktivaciju.validanNalog=true;
+                    HttpContext.Session.SetString("email", zaAktivaciju.eMail);
+                    dbContext.SaveChangesAsync();
+                  
+                    return RedirectToPage("/Success");
+                    
+                }
+            }
+            else
+            {
+            //string mejl=HttpContext.Session.GetString("email");
+            //if(mejl!=null)
+            //return RedirectToPage("/Index");
+            return Page();
+            
+            }
+            
+
             
         }
 
@@ -57,36 +93,32 @@ namespace MyApp.Namespace
             var postojeciKorisnik = dbContext.Korisnici.Where(kor =>kor.eMail==email).FirstOrDefault();
             if(postojeciKorisnik!=null)
             {
+                TKorisnik=null;
                 ErrorMessage = "This email address is already used";
                 return Page();
             }
          
-            NoviKorisnik.tipKorisnika="Gost";
+            NoviKorisnik.tipKorisnika=(wantBusiness.Count==1)?"Menadzer":"Gost";
             NoviKorisnik.Ime =firstname;
             NoviKorisnik.Prezime = lastname;
             NoviKorisnik.eMail = email;
             NoviKorisnik.Sifra = password;
+            NoviKorisnik.validanNalog=false;
+            NoviKorisnik.hash=Guid.NewGuid().ToString();
             
 
-           
-            if(wantBusiness.Count==1)
-            {
-                HttpContext.Session.SetString("p_firstname", NoviKorisnik.Ime);
-                HttpContext.Session.SetString("p_lastname", NoviKorisnik.Prezime);
-                HttpContext.Session.SetString("p_email", NoviKorisnik.eMail);
-                HttpContext.Session.SetString("p_password", NoviKorisnik.Sifra);
-               
-                 return RedirectToPage("/MyRestaurantForm");
-            }
-            else
-            {
                 dbContext.Korisnici.Add(NoviKorisnik);
                 await dbContext.SaveChangesAsync();
-                 HttpContext.Session.SetString("email", NoviKorisnik.eMail);
-                 loginSuccessful="success";
-                 return Page();
-            }
+                string link=GetBaseUrl();
+                link+=NoviKorisnik.tipKorisnika=="Gost"?"/Register?mail=":"/MyRestaurantForm?mail=";
+                link+=NoviKorisnik.eMail+"&hash="+NoviKorisnik.hash;
+                string sadrzajMejla=$"Dear {NoviKorisnik.Ime}, \n\n In order to verify your Table4U account, please click on the link down below\n {link} \n Thank you for using our website.";
+                SendEmail("Table4U",NoviKorisnik.eMail,"Finish Registration Process",sadrzajMejla);
+             
+                 HttpContext.Session.SetString("newAccEmail",NoviKorisnik.eMail);
+                 return RedirectToPage("/EmailSent");
         }
+        
         public bool IsValidEmail(string emailaddress)
 {
     try
@@ -106,5 +138,59 @@ namespace MyApp.Namespace
         return String.IsNullOrEmpty(input)||String.IsNullOrWhiteSpace(input);
     }
 
-    }
+public static void SendEmail(string from, string to, string subject, string body)
+{
+    var fromAddress = new MailAddress("Table4U.Register@gmail.com");
+var fromPassword = "elfak1234";
+var toAddress = new MailAddress(to);
+
+
+
+System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
+{
+    Host = "smtp.gmail.com",
+    Port = 587,
+    EnableSsl = true,
+    DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+    UseDefaultCredentials = false,
+    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)       
+};
+
+using (var message = new MailMessage(fromAddress, toAddress)
+{
+    Subject = subject,
+    Body = body
+})
+
+smtp.Send(message);
+}
+public static string ComputeSha256Hash(string rawData)  
+        {  
+            // Create a SHA256   
+            using (SHA256 sha256Hash = SHA256.Create())  
+            {  
+                // ComputeHash - returns byte array  
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));  
+  
+                // Convert byte array to a string   
+                StringBuilder builder = new StringBuilder();  
+                for (int i = 0; i < bytes.Length; i++)  
+                {  
+                    builder.Append(bytes[i].ToString("x2"));  
+                }  
+                return builder.ToString();  
+            }  
+        }  
+        public  string GetBaseUrl()
+{
+    var request = HttpContext.Request;
+
+    var host = request.Host.ToUriComponent();
+
+    var pathBase = request.PathBase.ToUriComponent();
+
+    return $"{request.Scheme}://{host}{pathBase}";
+}
+}
+
 }

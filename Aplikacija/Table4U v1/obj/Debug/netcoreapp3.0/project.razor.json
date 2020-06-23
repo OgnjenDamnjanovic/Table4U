@@ -14404,6 +14404,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\EmailSent.cshtml",
+      "TargetPath": "Pages\\EmailSent.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ListedEvents.cshtml",
       "TargetPath": "Pages\\ListedEvents.cshtml",
       "FileKind": "mvc"
@@ -14411,6 +14416,11 @@
     {
       "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Manager.cshtml",
       "TargetPath": "Pages\\Manager.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Success.cshtml",
+      "TargetPath": "Pages\\Success.cshtml",
       "FileKind": "mvc"
     },
     {

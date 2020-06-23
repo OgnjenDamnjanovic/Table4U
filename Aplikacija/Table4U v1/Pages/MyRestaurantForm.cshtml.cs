@@ -40,25 +40,44 @@ namespace MyApp.Namespace
         [BindProperty]
         public Lokal noviLokal { get; set; }
         public string ErrorMessage { get; set; }
-        [BindProperty]
+        [BindProperty(SupportsGet=true)]
         public string Message { get; set; }
-      public string loginSuccessful { get; set; }="-";
-      
+   [BindProperty]
+      public string email{get;set;}
+      [BindProperty(SupportsGet=true)]
+      public string guid{get;set;}
       public Korisnik TKorisnik { get; set; }
        
-        public async Task<IActionResult> OnGetAsync()
-        {  
-          
-           if(string.IsNullOrEmpty(HttpContext.Session.GetString("p_firstname"))||string.IsNullOrEmpty(HttpContext.Session.GetString("p_lastname"))||string.IsNullOrEmpty(HttpContext.Session.GetString("p_email"))||string.IsNullOrEmpty(HttpContext.Session.GetString("p_password")))
-            {  
-              return RedirectToPage("/Register");
+        public async Task<IActionResult> OnGetAsync(string mail, string hash)
+        {  if(mail==null||hash==null)
+        return RedirectToPage("/Index");
+        Korisnik korisnik=db.Korisnici.Where(korisnik =>korisnik.hash==hash&&korisnik.eMail==mail&&korisnik.tipKorisnika=="Menadzer").FirstOrDefault();
+          if(korisnik==null)           
+            return RedirectToPage("/Index");
+            else if(korisnik.validanNalog)
+            {
+               HttpContext.Session.SetString("email",korisnik.eMail);
+              return RedirectToPage("/Success");
             }
             else
+            {email=mail;
+              guid=hash;
             return Page();
-
+            }
+            
             
 
         } 
+        public async Task<IActionResult> OnPostCustomerAsync()
+        {
+          Korisnik zaAktivaciju=db.Korisnici.Where(Korisnik=>Korisnik.eMail==email&&Korisnik.hash==guid).FirstOrDefault();
+          zaAktivaciju.validanNalog=true;
+          zaAktivaciju.tipKorisnika="Gost";
+         await db.SaveChangesAsync();
+          HttpContext.Session.SetString("email",zaAktivaciju.eMail);
+          return RedirectToPage("/Success");
+         
+          }
         public async Task<IActionResult> OnPostNextAsync()
         { 
             int validImageCount=0;
@@ -150,34 +169,22 @@ namespace MyApp.Namespace
         noviLokal.maxKapacitet=objectSeatsCount;
         noviLokal.listaStolova=noviStolovi;
         
-        Korisnik noviKorisnik=new Korisnik();
-        noviKorisnik.Ime=HttpContext.Session.GetString("p_firstname");
-        
-        noviKorisnik.Prezime=HttpContext.Session.GetString("p_lastname");
-        
-        noviKorisnik.eMail=HttpContext.Session.GetString("p_email");
-        
-        noviKorisnik.Sifra=HttpContext.Session.GetString("p_password");
-        noviKorisnik.tipKorisnika="Menadzer";
+        Korisnik noviKorisnik=db.Korisnici.Where(korisnik =>korisnik.hash==guid&&korisnik.eMail==email&&korisnik.tipKorisnika=="Menadzer"&&!korisnik.validanNalog).FirstOrDefault();
+        if(noviKorisnik==null)
+        return RedirectToPage("/Index");
+        noviKorisnik.validanNalog=true;
         noviKorisnik.mojLokal=noviLokal;
-        db.Korisnici.Add(noviKorisnik);
+       
 
         HttpContext.Session.SetString("email",noviKorisnik.eMail);
         await   db.SaveChangesAsync();
-        loginSuccessful="Business account created successfuly";
-        return Page();
+        return RedirectToPage("/Success");
         
 
 
 
         }
-        public async Task<IActionResult> OnPostBackAsync()
-        {
-                
-            return RedirectToPage("/Register");
 
-            
-        }
         public string saveBase64AsImage(string img,string folderName)
         {
             img=img.Substring(img.IndexOf(',') + 1);

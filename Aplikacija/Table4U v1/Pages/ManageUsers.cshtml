@@ -4,54 +4,74 @@
 }
 <head>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-</head>
+    <style>
 
+
+    </style>
+    <script src="https://kit.fontawesome.com/42e45ec991.js" crossorigin="anonymous"></script>
+</head>
+<div class="manageUsers-tab">
+  <button class="manageUsers-tablinks customerLink" onclick="openUser(event, 'customerDiv')">Customers</button>
+  <button class="manageUsers-tablinks managerLink" onclick="openUser(event, 'managerDiv')">Managers</button>
+</div>
 <form method="POST">
+    <div class="manageUsers-tabcontent customerDiv">
 <table id="manageCustomers" class="display customers">
     <thead>
-        <th>ID</th>
         <th>Ime</th>
         <th>Prezime</th>
         <th>Email</th>
+        <th>Password</th>
+        <th>Reports</th>
+        <th>Validated</th>
         <th></th>
     </thead>
     <tbody>
 @foreach (var klijent in Model.customers)
 {
     <tr>
-        <td>@klijent.Id</td>
         <td>@klijent.Ime</td>
         <td>@klijent.Prezime</td>
         <td>@klijent.eMail</td>
+        <td>@klijent.Sifra</td>
+        <td>@klijent.brojPrijava</td>
+        <td>@(klijent.validanNalog?"Yes":"No")</td>
         <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
     </tr>
 }
    </tbody>
-</table>
-
+</table></div>
+<div class="manageUsers-tabcontent managerDiv">
 <table id="manageManagers" class="display managers">
  <thead>
-        <th>ID</th>
         <th>Ime</th>
         <th>Prezime</th>
         <th>Email</th>
+        <th>Password</th>
+        <th>Business</th>
+        <th>Reports</th>
+        <th>Validated</th>
         <th></th>
     </thead>
     <tbody>
 @foreach (var klijent in Model.managers)
 {
     <tr>
-        <td>@klijent.Id</td>
         <td>@klijent.Ime</td>
         <td>@klijent.Prezime</td>
         <td>@klijent.eMail</td>
+        <td>@klijent.Sifra</td>
+        <td><a style="color:blue;text-decoration:underline;"href=@Model.GetObjectLink(klijent.mojLokal.Id)>@klijent.mojLokal.Naziv</a></td>
+        <td>@klijent.brojPrijava</td>
+        <td>@(klijent.validanNalog?"Yes":"No")</td>
         <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
     </tr>
 }
    </tbody>
    
-</table>
+</table></div>
 </form>
+
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready( function () {
@@ -59,4 +79,39 @@
     $('#manageManagers').DataTable();
 } );
 </script>
-<script src="https://kit.fontawesome.com/42e45ec991.js" crossorigin="anonymous"></script>
+<script>
+    function openUser(evt, userTableName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("manageUsers-tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("manageUsers-tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementsByClassName(userTableName)[0].style.display = "block";
+  evt.currentTarget.className += " active";
+
+}
+
+</script>
+@if(Model.GetHttpContextTypeShown()=="false")
+{
+<script>
+    document.querySelector(".customerLink").click();
+</script>
+}
+else 
+{
+    <script>
+    document.querySelector(".managerLink").click();
+    </script>
+}
+
