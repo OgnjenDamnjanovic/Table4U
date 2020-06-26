@@ -34,8 +34,8 @@ namespace MyApp.Namespace
             {
                 return RedirectToPage("/Login");
             }
-            customers=db.Korisnici.Where(korisnik=>korisnik.tipKorisnika=="Gost").ToList();
-            managers=db.Korisnici.Where(Korisnik => Korisnik.tipKorisnika=="Menadzer").Include(x=>x.mojLokal).ToList();
+            customers=db.Korisnici.Where(korisnik=>korisnik.tipKorisnika=="Gost"&&korisnik.validanNalog).ToList();
+            managers=db.Korisnici.Where(Korisnik => Korisnik.tipKorisnika=="Menadzer"&&Korisnik.validanNalog).Include(x=>x.mojLokal).ToList();
             return Page();
         }
         public async Task<IActionResult> OnPostAsync(int id)

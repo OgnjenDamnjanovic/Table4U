@@ -70,9 +70,9 @@ namespace MyApp.Namespace
             }
             else
             {
-            //string mejl=HttpContext.Session.GetString("email");
-            //if(mejl!=null)
-            //return RedirectToPage("/Index");
+            string mejl=HttpContext.Session.GetString("email");
+            if(mejl!=null)
+            return RedirectToPage("/Index");
             return Page();
             
             }

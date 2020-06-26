@@ -13,69 +13,60 @@
 <div class="container">
     <div class="tabelaRez-info">
         <form method="post" class="rez-tabela">
-            <h4 class="predstojece-rez">Upcoming reservations</h4>
-			<!--@if(Model.ListaRez.Count==0)
+			@if(Model.TKorisnik.tipKorisnika=="Gost")
 			{
-				<label class="nema-rez">There are no reservations!</label>
-			}
-			else
-			{
-            	<table id="example" class="display" width="100%">
-                	<thead>
-                    	<tr>
-                        	<td>Object</td>
-                        	<td>Address</td>
-                        	<td>Date</td>
-                        	<td>Start At</td>
-                        	<td>Num. of seats</td>
-							<td></td>
-                    	</tr>
-                	</thead>
-            	</table>
-			}-->
-			@if(Model.ListaRez.Count==0)
-			{
-				<label class="nema-rez">There are no reservations!</label>
-			}
-			else
-			{
-				<table id="tabelaRez" class="table" style="width:95%;">
-                	<thead>
-                    	<tr>
-                        	<th>Object</th>
-                        	<th>Address</th>
-                        	<th>Date</th>
-                        	<th>Start At</th>
-                        	<th>Num. of seats</th>
-							<th></th>
-                    	</tr>
-                	</thead>
-					<tbody>
-						@foreach(var r in @Model.ListaRez)
-						{
+				<h4 class="predstojece-rez">Upcoming reservations</h4>
+				@if(Model.ListaRez.Count==0)
+				{
+					<label class="nema-rez">There are no reservations!</label>
+				}
+				else
+				{
+					<table id="tabelaRez" class="table" style="width:95%;">
+						<thead>
 							<tr>
-								<td>@r.Lokal.Naziv</td>
-								<td>@r.Lokal.Adresa</td>
-								<td>@r.Vreme.ToString("dd.MM.yyyy.")</td>
-								@if(@r.Vreme.Minute==0)
-								{
-									<td>@r.Vreme.Hour:00</td>
-								}
-								else
-								{
-									<td>@r.Vreme.Hour:@r.Vreme.Minute</td>
-								}
-								<td>@r.Sto.brojMesta</td>
-								<td><button class="otkaziRez" asp-route-id="@r.Id" asp-page-handler="ObrisiRez">Cancel reservation</button></td>
+								<th>Object</th>
+								<th>Address</th>
+								<th>Date</th>
+								<th>Start At</th>
+								<th>Num. of seats</th>
+								<th></th>
 							</tr>
-						}
-					</tbody>
-            	</table>
+						</thead>
+						<tbody>
+							@foreach(var r in @Model.ListaRez)
+							{
+								<tr>
+									<td>@r.Lokal.Naziv</td>
+									<td>@r.Lokal.Adresa</td>
+									<td>@r.Vreme.ToString("dd.MM.yyyy.")</td>
+									@if(@r.Vreme.Minute==0)
+									{
+										<td>@r.Vreme.Hour:00</td>
+									}
+									else
+									{
+										<td>@r.Vreme.Hour:@r.Vreme.Minute</td>
+									}
+									<td>@r.Sto.brojMesta</td>
+									<td><button class="otkaziRez" asp-route-id="@r.Id" asp-page-handler="ObrisiRez">Cancel reservation</button></td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				}
 			}
         </form>
         <div>
             <button id="rez">Change profile informations</button>
+			@if(Model.TKorisnik.tipKorisnika=="Menadzer")
+			{
+				<form>
+					<button asp-page="./EditBusiness" id="rez3">Edit business</button>
+				</form>
+			}
         </div>
+	
     </div>
 	<div class="register" style="display:none;">
 	  	<form id="signupForm1" method="post" action=""> 

@@ -27,10 +27,10 @@ namespace MyApp.Namespace
         }
         public IActionResult OnGet()
         {
-          //  string mejl=HttpContext.Session.GetString("email");
-            //if(mejl!=null)
-            //return RedirectToPage("/Index");
-            //else
+            string mejl=HttpContext.Session.GetString("email");
+            if(mejl!=null)
+            return RedirectToPage("/Index");
+            else
             return Page();
         }
 

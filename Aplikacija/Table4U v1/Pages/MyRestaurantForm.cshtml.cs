@@ -49,7 +49,8 @@ namespace MyApp.Namespace
       public Korisnik TKorisnik { get; set; }
        
         public async Task<IActionResult> OnGetAsync(string mail, string hash)
-        {  if(mail==null||hash==null)
+        {  
+           if(mail==null||hash==null)
         return RedirectToPage("/Index");
         Korisnik korisnik=db.Korisnici.Where(korisnik =>korisnik.hash==hash&&korisnik.eMail==mail&&korisnik.tipKorisnika=="Menadzer").FirstOrDefault();
           if(korisnik==null)           
@@ -65,6 +66,7 @@ namespace MyApp.Namespace
             return Page();
             }
             
+         
             
 
         } 

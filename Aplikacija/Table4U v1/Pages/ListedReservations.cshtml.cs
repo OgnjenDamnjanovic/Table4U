@@ -68,9 +68,12 @@ namespace MyApp.Namespace
             }                   
 
             DateTime i = TKorisnik.mojLokal.openTime;
+            DateTime kraj = TKorisnik.mojLokal.closeTime;
             ListaVremena = new List<string>();
             ListaVremena.Add("Table/Hour");
-            while(i < TKorisnik.mojLokal.closeTime)
+            if(kraj<i)
+                kraj = kraj.AddDays(1);
+            while(i < kraj)
             {
                 ListaVremena.Add(i.ToString("HH:mm"));
                 i=i.AddHours(1);
@@ -87,7 +90,7 @@ namespace MyApp.Namespace
                 List<string> pom = new List<string>();
                 pom.Add(s.oznaka);
                 i = TKorisnik.mojLokal.openTime;
-                while(i < TKorisnik.mojLokal.closeTime)
+                while(i < kraj)
                 {
                     rez=null;
                     //postoji = false;

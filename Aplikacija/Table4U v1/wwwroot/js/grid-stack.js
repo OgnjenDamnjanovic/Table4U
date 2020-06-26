@@ -98,4 +98,28 @@ $('.newWidget').draggable({
       appendTo: '.grid-stack',
       helper: 'clone'
     });
+   function crtajSto(x,y,width,height,label,capacity )
+    {
+      grid.addWidget('<div><div class="grid-stack-item-content addedTable"><div class=\"table-label\">'+label+'</div><div class=\"table-capacity\">('+capacity+')</div></div></div>',{x:x,y:y,width:width,height:height});
+    }
+   
+
+    document.addEventListener("DOMContentLoaded",()=>{  
+      let serial=document.querySelector("#table-layout-serialized").value;
+      if(serial=="")
+      {console.log("nema podataka za generisanje stolova");
+        return;
+      }
+      
+      serial.split("~").forEach(sto=>
+      {   
+          let podaci=sto.split("`");
+          crtajSto(podaci[0],podaci[1],podaci[2],podaci[3],podaci[4],podaci[5]);
+
+      })
+
+
+
+
+  });
    

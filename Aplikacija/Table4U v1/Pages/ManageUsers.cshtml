@@ -21,9 +21,7 @@
         <th>Ime</th>
         <th>Prezime</th>
         <th>Email</th>
-        <th>Password</th>
         <th>Reports</th>
-        <th>Validated</th>
         <th></th>
     </thead>
     <tbody>
@@ -33,9 +31,7 @@
         <td>@klijent.Ime</td>
         <td>@klijent.Prezime</td>
         <td>@klijent.eMail</td>
-        <td>@klijent.Sifra</td>
         <td>@klijent.brojPrijava</td>
-        <td>@(klijent.validanNalog?"Yes":"No")</td>
         <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
     </tr>
 }
@@ -47,10 +43,8 @@
         <th>Ime</th>
         <th>Prezime</th>
         <th>Email</th>
-        <th>Password</th>
         <th>Business</th>
         <th>Reports</th>
-        <th>Validated</th>
         <th></th>
     </thead>
     <tbody>
@@ -60,10 +54,8 @@
         <td>@klijent.Ime</td>
         <td>@klijent.Prezime</td>
         <td>@klijent.eMail</td>
-        <td>@klijent.Sifra</td>
         <td><a style="color:blue;text-decoration:underline;"href=@Model.GetObjectLink(klijent.mojLokal.Id)>@klijent.mojLokal.Naziv</a></td>
         <td>@klijent.brojPrijava</td>
-        <td>@(klijent.validanNalog?"Yes":"No")</td>
         <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
     </tr>
 }

@@ -11,7 +11,7 @@ var map = new ol.Map({
   layers: [ baseMapLayer],
   view: new ol.View({
           center: ol.proj.fromLonLat([lng,lat]), 
-          zoom: 7 //Initial Zoom Level
+          zoom: 15 //Initial Zoom Level
         })
 });
 //Adding a marker on the map

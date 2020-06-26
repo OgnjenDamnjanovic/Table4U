@@ -212,8 +212,6 @@
 							<td class="redSlika"><img class="table-naj-slika" src="@o.nazivSlike" style="width:150px;height:150px;"></td>
 							<td class="redIme">@o.Naziv</td>
 							<td class="redAdresa">@o.Adresa,@o.Grad</td>
-    						<td class="redVremeP">Open: @o.openTime.ToString("h tt")</td>
-							<td class="redVremeK">Close: @o.closeTime.ToString("h tt")</td>
 							<td class="redReserve"><a class="dugme_u_tabeli" asp-page="/Object" asp-route-Id="@o.Id">Reserve</a></td>
 						</tr>
 					}

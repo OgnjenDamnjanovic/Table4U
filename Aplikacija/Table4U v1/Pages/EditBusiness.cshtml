@@ -1,0 +1,1011 @@
+﻿@page
+@model MyApp.Namespace.EditBusinessModel
+@{
+}
+
+<head>
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	  
+	<title>Table4U | Business register</title>
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="  crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="       crossorigin=""></script>
+	 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	 <script src="https://unpkg.com/esri-leaflet@2.4.0/dist/esri-leaflet.js"  integrity="sha512-kq0i5Xvdq0ii3v+eRLDpa++uaYPlTuFaOYrfQ0Zdjmms/laOwIvLMAxh7cj1eTqqGG47ssAcTY4hjkWydGt6Eg==" crossorigin=""></script>
+ 
+     <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.2/dist/esri-leaflet-geocoder.css"   integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g=="   crossorigin="">
+     <script src="https://unpkg.com/esri-leaflet-geocoder@2.3.2/dist/esri-leaflet-geocoder.js" integrity="sha512-8twnXcrOGP3WfMvjB0jS5pNigFuIWj4ALwWEgxhZ+mxvjF5/FBPVd5uAxqT8dd2kUmTVK9+yQJ4CmTmSg/sXAQ==" crossorigin=""></script>	 
+	 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+	 <script src="https://kit.fontawesome.com/42e45ec991.js" crossorigin="anonymous"></script>
+
+
+	 <link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+     <style type="text/css">
+    .grid-stack-item-removing {
+      opacity: 0.8;
+      filter: blur(5px);
+    }
+
+    #trash {
+      background: rgba(255, 0, 0, 0.4);
+    }
+  </style>
+
+
+ <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack-extra.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/grid-stack.css"/>
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+<script src="js/jquery.validate.js"></script>
+</head>
+
+<div class="content">
+	<div class="main">
+	   <div class="container">
+		  <div class="register">
+			
+		  	  <form id="signupForm" method="post" action="" enctype="multipart/form-data"> 
+			  <div style="width:100%;display: flex;flex-direction:row;justify-content:space-between;">	<h3>PROVIDE INFORMATIONS ABOUT YOUR BUSINESS</h3>
+			  	
+					</div>
+				<div class="bi-name-type h-container">
+					<span  class="bi-name v-container wow fadeInLeft">
+						<div class="form-element-label">NAME*</div>
+						<input type="text" id="name-val"  asp-for="noviLokal.Naziv">
+						<label class="error" style="visibility: hidden;">This field is required.</label>
+					</span>
+					<span class="bi-type v-container wow fadeInRight">
+						<div class="form-element-label">BUSINESS TYPE*</div>
+						<select asp-for="noviLokal.Tip" id="bi-business-type" >
+							<option value="">Choose one...</option>
+							<option value="Restaurant">Restaurant</option>
+							<option value="Cafe">Cafe</option>
+							<option value="Club">Club</option>
+							<option value="Tavern">Tavern</option>
+							<option value="Bar">Bar</option>
+							<option value="Pub">Pub</option>
+						</select>
+						<div class="error" style="visibility: hidden;">Select one option.</div>
+					</span>
+				</div>
+				<div class="bi-address-city-mapBtn">
+					<span class="bi-address wow fadeInLeft">
+						<div class="form-element-label">ADDRESS*</div>
+						<input type="text" id="address-val"  asp-for="noviLokal.Adresa">
+						<label class="error" style="visibility: hidden;">This field is required.</label>
+					</span>
+					<span class="bi-city wow fadeInRight">
+						<div class="form-element-label">City*</div>
+						<input type="text" id="city-val"  asp-for="noviLokal.Grad">
+						<label class="error" style="visibility: hidden;">This field is required.</label>
+					</span>
+					<span class="bi-mapBtn wow fadeInRight">
+						<div class="form-element-label">Mark location*</div>
+						<span style="font-size: 2em;color:rgb(255,91,54);">
+							<i id="bi-open-map"class="fas fa-map-marker-alt"></i>
+						</span>
+						<div class="error" style="visibility: hidden;">Set marker.</div>
+					</span>
+				</div>
+				<div class="bi-open-close-time">
+						<span class="bi-openTime wow fadeInLeft">
+							<div class="form-element-label">OPEN TIME*</div>
+							<input id="timepickerOpen" asp-for="noviLokal.openTime" >
+							<label class="error" style="visibility: hidden;">Enter valid time (HH:MM)</label>
+						</span>
+						<span class="bi-openTime wow fadeInRight">
+							<div class="form-element-label">CLOSE TIME*</div>
+							<input id="timepickerClose"  asp-for="noviLokal.closeTime">
+							<label class="error" style="visibility: hidden;">Enter valid time (HH:MM)</label>
+						</span>
+
+				</div>
+				<div class="bi-email-segment">
+					<span class="bi-email wow fadeInLeft">
+						<div class="form-element-label">Business email address*</div>
+						<input type="text" id="email-val"  asp-for="noviLokal.email">
+						<label class="error" style="visibility: hidden;">Enter a valid email address</label>
+					</span>
+				</div>
+				<div class="bi-description wow fadeInLeft">
+  					<div class="form-element-label">DESCRIPTION</div>
+  					<textarea class="bi-description-val" maxlength="650" id="desc-val" rows="5" asp-for="noviLokal.opis"></textarea>
+					  <label class="error" style="visibility: hidden;">This field is required.</label>
+				</div>
+				<div class="bi-image wow fadeInLeft">
+					<div class="form-element-label">ADD PICTURE*</div>
+					 <div class="bi-images-import">
+       					 <label for="files">Select multiple files: </label>
+      					 <input id="import-files" type="file" accept="image/*" multiple/>
+						   <label style="display: none;" class="image-user-info">Import 4-6 pictures</label>
+     					 <table id="import-table" class="table">
+						<thead>
+							<th>Picture</th>
+							<th>Set Main Picture</th>
+							<th>Remove</th>
+							<th>Name</th>
+						</thead>
+
+						<tbody>
+
+						</tbody>
+						  
+						</table>
+ 					   </div>
+				</div>
+				<img src=""  >
+				<script>
+					function makeMeFileApiPromise(index,output,files,event,filesInput)
+					{
+						return new Promise((resolve,reject)=>
+						{
+
+					
+						output.parentElement.style.display="table";
+
+                var file = files[index];
+				
+				if(!file.type.match('image'))
+                  {
+					  alert("Picture is not valid!")
+					  resolve(".");
+						return;
+					  
+
+				  }           
+                var picReader = new FileReader();
+				picReader.fileName=file.name;
+                
+                picReader.addEventListener("load",function(event){
+                    
+                    var picFile = event.target;
+				
+					drawImage(picFile,output);
+                   
+					    //Read the image
+						
+						resolve(".")
+				});
+
+
+				picReader.readAsDataURL(file)
+
+			
+				})
+				}
+
+				function drawImage(picFile,output)
+				{	console.log(picFile);
+					 var tr = document.createElement("tr");
+				
+					tr.className="imported-picture";
+					
+					
+				//	tr.innerHTML=`<td><img width=150 height=100 src="${picFile.result}"</td><td><input type="radio" name="mainPicture"></td><td style="font-size:30px"><i class="fas fa-trash-alt"></i></td><td>${picFile.fileName}</td`;
+						
+
+					let td=document.createElement("td");
+					let img=document.createElement("img");
+					img.width=150;
+					img.height=100;
+					img.src=picFile.result;
+					
+					td.appendChild(img);
+					tr.appendChild(td);
+
+					 td=document.createElement("td");
+					let inp=document.createElement("input");
+					inp.type="radio";
+					inp.name="mainPicture";
+					td.appendChild(inp);
+					tr.appendChild(td);	
+
+					 td=document.createElement("td");
+					td.style.fontSize="30px";
+					let icon=document.createElement("i");
+					icon.className="fas fa-trash-alt"
+					td.appendChild(icon);
+					tr.appendChild(td);
+
+					td=document.createElement("td");
+					tr.appendChild(td);
+					let div=document.createElement("div");
+					
+					div.innerHTML=(picFile.fileName.length>7)?picFile.fileName.substring(0,7)+"...":picFile.fileName;
+					
+					td.appendChild(div);
+
+					output.appendChild(tr);  
+					
+				
+					tr.querySelector("i").onclick=function removePictureAction()
+					{
+						output.removeChild(tr);
+						makeOneChecked();
+						let currImported=document.querySelectorAll(".imported-picture").length;
+						if(currImported==0)
+							{output.parentElement.style.display="none";
+								alertUser("Import 4-6 pictures");
+							
+							}
+					if(currImported<4)
+						{		
+							let pom=4-currImported;
+								if(pom==1)
+								{alertUser("Upload at least "+pom+" more picture!");}
+								else if(pom!=4)
+								{alertUser("Upload at least "+pom+" more pictures!");}
+						}
+					   else
+						{
+							alertUser("");
+						}
+						let rows=output.querySelectorAll(".imported-picture");
+						 var filesInput = document.getElementById("import-files");
+						if(rows.length==0)
+						filesInput.value=null;
+						
+					}
+				}
+
+
+
+
+					function makeOneChecked()
+					{	
+						let rows=document.querySelectorAll(".imported-picture");
+						let oneIsChecked=false;
+					rows.forEach((row)=>{
+
+					if(row.querySelector("input").checked)
+						{
+							oneIsChecked=true;
+							
+						}
+
+
+				});
+				
+						if(rows.length>0)
+						{
+							if(!oneIsChecked)
+							{
+								
+								document.querySelector(".imported-picture").querySelector("input").checked=true;
+							}
+								
+						}
+					}
+
+
+
+					function alertUser(info)
+					{
+						if(info!="")
+						{
+							document.querySelector(".image-user-info").innerHTML=info;
+							document.querySelector(".image-user-info").style.display="block";
+						}
+						else
+						{
+							document.querySelector(".image-user-info").innerHTML=info;
+							document.querySelector(".image-user-info").style.display="none";
+						}
+						
+					}
+window.onload = function(){
+        
+    //Check File API support
+    if(window.File && window.FileList && window.FileReader)
+    {	//id="img-src-1" 
+	 
+		function loadImage(ime)
+		{
+			 var output = document.querySelector("#import-table tbody");
+		let slika=document.querySelector("#img-src-"+ime).value;
+		if(slika!="")
+		drawImage({result:slika,fileName:(Math.random()*5132578).toString()},output);
+		}
+		loadImage("glavna");loadImage("1");loadImage("2");loadImage("3");loadImage("4");loadImage("5");
+		makeOneChecked();
+
+        var filesInput = document.getElementById("import-files");
+        
+        filesInput.addEventListener("change", function pictureNotificationMessage(event){
+			let currImported=document.querySelectorAll(".imported-picture").length;
+            var files = event.target.files; //FileList object
+            var output = document.querySelector("#import-table tbody");
+			var faultyImages=0;
+				for(let index=0;index<files.length;index++)
+					if(!files[index].type.match('image'))
+                  {
+					  	faultyImages++;
+
+				  }   
+
+			if(files.length-faultyImages+currImported<4)
+				{	let pom=4-(files.length-faultyImages+currImported);
+					if(pom==1)
+					{alertUser("Upload at least "+pom+" more picture!");}
+					else 
+					{alertUser("Upload at least "+pom+" more pictures!");}
+
+					
+				}
+				else if(files.length+currImported>6)
+				{let pom=6-currImported;
+					if(pom==1)
+					alertUser("Too many pictures imported. Only "+pom+" more allowed!");
+					else if(pom==0)
+					alertUser("No more pictures allowed. Remove some if you want to add more");
+					else
+					alertUser("Too many pictures imported. Only "+pom+" more allowed!");
+					return;
+				}
+				else
+				 	alertUser("");
+			
+			let niz=new Array()
+            for(var i = 0; i<files.length; i++)
+            {	
+				let rez=makeMeFileApiPromise(i,output,files,event,filesInput);
+					niz.push(rez);
+
+			}
+		
+			Promise.all(niz).then(x=>{
+				
+					makeOneChecked();
+
+			}).catch(x=>{console.log(document.querySelectorAll(".imported-picture").length);
+			makeOneChecked()});
+					  
+        
+		});      
+             
+			   
+				
+
+              
+				
+			
+
+    
+	
+	}
+    else
+    {
+        alertUser("Your browser does not support File API");
+    }
+}
+				</script>
+				
+
+				<div class="bi-table-layout wow fadeInLeft">	
+						<span class="bi-tableBtn wow fadeInRight">
+						<div class="form-element-label">Draw table layout*</div>
+						<span style="font-size: 4em;color:rgb(255,91,54);">
+							<i id="bi-open-layout-creator"class="fas fa-table""></i>
+						</span>
+						<label class="error" style="visibility: hidden;">Place at least one table.</label>
+					</span>
+				</div>
+
+
+
+
+
+
+
+
+				
+				<div id="bi-map-modal" class="modal">
+  				<div class="modal-content">
+
+   				<div class="map-title-x"><br /><h3 class="form-element-label">Set marker on your business's location</h3><span class="bi-map-modal-close">&times;</span></div>
+   				 <div id="bi-map"></div>
+					<label id="doneWithMap"class="register-but">DONE</label>
+					
+ 				</div>
+
+				</div>
+
+			
+
+
+  				 		
+					
+		
+				<script>
+					var modalmap = document.getElementById("bi-map-modal");
+				
+					var btnmap = document.getElementById("bi-open-map");
+					var spanmap = document.getElementsByClassName("bi-map-modal-close")[0];
+					var closeBtnmap=document.getElementById("doneWithMap");
+
+					
+					closeBtnmap.onclick=spanmap.onclick = function() {
+ 			 		modalmap.style.display = "none";
+					  mapError();
+					}	
+					
+					function drawMap() 
+					{
+                            let lat=document.querySelector("#mapLatitude").value;
+                            let lng=document.querySelector("#mapLongitude").value;
+						let latlng=[lat,lng];
+                        console.log("poz"+latlng);
+						
+					var mymap = L.map('bi-map').setView(latlng, 10);
+					L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+   					 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+   					 maxZoom: 18,
+   					 id: 'mapbox/streets-v11',
+   					 tileSize: 512,
+   					 zoomOffset: -1,
+   					 accessToken: 'pk.eyJ1Ijoib2duamVuZDI3OCIsImEiOiJjazlkdGVqeTQwNTliM2VraWVxZjF6aTZ6In0.C7Uz4Qzo25zjo2koKg8W_g'
+					}).addTo(mymap);
+						var marker=L.marker(new L.LatLng(lat,lng),{draggable:true}).addTo(mymap).bindPopup("<b>Your business<br /><center>location</center></b>");
+						 
+
+							
+							function onMapClick(e) {
+								marker.setLatLng(e.latlng);
+								document.querySelector("#mapLongitude").value=e.latlng.lng;
+								document.querySelector("#mapLatitude").value=e.latlng.lat;
+                            }
+								
+								
+								
+						mymap.on('click', onMapClick);
+
+						marker.on('dragend', function dragMarkerChange(e) {
+    						document.querySelector("#mapLongitude").value=marker.getLatLng().lng;
+								document.querySelector("#mapLatitude").value=marker.getLatLng().lat;
+									
+							});
+					document.querySelector("#bi-open-map").onclick=function showMap(){
+						
+						 modalmap.style.display = "block";
+						 	mymap.invalidateSize();
+
+					}	
+					var searchControl = L.esri.Geocoding.geosearch().addTo(mymap);
+
+ 					var results = L.layerGroup().addTo(mymap);
+					 
+
+  					searchControl.on('results', function (data) {
+   					 results.clearLayers();
+						
+
+					
+   					 for (var i = data.results.length - 1; i >= 0; i--) {
+    				  			marker.setLatLng(data.results[i].latlng);
+   						 }
+ 					 });
+						document.querySelector("#mapLongitude").value=marker.getLatLng().lng;
+						document.querySelector("#mapLatitude").value=marker.getLatLng().lat;
+					}
+                    
+                    document.addEventListener("DOMContentLoaded",drawMap);
+					
+					
+				</script>
+				<script>
+       			 $('#timepickerOpen').timepicker(
+						{
+          			  uiLibrary: 'bootstrap4',
+						change:function(){
+							openTimeError();
+						}
+						}
+					);
+					 $('#timepickerClose').timepicker({
+          			  uiLibrary: 'bootstrap4',
+						change:function(){
+							closeTimeError();
+						}
+      			  });
+   				 </script>
+
+
+
+				<div id="bi-table-layout-modal" class="modal">
+  				<div class="modal-content">
+
+   				<div class="table-layout-title-x"><br /><h3>Please provide your business's table layout</h3><span class="bi-table-layout-modal-close">&times;</span></div>
+							
+<div style="color: red;text-align:center;">(This feature might not work properly on mobile devices.)</div>
+							 <div class="row">
+   <div class="table-layout-controls">
+      
+      <div class="newWidget grid-stack-item" >
+        <div class="card-body grid-stack-item-content">
+          <div>
+            <ion-icon name="add-circle" style="font-size: 550%"></ion-icon>
+          </div>
+          <div>
+            <span>Drag me to add table to layout</span>
+          </div>
+        </div>
+      </div>
+	  
+	  <div id="trash"  class="text-center">
+        <div>
+          <ion-icon name="trash" style="font-size: 550%"></ion-icon>
+        </div>
+        <div>
+          <span>Drop here to remove the table</span>
+        </div>
+      </div>
+	  
+    </div>
+   
+    
+   
+    
+ 					 </div>
+						<div class="grid-stack"></div>
+					
+					
+					
+					
+					
+					
+					<label id="doneWithTableLayout"class="register-but">DONE</label>
+					
+ 				</div>
+
+				</div>
+               
+				<script>
+               
+					var modal = document.getElementById("bi-table-layout-modal");
+					var btn = document.getElementById("bi-open-layout-creator");
+					var span = document.getElementsByClassName("bi-table-layout-modal-close")[0];
+					var closeBtn=document.getElementById("doneWithTableLayout");
+
+					
+					closeBtn.onclick=span.onclick = function() {
+ 			 		modal.style.display = "none";
+					  tableError();
+					}	
+				
+					document.querySelector("#bi-open-layout-creator").onclick=function openTableLayout(){
+						
+						 modal.style.display = "block";
+						
+
+					}	
+                   
+				</script>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack.all.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/grid-stack.js"></script>
+
+				
+				<input type="hidden" id="mapLongitude"  asp-for="noviLokal.longitude">
+				<input type="hidden" id="mapLatitude"  asp-for="noviLokal.latitude">
+				<div class="bi-buttons wow fadeInLeft">
+						<button type="submit" asp-page-handler="next"class="register-but" id="bi-finish">finish</button>
+				
+				</div>
+				<script src="js/validateEmail.js"></script>
+				<script>
+				
+				function autoValidateElement(elementId,elementError)
+				{
+					let element=document.querySelector("#"+elementId);
+					element.onfocus=function()
+					{	
+						this.onblur=()=>{ elementError();}
+					}
+					element.oninput=function(e)
+					{
+						elementError();
+					}
+				}
+				autoValidateElement("name-val",nameError);
+				autoValidateElement("address-val",addressError);
+				autoValidateElement("city-val",cityError);
+				autoValidateElement("timepickerOpen",openTimeError);
+				autoValidateElement("timepickerClose",closeTimeError);
+				autoValidateElement("email-val",emailError);
+				autoValidateElement("desc-val",descError);
+
+				let element=document.querySelector("#bi-business-type");
+					element.onfocus=function()
+					{
+						this.onblur=()=>{selectError();}
+					}
+					element.onchange=()=>
+					{
+						selectError();
+					}
+			
+
+					function nameError()
+					{
+						let name=document.querySelector("#name-val");
+						if(name.value=="")
+						{
+							name.parentElement.querySelector("label").style.visibility="visible";
+							
+							return true;
+						}
+						else
+						{
+							name.parentElement.querySelector("label").style.visibility="hidden";
+							
+							return false;
+						}
+					}
+					function addressError()
+					{
+							let address=document.querySelector("#address-val");
+						if(address.value=="")
+						{
+							address.parentElement.querySelector("label").style.visibility="visible";
+							
+							return true;
+						}
+						else
+						{
+							address.parentElement.querySelector("label").style.visibility="hidden";
+							
+							return false;
+						}
+					}
+					function cityError()
+					{
+						let city=document.querySelector("#city-val");
+						if(city.value=="")
+						{
+							city.parentElement.querySelector("label").style.visibility="visible";
+								return true;
+						}
+						else
+						{
+							city.parentElement.querySelector("label").style.visibility="hidden";
+							return false;
+						}
+					}
+					function selectError()
+					{
+						let select=document.querySelector("#bi-business-type");
+						if(select.options[select.selectedIndex].value=="")
+						{
+							select.parentElement.querySelector(".error").style.visibility="visible";
+							return true;
+						}
+						else
+						{
+							select.parentElement.querySelector(".error").style.visibility="hidden";
+							return false;
+						}
+						
+					}
+					function openTimeError()
+					{
+						let timeOpen=document.querySelector("#timepickerOpen");
+						let timeOpenValid=/^([0-1][0-9]|2[0-3]):([0-5][0-9])$/.test(timeOpen.value);
+						
+						if(timeOpenValid)
+						{
+							timeOpen.parentElement.parentElement.querySelector("label").style.visibility="hidden";
+							return false;
+						}
+						else
+						{
+							timeOpen.parentElement.parentElement.querySelector("label").style.visibility="visible";
+							return true;
+						}
+					}
+					function closeTimeError()
+					{
+						let timeClose=document.querySelector("#timepickerClose");
+						let timeCloseValid=/^([0-1][0-9]|2[0-3]):([0-5][0-9])$/.test(timeClose.value);
+						
+						if(timeCloseValid)
+						{
+							timeClose.parentElement.parentElement.querySelector("label").style.visibility="hidden";
+							return false;
+						}
+						else
+						{
+							timeClose.parentElement.parentElement.querySelector("label").style.visibility="visible";
+							return true;
+						}
+					}
+					function mapError()
+					{
+						if(document.querySelector("#mapLongitude").value==""||document.querySelector("#mapLatitude").value=="")
+							{
+								document.querySelector(".bi-mapBtn .error").style.visibility="visible";
+								return true;
+							}
+							else
+							{
+								document.querySelector(".bi-mapBtn .error").style.visibility="hidden";
+								return false;
+							}
+					}
+					function emailError()
+					{
+						let email=document.querySelector("#email-val");
+						if(validateEmail(email.value))
+						{
+							email.parentElement.querySelector("label").style.visibility="hidden";
+							return false;
+						}
+						else
+						{
+							
+							email.parentElement.querySelector("label").style.visibility="visible";
+							return true;
+						}
+					}
+					function descError()
+					{
+						let desc =document.querySelector(".bi-description-val");
+					
+						if(desc.value=="")
+						{
+							desc.parentElement.querySelector("label").style.visibility="visible";
+							return true;
+						}
+						else
+						{
+								desc.parentElement.querySelector("label").style.visibility="hidden";
+								return false;
+						}
+					}
+					function tableError()
+					{
+						let brSolova=document.querySelectorAll(".addedTable").length;
+						if(brSolova>0)
+						{
+							document.querySelector(".bi-table-layout .error").style.visibility="hidden";
+							return false;
+						}
+						else
+						{
+							document.querySelector(".bi-table-layout .error").style.visibility="visible";
+							return true;
+						}
+					}
+					function imageError()
+					{
+						let pictureCount=document.querySelectorAll(".imported-picture").length;
+						if(pictureCount>3&&pictureCount<7)
+						return false;
+						else
+						return true;
+					}
+					function formError()
+					{
+						let error=false;
+						if(nameError())
+						error=true;
+						if(cityError())
+						error=true;
+						if(selectError())
+						error=true;
+						if(openTimeError())
+						error=true;
+						if(closeTimeError())
+						error=true;
+						if(mapError())
+						error=true;
+						if(emailError())
+						error=true;
+						if(descError())
+						error=true;
+						if(tableError())
+						error=true;
+						if(addressError())
+						error=true;
+						if(imageError())
+						error=true;
+						
+						return error;
+						
+						
+					}
+					document.querySelector("#signupForm").onsubmit=function submitFormAction(e)
+					{	
+						
+						if(formError())
+						return false;
+
+						let checked=false;
+						document.querySelectorAll(".imported-picture input").forEach(el=>{
+							if(el.checked)
+							checked=true;
+						
+						});
+						if(!checked)
+						{alertUser("Select main picture");
+						return false;
+						}
+						
+						let pictureIndex=1;
+						document.querySelectorAll(".imported-picture img").forEach((slika,index)=>
+						{
+							if(slika.parentElement.parentElement.querySelector("input").checked)
+							{
+								document.querySelector("#img-src-glavna").value=slika.src;
+								console.log("cekirana");
+							}
+							else
+							{
+								document.querySelector("#img-src-"+pictureIndex).value=slika.src;
+								pictureIndex++;
+								console.log("obicna");
+							}
+							
+							
+
+
+
+						});
+						let tableLayoutSerialized="";
+						
+						document.querySelectorAll(".addedTable").forEach((table,index)=>{
+						//data-gs-x;data-gs-y;data-gs-width;data-gs-height
+							
+						tableLayoutSerialized+=table.parentElement.dataset.gsX+"`";
+						tableLayoutSerialized+=table.parentElement.dataset.gsY+"`";
+						tableLayoutSerialized+=table.parentElement.dataset.gsWidth+"`";
+						tableLayoutSerialized+=table.parentElement.dataset.gsHeight+"`";
+						tableLayoutSerialized+=table.querySelector(".table-capacity").innerHTML.replace("(","").replace(")","")+"`";
+						tableLayoutSerialized+=table.querySelector(".table-label").innerHTML;
+						
+						if(index<document.querySelectorAll(".addedTable").length-1)
+						tableLayoutSerialized+="~";
+});
+					document.querySelector("#table-layout-serialized").value=tableLayoutSerialized;
+					
+					return true;						
+					}
+		
+					
+				</script>
+				 
+
+
+		 
+
+<input asp-for="tableLayout" style="display: none;" id="table-layout-serialized">
+ <input asp-for="slika1" style="display: none;" id="img-src-1" >
+ <input asp-for="slika2" style="display: none;" id="img-src-2" >
+ <input asp-for="slika3" style="display: none;" id="img-src-3" >
+ <input asp-for="slika4" style="display: none;" id="img-src-4" >
+ <input asp-for="slika5" style="display: none;" id="img-src-5" >
+ <input asp-for="glavnaSlika" style="display: none;" id="img-src-glavna">
+<input asp-for="folder" type="hidden" />
+<input asp-for="noviLokal.Ocena" type="hidden" />
+<input asp-for="noviLokal.brOcena" type="hidden" />
+<input asp-for="noviLokal.trenutniKapacitet" type="hidden" />
+<input type="hidden" asp-for="noviLokal.Id" id="">
+
+
+
+    			
+
+			  </form>
+			
+				<!--<div class="clearfix"> </div>
+				<div class="register-but">
+				   <form>
+					   <input type="submit" value="submit">
+					   <div class="clearfix"> </div>
+				   </form>
+				</div>-->
+				
+			
+			
+		   </div>
+	     </div>
+	    </div>
+
+<div class="clearfix"></div>
+		<div class="contact-section" id="contact">
+			<div class="container">
+				<div class="contact-section-grids">
+					<div class="col-md-3 contact-section-grid">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 contact-section-grid">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 contact-section-grid">
+						<h4>Follow Us On...</h4>
+						<ul>
+							<li><i class="fb"></i></li>
+							<li class="data"> <a href="#">  Facebook</a></li>
+						</ul>
+						<ul>
+							<li><i class="tw"></i></li>
+							<li class="data"> <a href="#">Twitter</a></li>
+						</ul>
+						<ul>
+							<li><i class="in"></i></li>
+							<li class="data"><a href="#"> Linkedin</a></li>
+						</ul>
+						<ul>
+							<li><i class="gp"></i></li>
+							<li class="data"><a href="#">Google Plus</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3 contact-section-grid nth-grid">
+						<h4>Subscribe Newsletter</h4>
+						<p>To get latest updates and food deals every week</p>
+						<input type="text" class="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+						<input type="submit" value="submit">
+						</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- content-section-ends -->
+    <!--<script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear' 
+					 		};
+							*/
+							
+							$().UItoTop({ easingType: 'easeOutQuart' });
+							
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>-->

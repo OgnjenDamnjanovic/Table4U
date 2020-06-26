@@ -139,7 +139,7 @@
                     @if(Model.TKorisnik.tipKorisnika.Equals("Menadzer"))
                     {
                         <button type="submit" class="btnRez" disabled="true">Reserve</button>
-                        <label class="error2">Admin does not have permissions for this action!</label>
+                        <label class="error2">Manager does not have permissions for this action!</label>
                     }
                     else if(Model.TKorisnik.tipKorisnika.Equals("Admin"))
                     {
@@ -153,7 +153,7 @@
                 }
                 else
                 {
-                    <button type="submit" class="btnRez">Reserve</button>
+                    <button type="submit" disabled="true" class="btnRez">Reserve</button>
                 }
             </div>
         </form>
@@ -227,7 +227,7 @@
                 }
                 else
                 {
-                    <button id="dodajRec">Add comment</button>
+                    <button id="dodajRec" disabled="true">Add comment</button>
                 }
                 <label id="dodajRecInfo" style="display:none;">The form for adding a review is under Location.</label>
             </div>

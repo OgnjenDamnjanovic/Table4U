@@ -44,17 +44,25 @@
     </div>
     </div>
     <div>
-      <h4>Latest Reservations</h4>
-      @foreach (var rez in Model.NajnovijeRez)
+      <h4 class="predstojece-rez">Latest Reservations</h4>
+      @if(Model.NajnovijeRez.Count==0)
       {
-        <div class="col-content">
-          <label>@rez.Korisnik.Ime @rez.Korisnik.Prezime</label>
-          <div><span>From date/time: </span><label>@rez.VremeKreiranja.ToString("dd.MM.yyyy, HH:mm")</label></div>
-          <div><span>To date/time: </span><label>@rez.Vreme.ToString("dd.MM.yyyy, HH:mm")</label></div>
-          <div><span>Table name: </span><label>@rez.Sto.Id</label></div>
-          <div><span>People: </span><label>@rez.Sto.brojMesta</label></div>
-        </div>
+        <label class="nema-rez">There are no reservations!</label>
       }
+      else
+      {
+        @foreach (var rez in Model.NajnovijeRez)
+        {
+          <div class="col-content">
+            <label>@rez.Korisnik.Ime @rez.Korisnik.Prezime</label>
+            <div><span>From date/time: </span><label>@rez.VremeKreiranja.ToString("dd.MM.yyyy, HH:mm")</label></div>
+            <div><span>To date/time: </span><label>@rez.Vreme.ToString("dd.MM.yyyy, HH:mm")</label></div>
+            <div><span>Table name: </span><label>@rez.Sto.oznaka</label></div>
+            <div><span>People: </span><label>@rez.Sto.brojMesta</label></div>
+          </div>
+        }
+      }
+      
     </div>
   
 
