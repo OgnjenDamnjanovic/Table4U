@@ -54,7 +54,7 @@ namespace MyApp.Namespace
             string email=HttpContext.Session.GetString("email");
             if(email==null)
             return RedirectToPage("/Index");
-            Korisnik menadzer=db.Korisnici.Where(k =>k.eMail==email&&k.tipKorisnika=="Menadzer"&&k.validanNalog).Include(x=>x.mojLokal).ThenInclude(x=>x.listaStolova).FirstOrDefault();
+            Korisnik menadzer=await db.Korisnici.Where(k =>k.eMail==email&&k.tipKorisnika=="Menadzer"&&k.validanNalog).Include(x=>x.mojLokal).ThenInclude(x=>x.listaStolova).FirstOrDefaultAsync();
            
             if(menadzer==null)
             return RedirectToPage("/Index");
@@ -105,9 +105,18 @@ namespace MyApp.Namespace
             
 
         } 
-     
+     public IActionResult OnPostCancel()
+     {
+       return RedirectToPage("/User");
+     }
         public async Task<IActionResult> OnPostNextAsync()
         { 
+          string email=HttpContext.Session.GetString("email");
+            if(email==null)
+            return RedirectToPage("/Index");
+            Korisnik korisnik=db.Korisnici.Where(kor=>kor.eMail==email&&kor.tipKorisnika=="Menadzer"&&kor.validanNalog==true).FirstOrDefault();
+            if(korisnik==null)
+            return RedirectToPage("/Index");
             int validImageCount=0;
             if(!string.IsNullOrEmpty(slika1))
             validImageCount++;
@@ -165,51 +174,68 @@ namespace MyApp.Namespace
          }
          catch(FormatException fe)
          {
-             RedirectToPage();
+             RedirectToPage("/Error?errorCode="+fe);
          }
-         
-         int counter=1;
-         List<Sto> noviStolovi=new List<Sto>(tableLayout.Split('~').Length);
-         int objectSeatsCount=0;
-         Sto noviSto=new Sto();
-        foreach(string num in tableLayout.Split(new char[]{'`','~'}))
-        {
-          if(counter==1)
-          noviSto.gsX=int.Parse(num);
-          else if(counter==2)
-          noviSto.gsY=int.Parse(num);
-          else if(counter==3)
-          noviSto.gsWidth=int.Parse(num);
-          else if(counter==4)
-          noviSto.gsHeight=int.Parse(num);
-          else if(counter==5)
-         { noviSto.brojMesta=int.Parse(num);
-          objectSeatsCount+=int.Parse(num);
-         }
-         else
-         {
-         noviSto.oznaka=num;
-         noviStolovi.Add(noviSto);
-         noviSto=new Sto();
-         
-         }
-         counter=counter%6+1;
-         
+         string stariLayout="";
+          List<Sto> stariStolovi=db.Stolovi.Where(sto => sto.Lokal.Id==korisnik.mojLokal.Id).ToList();
+            for (int i=0;i<stariStolovi.Count;i++)
+            {
+                stariLayout=tableLayout+stariStolovi[i].gsX+"`"+stariStolovi[i].gsY+"`"+stariStolovi[i].gsWidth+"`"+stariStolovi[i].gsHeight+"`"+stariStolovi[i].oznaka+"`"+stariStolovi[i].brojMesta;
 
-        
+                if(i!=stariStolovi.Count-1)
+                stariLayout=stariLayout+"~";
+            }
+            if(stariLayout!=tableLayout)
+            {
+                  int counter=1;
+                  List<Sto> noviStolovi=new List<Sto>(tableLayout.Split('~').Length);
+                  int objectSeatsCount=0;
+                  Sto noviSto=new Sto();
+                  foreach(string num in tableLayout.Split(new char[]{'`','~'}))
+                  {
+                    if(counter==1)
+                    noviSto.gsX=int.Parse(num);
+                    else if(counter==2)
+                    noviSto.gsY=int.Parse(num);
+                    else if(counter==3)
+                    noviSto.gsWidth=int.Parse(num);
+                    else if(counter==4)
+                    noviSto.gsHeight=int.Parse(num);
+                    else if(counter==5)
+                  { noviSto.brojMesta=int.Parse(num);
+                    objectSeatsCount+=int.Parse(num);
+                  }
+                  else
+                  {
+                  noviSto.oznaka=num;
+                  noviStolovi.Add(noviSto);
+                  noviSto=new Sto();
+                  
+                  }
+                  counter=counter%6+1;
+                  
+                  }
+                  await   db.SaveChangesAsync();
+                  
+                  noviLokal.maxKapacitet=objectSeatsCount;
+                  
+                  
+                  foreach(Sto sto in stariStolovi)
+                  { 
+                      foreach(Rezervacija rez in db.Rezervacije.Where(rezer => rezer.Sto.Id==sto.Id).ToList())
+                     {
+                        string sadrzajMejla=$"Dear {rez.Korisnik.Ime}, \n\n Your reservation at {rez.Lokal.Naziv} for {rez.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
+                        RegisterModel.SendEmail("Table4U",rez.Korisnik.eMail,"Your reservation has been canceled",sadrzajMejla);
+                        db.Remove(rez);
+                     }
 
-        }
-        //salji mejlove
-        noviLokal.maxKapacitet=objectSeatsCount;
-        noviLokal.listaStolova=noviStolovi;
+                      
+                    db.Stolovi.Remove(sto);
+                  }
+                  noviLokal.listaStolova=noviStolovi;
+            }
         
-        Korisnik noviKorisnik=db.Korisnici.Where(korisnik =>korisnik.tipKorisnika=="Menadzer"&&korisnik.validanNalog&&korisnik.mojLokal.Id==noviLokal.Id).FirstOrDefault();
-        if(noviKorisnik==null)
-        return RedirectToPage("/Index");
       
-       
-
-        HttpContext.Session.SetString("email",noviKorisnik.eMail);
         db.Lokali.Update(noviLokal);
         await   db.SaveChangesAsync();
         return RedirectToPage("/Index");

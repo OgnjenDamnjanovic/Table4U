@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SWEProject.Models;
 
 namespace MyApp.Namespace
@@ -52,7 +53,7 @@ namespace MyApp.Namespace
         {  
            if(mail==null||hash==null)
         return RedirectToPage("/Index");
-        Korisnik korisnik=db.Korisnici.Where(korisnik =>korisnik.hash==hash&&korisnik.eMail==mail&&korisnik.tipKorisnika=="Menadzer").FirstOrDefault();
+        Korisnik korisnik= await db.Korisnici.Where(korisnik =>korisnik.hash==hash&&korisnik.eMail==mail&&korisnik.tipKorisnika=="Menadzer").FirstOrDefaultAsync();
           if(korisnik==null)           
             return RedirectToPage("/Index");
             else if(korisnik.validanNalog)
@@ -134,7 +135,7 @@ namespace MyApp.Namespace
          }
          catch(FormatException fe)
          {
-             RedirectToPage();
+             RedirectToPage("/Error?errorCode="+fe);
          }
          
          int counter=1;

@@ -30,7 +30,7 @@
     <tr>
         <td>@klijent.Ime</td>
         <td>@klijent.Prezime</td>
-        <td>@klijent.eMail</td>
+        <td class="email">@klijent.eMail</td>
         <td>@klijent.brojPrijava</td>
         <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
     </tr>
@@ -53,7 +53,7 @@
     <tr>
         <td>@klijent.Ime</td>
         <td>@klijent.Prezime</td>
-        <td>@klijent.eMail</td>
+        <td class="email">@klijent.eMail</td>
         <td><a style="color:blue;text-decoration:underline;"href=@Model.GetObjectLink(klijent.mojLokal.Id)>@klijent.mojLokal.Naziv</a></td>
         <td>@klijent.brojPrijava</td>
         <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
@@ -72,6 +72,15 @@
 } );
 </script>
 <script>
+    document.querySelector("form").onsubmit=(e)=>
+    {
+        let email=e.submitter.parentElement.parentElement.querySelector(".email").innerHTML;
+        if(confirm("You are about to delete user with email:\n"+email+"\n Proceed?"))
+        return true;
+        else
+        return false;
+
+    }
     function openUser(evt, userTableName) {
   // Declare all variables
   var i, tabcontent, tablinks;

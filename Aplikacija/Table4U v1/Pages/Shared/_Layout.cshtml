@@ -102,7 +102,10 @@
 						<ul>
 							<li class="active"><a asp-page="./Index">Home</a></li>|
 							<li><a asp-page="./ListedObjects">Places</a></li>|
-							<li><a asp-page="./Contact">Contact</a></li> 
+							@if(Model.TKorisnik!=null &&Model.TKorisnik.tipKorisnika=="Admin")
+							{<li><a asp-page="./ManageUsers">Manage Users</a></li> }
+							else
+							{<li><a asp-page="./Contact">Contact</a></li> }
 						<div class="clearfix"></div>
 					</ul>
 					}

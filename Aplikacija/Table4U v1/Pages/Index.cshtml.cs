@@ -37,7 +37,8 @@ namespace Table4U.Pages
             ListaDog = new List<Dogadjaj>();
             ListaLok = new List<Lokal>();
             ListaLokala = db.Lokali.ToList();
-            ListaDogadjaja=db.Dogadjaji.ToList();
+            DateTime sad = DateTime.Now;
+            ListaDogadjaja=db.Dogadjaji.Where(x=>x.Datum>sad).ToList();
             var Lista = ListaDogadjaja.OrderBy(x=>x.Datum);
             var Lista2 = ListaLokala.OrderByDescending(x=>x.Ocena);
             ListaDogadjaja=Lista.ToList();
