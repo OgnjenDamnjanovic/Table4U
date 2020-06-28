@@ -5,12 +5,13 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-  
+    <script src="js/validateEmail.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
 </head>
 
 <h4 class="predstojece-rez">Todays reservations</h4>
+<div class="div-tabela">
 <table class="res-table">
     <thead>
         
@@ -43,6 +44,7 @@
         }
     </tbody>
 </table>
+</div>
 
 <h4 class="predstojece-rez">Upcoming reservations</h4>
 
@@ -57,6 +59,64 @@
         </tr>
     </thead>
 </table>
+
+<!--<h4 class="predstojece-rez">Report users</h4>
+<form id="signupForm">
+    <div class="bi-name-type h-container">
+        <span  class="bi-name v-container wow fadeInLeft">
+            <input id="email" oninput="emailError()"> 
+            <label class="error error-hidden" style="visibility: hidden;">Please enter a valid email address</label>
+            <label>@Model.ErrorMessage</label>
+            <label id="adressTaken"></label>
+    </div>
+    <div class="bi-buttons wow fadeInLeft">
+        <button type="submit" class="finish-but" id="bi-finish">Report</button>
+    </div>
+</form>-->
+
+<h4 class="predstojece-rez">Report users</h4>
+<form id="signupForm" method="post">
+    <div class="bi-name-type h-container">
+        <span  class="bi-name v-container wow fadeInLeft">
+            <input id="email" oninput="emailError()" asp-for="eMailAddress"> 
+            <label class="error error-hidden" style="visibility: hidden;">Please enter a valid email address</label>
+            <label>@Model.ErrorMessage</label>
+            <label id="adressTaken"></label>
+    </div>
+    <div class="bi-buttons wow fadeInLeft">
+        <button type="submit" class="finish-but" id="bi-finish" asp-page-handler="Prijavi" style="margin-bottom: 30px">Report</button>
+    </div>
+</form>
+
+<script>
+    function emailError()
+	{
+		let email=document.querySelector("#email");
+		if(validateEmail(email.value))
+		{
+			email.parentElement.querySelector(".error").style.visibility="hidden";
+			return false;
+		}
+		else
+		{
+							
+			email.parentElement.querySelector(".error").style.visibility="visible";
+			return true;
+		}
+	}
+
+    document.querySelector("#signupForm").onsubmit=function submitFormAction(e)
+	{	
+		if(emailError())
+		    return false;
+        /*else
+        {
+            let email=document.querySelector("#email").value; 
+            let str=`https://localhost:5001/ListedReservations?handler=Prijavi&email=${email}`
+            window.location.href=str;   
+        }*/
+    }
+</script>
 
 
 

@@ -62,7 +62,7 @@ namespace MyApp.Namespace
                 MatricaLokala = new List<List<Lokal>>(VrsteObjekata.Count());
                 for(int i=0; i<VrsteObjekata.Count(); i++)
                 {
-                    MatricaLokala.Add(db.Lokali.Where(x=>x.Tip == VrsteObjekata[i]).ToList());                
+                    MatricaLokala.Add(db.Lokali.Where(x=>x.Tip == VrsteObjekata[i]).OrderBy(x=>x.Naziv).ToList());                
                 }
             }
             else if(string.IsNullOrEmpty(Name))
@@ -77,7 +77,7 @@ namespace MyApp.Namespace
                 for(int i=0; i<VrsteObjekata.Count(); i++)
                 {
                     //var lokali = db.Lokali.Where(x=>x.Grad == City && x.T)
-                    MatricaLokala.Add(db.Lokali.Where(x=>x.Grad == City && x.Tip == VrsteObjekata[i]).ToList());                
+                    MatricaLokala.Add(db.Lokali.Where(x=>x.Grad == City && x.Tip == VrsteObjekata[i]).OrderBy(x=>x.Naziv).ToList());                
                 }
             }
             else if(string.IsNullOrEmpty(City))
@@ -90,7 +90,7 @@ namespace MyApp.Namespace
                     {
                         VrsteObjekata.Clear();
                         VrsteObjekata.Add(IzabranaVrsta);
-                        lokali = lokali.Where(x=>x.Tip == IzabranaVrsta).ToList();
+                        lokali = lokali.Where(x=>x.Tip == IzabranaVrsta).OrderBy(x=>x.Naziv).ToList();
                     }
                     MatricaLokala = new List<List<Lokal>>(VrsteObjekata.Count());
                     MatricaLokala.Add(lokali);
@@ -99,7 +99,7 @@ namespace MyApp.Namespace
             }
             else
             {
-                Lokal lokal = db.Lokali.Where(x=>x.Naziv==Name && x.Grad==City).FirstOrDefault();
+                /*Lokal lokal = db.Lokali.Where(x=>x.Naziv==Name && x.Grad==City).FirstOrDefault();
                 if(lokal!=null)
                 {
                     VrsteObjekata = new List<String>();
@@ -108,7 +108,20 @@ namespace MyApp.Namespace
                     MatricaLokala.Add(new List<Lokal>());
                     MatricaLokala[0].Add(lokal);
                 }
-                return;
+                return;*/
+
+                VrsteObjekata = db.Lokali.Where(x=>x.Naziv==Name && x.Grad==City).Select(x=>x.Tip).Distinct().ToList();
+                if(!string.IsNullOrEmpty(IzabranaVrsta) && IzabranaVrsta!="0")
+                {
+                    VrsteObjekata.Clear();
+                    VrsteObjekata.Add(IzabranaVrsta);
+                }
+                MatricaLokala = new List<List<Lokal>>(VrsteObjekata.Count());
+                for(int i=0; i<VrsteObjekata.Count(); i++)
+                {
+                    //var lokali = db.Lokali.Where(x=>x.Grad == City && x.T)
+                    MatricaLokala.Add(db.Lokali.Where(x=>x.Naziv==Name && x.Grad == City && x.Tip == VrsteObjekata[i]).OrderBy(x=>x.Naziv).ToList());                
+                }
             }
             
         }

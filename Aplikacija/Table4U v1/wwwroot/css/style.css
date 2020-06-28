@@ -1,3 +1,26 @@
+@media screen and (max-width:1000px)
+{
+	.res-table{
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width:700px)
+{
+	.res-table{
+		font-size: 8px;
+	}
+}
+
+@media screen and (max-width:400px)
+{
+	.res-table{
+		font-size: 6px;
+	}
+}
+
+
+
 .bi-description.wow.fadeInLeft.animated {
     width: 85%;
 }

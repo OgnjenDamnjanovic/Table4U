@@ -25,6 +25,10 @@ namespace MyApp.Namespace
         public List<String> ListaVremena {get; set;}
         public List<Sto> ListaStolova2 {get; set;}
 
+        public string ErrorMessage {get; set;}
+        [BindProperty]
+        public string eMailAddress {get; set;}
+
         public List<List<String>> matOznaka {get; set;}
         
         private readonly Table4UContext db;
@@ -36,6 +40,7 @@ namespace MyApp.Namespace
         public IActionResult OnGet()
         {
             String eMail = HttpContext.Session.GetString("email");
+            //String eMail = "nikola.vidanovic@elfak.rs";
             if(eMail==null)
                 return RedirectToPage("/Login");
             Message = "Manager";
@@ -124,6 +129,40 @@ namespace MyApp.Namespace
         {
             HttpContext.Session.Remove("email");
             Message = null;
+        }
+
+        /*public IActionResult OnGetPrijavi(string email)
+        {
+            Korisnik k = db.Korisnici.Where(x=>x.eMail == email).FirstOrDefault();
+            if(k!=null && k.tipKorisnika=="Gost")
+            {
+                k.brojPrijava++;
+                db.Attach(k).State=EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToPage();
+            }
+            else
+            {
+                ErrorMessage = "The entered email address is invalid!";
+                return RedirectToPage();
+            }
+        }*/
+
+        public IActionResult OnPostPrijavi()
+        {
+            Korisnik k = db.Korisnici.Where(x=>x.eMail == eMailAddress).FirstOrDefault();
+            if(k!=null && k.tipKorisnika=="Gost")
+            {
+                k.brojPrijava++;
+                db.Attach(k).State=EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToPage();
+            }
+            else
+            {
+                ErrorMessage = "The entered email address is invalid!";
+                return RedirectToPage();
+            }
         }
 
 
