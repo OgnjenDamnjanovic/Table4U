@@ -1915,6 +1915,45 @@ border-width: 2px;
 		color: #FFF;
 		border:none;
 	}
+	
+	@media screen and (max-width:960px)
+	{
+		.predstojece-rez{
+			font-size: 18px;
+		}
+		.rez{
+			font-size: 18px;
+		}
+		.top-message{
+			font-size: 18px;
+		}
+	}
+
+	@media screen and (max-width:640px)
+	{
+		.predstojece-rez{
+			font-size: 16px;
+		}
+		.rez{
+			font-size: 16px;
+		}
+		.top-message{
+			font-size: 16px;
+		}
+	}
+
+	@media screen and (max-width:240px)
+	{
+		.predstojece-rez{
+			font-size: 13px;
+		}
+		.rez{
+			font-size: 13px;
+		}
+		.top-message{
+			font-size: 13px;
+		}
+	}
 
 	/*--USER STRANA--*/
 

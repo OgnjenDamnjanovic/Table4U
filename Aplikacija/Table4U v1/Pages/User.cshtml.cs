@@ -38,9 +38,11 @@ namespace MyApp.Namespace
             db = dataBase;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
             String eMail = HttpContext.Session.GetString("email");
+            if(eMail==null)
+                return RedirectToPage("/Login");
             TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             if (!string.IsNullOrEmpty(eMail))
             {
@@ -75,7 +77,7 @@ namespace MyApp.Namespace
                     ListaPocetak.Add((r.Vreme.Hour+":"+r.Vreme.Minute).ToString());
                 }
             }*/
-
+            return Page();
         }
 
         public async Task<IActionResult> OnPostSacuvajAsync()

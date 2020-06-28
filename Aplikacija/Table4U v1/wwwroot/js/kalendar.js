@@ -36,7 +36,7 @@ $(".dugme-u-kalendaru").click(function obojiKlik(evt){
   {
     var d = new Date();
     var selekt3 = document.getElementById('godina');
-    if(parseInt(godina) < d.getFullYear() || parseInt(godina) > d.getFullYear())
+    if(parseInt(godina) < d.getFullYear() || parseInt(godina) > d.getFullYear()+1)
     {
       selekt3.parentElement.querySelector(".error2").style.visibility="visible";
       selekt3.parentElement.querySelector(".error2").style.display="block";

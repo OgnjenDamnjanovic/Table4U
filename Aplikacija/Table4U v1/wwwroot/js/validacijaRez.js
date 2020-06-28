@@ -1,5 +1,5 @@
 function ValidacijaRez(){
-    if(selektError4('godina') || selektError1('mesec') || selektError2('dan') || selektError('brMesta') || selektError3('slobodniTermini'))
+    if(selektGodina('godina') || selektError1('mesec') || selektError2('dan') || selektError('brMesta') || selektError3('slobodniTermini'))
         return false;
 }
 
@@ -25,10 +25,10 @@ el1.onchange=function(){
 
 var el2 = document.getElementById('godina');
 el2.onfocus=function(){
-    this.onblur=()=>{selektError4('godina');}
+    this.onblur=()=>{selektGodina('godina');}
 }
 el2.onchange=function(){
-    selektError4('godina');
+    selektGodina('godina');
     $('#brMesta').prop('selectedIndex',0);
     $('#slobodniTermini').prop('selectedIndex',0);
 }
@@ -66,11 +66,18 @@ function selektError1(selektId)
 {
     var d = new Date();
     var el = document.getElementById(selektId);
-    if(el.selectedIndex == 0 || (el.selectedIndex)-1 < d.getMonth())
+    console.log(el);
+    var el1 = document.getElementById('godina');
+    if(el.selectedIndex == 0 || ((el.selectedIndex)-1 < d.getMonth() && parseInt(el1.value)==d.getFullYear()))
     {
         el.parentElement.querySelector(".error2").style.visibility="visible";
         el.parentElement.querySelector(".error2").style.display="block";
         return true;
+    }
+    else if(parseInt(el1.value)>d.getFullYear())
+    {
+        el.parentElement.querySelector(".error2").style.visibility="hidden";
+        return false;
     }
     else
     {
@@ -152,11 +159,12 @@ function selektError3(selektId)
     }
 }
 
-function selektError4(selektId)
+function selektGodina(selektId)
 {   
     var d = new Date();
     var el = document.getElementById(selektId);
-    if(el.selectedIndex == 0 || parseInt(el.value)>d.getFullYear())
+    console.log(el);
+    if(el.selectedIndex == 0)
     {
         el.parentElement.querySelector(".error2").style.visibility="visible";
         el.parentElement.querySelector(".error2").style.display="block";

@@ -134,6 +134,7 @@ namespace MyApp.Namespace
             var lokal1 = db.Lokali.Include(x=>x.listaStolova).Include(x=>x.listaRezervacija).Where(x=>x.Id==id).FirstOrDefault();
             var brstolova = lokal1.listaStolova.Where(x=>x.brojMesta==sto).ToList().Count();
             List<string> listakon = new List<string>();
+            List<string> konacno = new List<string>();
 
             if(!date.Equals("Year-0-Day"))
             {
@@ -207,9 +208,55 @@ namespace MyApp.Namespace
                     if(broj>=brstolova && lista5.Count()==brstolova)
                         listakon.Add(vremena.ElementAt(k));
                 }
-                
+                List<string> listaZaRV = new List<string>();
+                listaZaRV=napuniListu();
+
+                var start="";
+                if(lokal1.openTime.Minute==0)
+                {
+                    start = (lokal1.openTime.Hour + ":00").ToString();
+                }
+                else
+                {
+                    start = (lokal1.openTime.Hour +":"+ lokal1.openTime.Minute).ToString();
+                }
+
+                var index1 = listaZaRV.IndexOf(start);
+                if(index1!=-1)
+                {
+                    for(var i=index1;i>7;i--)
+                    {
+                        listakon.Add(listaZaRV[i]);
+                    }
+                }
+
+                var end="";
+                if(lokal1.closeTime.Minute==0)
+                {
+                    end = (lokal1.closeTime.Hour + ":00").ToString();
+                }
+                else
+                {
+                    end = (lokal1.closeTime.Hour +":"+ lokal1.closeTime.Minute).ToString();
+                }
+
+                var index2 = listaZaRV.IndexOf(end);
+                if(index2!=-1)
+                {
+                    for(var i=index2;i>index2-8;i--)
+                    {
+                        listakon.Add(listaZaRV.ElementAt(i));
+                    }
+                    for(var i=index2;i<(listaZaRV.Count)-9;i++)
+                    {
+                        listakon.Add(listaZaRV.ElementAt(i));
+                    }
+                }
+                var konacnaLista=listakon.Distinct().OrderBy(x=>x);
+                for(var i =0;i<konacnaLista.Count();i++)
+                    konacno.Add(konacnaLista.ElementAt(i));
             }
-            return new JsonResult(listakon);
+            return new JsonResult(konacno);
         }
 
         public async Task<IActionResult> OnPostObrisiAsync(int id)
@@ -420,11 +467,12 @@ namespace MyApp.Namespace
                 await db.SaveChangesAsync();
 
                 var ocene = db.Recenzije.Where(x=>x.LokalId==idObj).ToList();
-                var ukupno = 0;
+                float ukupno = 0;
                 for(var i =0;i<ocene.Count;i++)
                     ukupno = ukupno+ocene[i].Ocena;
                 float ocena = ukupno/(Lokal.brOcena+1);
-                Lokal.Ocena=ocena;
+                float ocena1 = (float)Math.Round(ocena,2);
+                Lokal.Ocena=ocena1;
                 Lokal.brOcena=(Lokal.brOcena)+1;
                 db.Lokali.Update(Lokal);
                 await db.SaveChangesAsync();

@@ -49,7 +49,7 @@
 										<td>@r.Vreme.Hour:@r.Vreme.Minute</td>
 									}
 									<td>@r.Sto.brojMesta</td>
-									<td><button class="otkaziRez" asp-route-id="@r.Id" asp-page-handler="ObrisiRez">Cancel reservation</button></td>
+									<td><button class="otkaziRez" asp-route-id="@r.Id" asp-page-handler="ObrisiRez" onclick="return confirm('Are you sure you want to cancel this reservation?');">Cancel reservation</button></td>
 								</tr>
 							}
 						</tbody>

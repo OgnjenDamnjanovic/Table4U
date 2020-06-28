@@ -80,7 +80,7 @@ function countMonth(){
 }
 
 function showTitleMonth(){
-    //da bi se vratio na Month u listi meseca prilikom klikne na sledeci mesec, da ne bi ostao prethodno stisnuti
+    //da bi se vratio na Month u listi meseca kad klikne na sledeci mesec, da ne bi ostao prethodno stisnuti
     var selekt1 = document.getElementById('mesec');
     selekt1.value="Month";
 }
@@ -96,7 +96,7 @@ function countYear(){
     opcija1.appendChild( document.createTextNode("Year") );
     opcija1.value="Year";
     selekt.appendChild(opcija1);
-    for(i=0;i<3;i++)
+    for(i=0;i<2;i++)
     {
         var opcija = document.createElement("option");
         opcija.appendChild( document.createTextNode(currentYear+i));
@@ -106,6 +106,7 @@ function countYear(){
 }
 
 function nabavi(){
+    //izvuce mesec sa prikaza, nadje index meseca u nizui onda ako je taj mesec trenutni ili neki od sledecih salje zahtev da se vrate dogadjaji
     document.getElementById('proba').value="";
     var mesecText = document.getElementById('monthAndYear');
     var niz = mesecText.innerHTML.split(" ");
@@ -203,6 +204,31 @@ function hideCal(){
     ocisti();
 }
 
+function proveriDugme()
+{
+    var dugmePrethodni = document.getElementById('previous');
+    var dugmeSledeci = document.getElementById('next');
+    var mesecText = document.getElementById('monthAndYear');
+    var niz = mesecText.innerHTML.split(" ");
+    var d = new Date();
+    if(niz[0]=="January" && parseInt(niz[1])==d.getFullYear())
+    {
+        dugmePrethodni.disabled=true;
+    }
+    else
+    {
+        dugmePrethodni.disabled=false;
+    }
+    if(niz[0]=="December" && parseInt(niz[1])==d.getFullYear()+1)
+    {
+        dugmeSledeci.disabled=true;
+    }
+    else
+    {
+        dugmeSledeci.disabled=false;
+    }
+}
+
 function next() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
@@ -213,6 +239,7 @@ function next() {
     showTitleMonth();
     showTitleYear();
     nabavi();
+    proveriDugme();
     $('#brMesta').prop('selectedIndex',0);
     $('#slobodniTermini').prop('selectedIndex',0);
 }
@@ -227,12 +254,12 @@ function previous() {
     showTitleMonth();
     showTitleYear();
     nabavi();
+    proveriDugme();
     $('#brMesta').prop('selectedIndex',0);
     $('#slobodniTermini').prop('selectedIndex',0);
 }
 
 function showCalendar(month, year) {
-    //Pre svega se pribave svi dogadjaji iz baze, ako je dogadjaj.month==month smesta se u novi niz DogadjajiMeseca, zatim se dogadjaji iz tog niza prikazuju u kalendar
     
 
     let firstDay = (new Date(year, month)).getDay();

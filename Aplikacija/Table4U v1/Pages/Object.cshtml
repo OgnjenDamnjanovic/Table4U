@@ -14,7 +14,7 @@
         <div class="naziv-objekta">@Model.lokal.Naziv</div>
         @if(Model.TKorisnik!=null && Model.TKorisnik.tipKorisnika.Equals("Admin"))
         {
-            <button class="obrisi" type="submit" asp-route-id="@Model.lokal.Id" asp-page-handler="ObrisiLokal">Delete</button>
+            <button class="obrisi" type="submit" asp-route-id="@Model.lokal.Id" asp-page-handler="ObrisiLokal" onclick="return confirm('Are you sure you want to delete this object?');">Delete</button>
         }
     </form>
     <div class="gornji-deo">
@@ -44,7 +44,10 @@
                 </div>
                 <div id="Prikazi1">
                     <button id="Prikazi" onclick="showCal()">Show calendar</button>
-                    <label class="labelPomoc">Click here if You wanna grab a Table4U</label>
+                    @if(Model.TKorisnik!=null && Model.TKorisnik.tipKorisnika=="Gost")
+                    {
+                        <label class="labelPomoc">Click here if You wanna grab a Table4U</label>
+                    }
                 </div>
                 <button id="Sakrij" style="display:none;" onclick="hideCal()">Hide calendar</button>
             </div>
@@ -139,7 +142,7 @@
                     @if(Model.TKorisnik.tipKorisnika.Equals("Menadzer"))
                     {
                         <button type="submit" class="btnRez" disabled="true">Reserve</button>
-                        <label class="error2">Manager does not have permissions for this action!</label>
+                        <label class="error2">Business accounts do not have permissions for this action!</label>
                     }
                     else if(Model.TKorisnik.tipKorisnika.Equals("Admin"))
                     {
@@ -154,6 +157,7 @@
                 else
                 {
                     <button type="submit" disabled="true" class="btnRez">Reserve</button>
+                    <label class="error2">You do not have permissions for this action!</label>
                 }
             </div>
         </form>
@@ -197,7 +201,7 @@
                                     @if(Model.TKorisnik!=null && Model.TKorisnik.tipKorisnika.Equals("Admin"))
                                     {
                                         <td>@r.Komentar</td>
-                                        <td><button type="submit" asp-route-Id="@r.Id" asp-page-handler="Obrisi">Delete</button></td>
+                                        <td><button type="submit" asp-route-Id="@r.Id" asp-page-handler="Obrisi" onclick="return confirm('Are you sure you want to delete this review?');">Delete</button></td>
                                     }
                                     else
                                     {
@@ -228,6 +232,7 @@
                 else
                 {
                     <button id="dodajRec" disabled="true">Add comment</button>
+                    <label class="error2">You do not have permissions for this action!</label>
                 }
                 <label id="dodajRecInfo" style="display:none;">The form for adding a review is under Location.</label>
             </div>
@@ -381,5 +386,6 @@
         .appendTo('#slideshow1');
     }, 6000);
 </script>
+
 
 
