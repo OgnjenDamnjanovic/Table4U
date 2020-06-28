@@ -14,8 +14,10 @@
   <button class="manageUsers-tablinks customerLink" onclick="openUser(event, 'customerDiv')">Customers</button>
   <button class="manageUsers-tablinks managerLink" onclick="openUser(event, 'managerDiv')">Managers</button>
 </div>
+
 <form method="POST">
     <div class="manageUsers-tabcontent customerDiv">
+        <input type="hidden" asp-for="TKorisnik.passwordHash">
 <table id="manageCustomers" class="display customers">
     <thead>
         <th>Ime</th>

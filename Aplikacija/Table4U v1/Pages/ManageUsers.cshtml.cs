@@ -33,7 +33,7 @@ namespace MyApp.Namespace
             
             if (string.IsNullOrEmpty(eMail)||db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault().tipKorisnika!="Admin")
             {
-                return RedirectToPage("/Login");
+                return RedirectToPage("/Index");
             }
             TKorisnik=db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             customers=db.Korisnici.Where(korisnik=>korisnik.tipKorisnika=="Gost"&&korisnik.validanNalog).ToList();
@@ -42,6 +42,12 @@ namespace MyApp.Namespace
         }
         public async Task<IActionResult> OnPostAsync(int id)
         {  
+            String eMail = HttpContext.Session.GetString("email");
+            
+            if (string.IsNullOrEmpty(eMail)||db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault().tipKorisnika!="Admin")
+            {
+                return RedirectToPage("/Index");
+            }
              Korisnik korisnikZaBrisanje=db.Korisnici.Where(korisnik => korisnik.Id==id).Include(x=>x.mojLokal).FirstOrDefault();
             if(korisnikZaBrisanje==null)
             return RedirectToPage();
@@ -68,14 +74,18 @@ namespace MyApp.Namespace
                 db.Recenzije.RemoveRange(recenzije);
                 List<Rezervacija> rezervacije=await db.Rezervacije.Where(rez =>rez.LokalId==korisnikZaBrisanje.mojLokal.Id).ToListAsync();
                 if(rezervacije!=null)
-                foreach(Rezervacija rez in rezervacije)
-                { {
-                         
-                 string sadrzajMejla=$"Dear {rez.Korisnik.Ime}, \n\n Your reservation at {rez.Lokal.Naziv} for {rez.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
-               RegisterModel.SendEmail("Table4U",rez.Korisnik.eMail,"Your reservation has been canceled",sadrzajMejla);
+                {
+                    foreach(Rezervacija rez in rezervacije)
+                    {      if(rez.Vreme>DateTime.Now)
+                        {                 
+                            string sadrzajMejla=$"Dear {rez.Korisnik.Ime}, \n\n Your reservation at {rez.Lokal.Naziv} for {rez.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
+                            RegisterModel.SendEmail("Table4U",rez.Korisnik.eMail,"Your reservation has been canceled",sadrzajMejla);
+                        }
+                   
+                    }
+                     db.Rezervacije.RemoveRange(rezervacije);
                 }
-                db.Rezervacije.RemoveRange(rezervacije);
-                }
+
                 db.Stolovi.RemoveRange(await db.Stolovi.Where(sto =>sto.Lokal.Id==korisnikZaBrisanje.mojLokal.Id).ToListAsync());
                 int korId=korisnikZaBrisanje.mojLokal.Id;
                 db.Korisnici.Remove(korisnikZaBrisanje);

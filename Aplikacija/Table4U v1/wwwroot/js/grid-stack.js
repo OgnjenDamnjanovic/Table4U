@@ -98,7 +98,7 @@ $('.newWidget').draggable({
       appendTo: '.grid-stack',
       helper: 'clone'
     });
-   function crtajSto(x,y,width,height,label,capacity )
+   function crtajSto(x,y,width,height,label,capacity)
     {
       grid.addWidget('<div><div class="grid-stack-item-content addedTable"><div class=\"table-label\">'+label+'</div><div class=\"table-capacity\">('+capacity+')</div></div></div>',{x:x,y:y,width:width,height:height});
     }

@@ -45,6 +45,8 @@ namespace MyApp.Namespace
         }
         public IActionResult OnGetAsync(string mail, string hash)
         {   
+            if(HttpContext.Session.GetString("email")!=null)
+            return RedirectToPage("/Index");
            
             ErrorMessage="";
             if(mail!=null &&hash!=null)
@@ -83,6 +85,9 @@ namespace MyApp.Namespace
 
         public async Task<IActionResult> OnPostAsync()
         {  
+             
+            if(HttpContext.Session.GetString("email")!=null)
+            return RedirectToPage("/Index");
                       
             if(!IsValidEmail(email)||invalidInput(firstname)||invalidInput(lastname)||String.IsNullOrEmpty(password)||string.IsNullOrEmpty(confirmPassword)||String.Compare(password,confirmPassword)!=0||password.Length<5)
               {

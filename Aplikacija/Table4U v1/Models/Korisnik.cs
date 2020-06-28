@@ -17,6 +17,8 @@ namespace SWEProject.Models
         public int brojPrijava { get; set; }=0;
         public bool validanNalog { get; set; }
         public string hash { get; set; }
+        public string passwordHash{get;set;}
+        
 
 
     }

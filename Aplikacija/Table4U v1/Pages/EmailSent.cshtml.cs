@@ -40,6 +40,8 @@ namespace MyApp.Namespace
         }
         public IActionResult OnPostAsync()
         {  string emailNew= HttpContext.Session.GetString("newAccEmail");
+         if(emailNew==null)
+          return RedirectToPage("/Index");
              Korisnik NoviKorisnik=db.Korisnici.Where(korisni =>korisni.eMail==emailNew).FirstOrDefault();
                 if(NoviKorisnik==null)
                 return RedirectToPage("/Index");

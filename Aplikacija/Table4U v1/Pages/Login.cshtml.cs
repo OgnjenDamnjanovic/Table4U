@@ -33,9 +33,36 @@ namespace MyApp.Namespace
             else
             return Page();
         }
+        public IActionResult OnPostForgot()
+        {
+            string mejl=HttpContext.Session.GetString("email");
+            if(mejl!=null)
+            return RedirectToPage("/Index");
+           Korisnik korisnik=db.Korisnici.Where(kor =>kor.eMail==eMail).FirstOrDefault();
+        
+           if(korisnik==null)
+            {
+                ErrorMessage="Invalid email adress.";
+                return Page();
+            }
+            else
+            {   korisnik.passwordHash=Guid.NewGuid().ToString();
+                db.SaveChanges();
+                 string link=GetBaseUrl();
+                link+="/ForgotPassword?mail=";
+                link+=korisnik.eMail+"&hash="+korisnik.passwordHash;          
+            string sadrzajMejla=$"Dear {korisnik.Ime} \n\n You have requested a password change\n click on the following link to perform it.\n {link} \n\n Thank you for using our website.";
+               RegisterModel.SendEmail("Table4U",korisnik.eMail,"Reset password",sadrzajMejla);
 
+                ErrorMessage="An email has been sent to your email address";
+                return Page();
+            }
+        }
         public IActionResult OnPostLogin()
         {
+            string mejl=HttpContext.Session.GetString("email");
+            if(mejl!=null)
+            return RedirectToPage("/Index");
             //TKorisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();
             
             Korisnik korisnik = db.Korisnici.Where(x=>x.eMail == eMail).FirstOrDefault();

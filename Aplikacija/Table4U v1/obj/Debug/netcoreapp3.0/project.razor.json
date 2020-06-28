@@ -14394,6 +14394,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ForgotPassword.cshtml",
+      "TargetPath": "Pages\\ForgotPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Error.cshtml",
       "TargetPath": "Pages\\Error.cshtml",
       "FileKind": "mvc"

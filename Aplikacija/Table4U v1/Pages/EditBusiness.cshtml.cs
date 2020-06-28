@@ -54,11 +54,11 @@ namespace MyApp.Namespace
             string email=HttpContext.Session.GetString("email");
             if(email==null)
             return RedirectToPage("/Index");
-            Korisnik menadzer=await db.Korisnici.Where(k =>k.eMail==email&&k.tipKorisnika=="Menadzer"&&k.validanNalog).Include(x=>x.mojLokal).ThenInclude(x=>x.listaStolova).FirstOrDefaultAsync();
-           
+            Korisnik menadzer=await db.Korisnici.Where(k =>k.eMail==email&&k.tipKorisnika=="Menadzer"&&k.validanNalog).Include(x=>x.mojLokal).AsNoTracking().FirstOrDefaultAsync();
+
             if(menadzer==null)
             return RedirectToPage("/Index");
-             noviLokal=menadzer.mojLokal;
+             noviLokal=db.Lokali.Where(lok =>lok.Id==menadzer.mojLokal.Id).Include(s =>s.listaStolova).AsNoTracking().FirstOrDefault();
              TKorisnik=menadzer;
              Message = "Manager";
              tableLayout="";
@@ -111,11 +111,18 @@ namespace MyApp.Namespace
      }
         public async Task<IActionResult> OnPostNextAsync()
         { 
+          
+          
           string email=HttpContext.Session.GetString("email");
             if(email==null)
             return RedirectToPage("/Index");
             Korisnik korisnik=db.Korisnici.Where(kor=>kor.eMail==email&&kor.tipKorisnika=="Menadzer"&&kor.validanNalog==true).FirstOrDefault();
             if(korisnik==null)
+            return RedirectToPage("/Index");
+            Korisnik korBaza=db.Korisnici.Where(korisnik=>korisnik.eMail==email).Include(x=>x.mojLokal).AsNoTracking().FirstOrDefault();
+            if(korBaza==null)
+            return RedirectToPage("/Index");
+            if(noviLokal.Id!=korBaza.mojLokal.Id)
             return RedirectToPage("/Index");
             int validImageCount=0;
             if(!string.IsNullOrEmpty(slika1))
@@ -176,16 +183,17 @@ namespace MyApp.Namespace
          {
              RedirectToPage("/Error?errorCode="+fe);
          }
+          
          string stariLayout="";
-          List<Sto> stariStolovi=db.Stolovi.Where(sto => sto.Lokal.Id==korisnik.mojLokal.Id).ToList();
+          List<Sto> stariStolovi=db.Stolovi.Where(sto => sto.Lokal.Id==noviLokal.Id).ToList();
             for (int i=0;i<stariStolovi.Count;i++)
             {
-                stariLayout=tableLayout+stariStolovi[i].gsX+"`"+stariStolovi[i].gsY+"`"+stariStolovi[i].gsWidth+"`"+stariStolovi[i].gsHeight+"`"+stariStolovi[i].oznaka+"`"+stariStolovi[i].brojMesta;
+                stariLayout=stariLayout+stariStolovi[i].gsX+"`"+stariStolovi[i].gsY+"`"+stariStolovi[i].gsWidth+"`"+stariStolovi[i].gsHeight+"`"+stariStolovi[i].brojMesta+"`"+stariStolovi[i].oznaka;
 
                 if(i!=stariStolovi.Count-1)
                 stariLayout=stariLayout+"~";
             }
-            if(stariLayout!=tableLayout)
+            if(String.Compare(stariLayout,tableLayout)!=0)
             {
                   int counter=1;
                   List<Sto> noviStolovi=new List<Sto>(tableLayout.Split('~').Length);
@@ -215,7 +223,7 @@ namespace MyApp.Namespace
                   counter=counter%6+1;
                   
                   }
-                  await   db.SaveChangesAsync();
+             
                   
                   noviLokal.maxKapacitet=objectSeatsCount;
                   
@@ -223,9 +231,11 @@ namespace MyApp.Namespace
                   foreach(Sto sto in stariStolovi)
                   { 
                       foreach(Rezervacija rez in db.Rezervacije.Where(rezer => rezer.Sto.Id==sto.Id).ToList())
-                     {
-                        string sadrzajMejla=$"Dear {rez.Korisnik.Ime}, \n\n Your reservation at {rez.Lokal.Naziv} for {rez.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
-                        RegisterModel.SendEmail("Table4U",rez.Korisnik.eMail,"Your reservation has been canceled",sadrzajMejla);
+                     {  if(rez.Vreme>DateTime.Now)
+                        {
+                          string sadrzajMejla=$"Dear {rez.Korisnik.Ime}, \n\n Your reservation at {rez.Lokal.Naziv} for {rez.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
+                          RegisterModel.SendEmail("Table4U",rez.Korisnik.eMail,"Reservation calceled",sadrzajMejla);
+                        }
                         db.Remove(rez);
                      }
 
@@ -234,10 +244,10 @@ namespace MyApp.Namespace
                   }
                   noviLokal.listaStolova=noviStolovi;
             }
-        
+        korisnik.mojLokal=noviLokal;
       
-        db.Lokali.Update(noviLokal);
-        await   db.SaveChangesAsync();
+      
+      await db.SaveChangesAsync();
         return RedirectToPage("/Index");
         
 

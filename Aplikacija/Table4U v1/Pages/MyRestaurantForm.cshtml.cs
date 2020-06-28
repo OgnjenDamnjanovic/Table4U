@@ -51,6 +51,9 @@ namespace MyApp.Namespace
        
         public async Task<IActionResult> OnGetAsync(string mail, string hash)
         {  
+           
+            if(HttpContext.Session.GetString("email")!=null)
+            return RedirectToPage("/Index");
            if(mail==null||hash==null)
         return RedirectToPage("/Index");
         Korisnik korisnik= await db.Korisnici.Where(korisnik =>korisnik.hash==hash&&korisnik.eMail==mail&&korisnik.tipKorisnika=="Menadzer").FirstOrDefaultAsync();
@@ -73,6 +76,9 @@ namespace MyApp.Namespace
         } 
         public async Task<IActionResult> OnPostCustomerAsync()
         {
+           
+            if(HttpContext.Session.GetString("email")!=null)
+            return RedirectToPage("/Index");
           Korisnik zaAktivaciju=db.Korisnici.Where(Korisnik=>Korisnik.eMail==email&&Korisnik.hash==guid).FirstOrDefault();
           zaAktivaciju.validanNalog=true;
           zaAktivaciju.tipKorisnika="Gost";
@@ -83,6 +89,9 @@ namespace MyApp.Namespace
           }
         public async Task<IActionResult> OnPostNextAsync()
         { 
+           
+            if(HttpContext.Session.GetString("email")!=null)
+            return RedirectToPage("/Index");
             int validImageCount=0;
             if(!string.IsNullOrEmpty(slika1))
             validImageCount++;

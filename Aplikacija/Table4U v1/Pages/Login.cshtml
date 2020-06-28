@@ -45,7 +45,8 @@
 				    <br />
 				  <span class="err-msg">@Model.ErrorMessage</span>
 				   <input type="submit" value="Login" asp-page-handler="Login">
-				  <a class="forgot" href="#">Forgot Your Password?</a>
+				  <a class="forgotPass" >Forgot Your Password?</a>
+				  <input value="forgot" class="forgotPassword"type="submit" asp-page-handler="Forgot" style="display:none;">
 				
 			    </form>
 			   </div>	
@@ -54,6 +55,10 @@
 		   </div>
 		</div>
 		<script>
+			document.querySelector(".forgotPass").onclick=()=>
+			{
+				document.querySelector(".forgotPassword").click();
+			}
 			let element=document.querySelector("#email");
 					element.onfocus=function()
 					{	
@@ -78,8 +83,10 @@
 				 
 
 					
-					document.querySelector("#signupForm").onsubmit=()=>
-					{
+					document.querySelector("#signupForm").onsubmit=(e)=>
+					{console.log(e.submitter);
+						if(e.submitter.value=="forgot"&&!emailError())
+						return true
 					
 						let error=false;	
 						if(emailError())
