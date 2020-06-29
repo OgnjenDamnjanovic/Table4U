@@ -1,0 +1,420 @@
+﻿@page
+@model IndexModel
+
+<head>
+	<title>Table4U | Home</title>
+</head>
+<header>
+	</div>
+		<div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
+		    <div class="container">
+				<div class="banner-info">
+					<div class="banner-info-head text-center wow fadeInLeft" data-wow-delay="0.5s">
+						<h1>Network of over 100 Places</h1>
+						<div class="line">
+							<h2> To Reserve Online</h2>
+						</div>
+					</div>
+					<div class="form-list wow fadeInRight" data-wow-delay="0.5s">
+						<form>
+						  <ul class="navmain">
+							<li><span>Location Name</span>
+							<select  id="select-hidden-cityRestaurant" asp-items="@Model.listaGradRestoranJSON" style="display:none">
+                            </select>
+							<select  id="select-hidden-cityDistinct" asp-items="@Model.listaGradova" style="display:none">
+                            </select>
+						       
+							 <input type="text" class="text location" value="Niš" >
+							</li>
+							<li><span>Place Name</span>
+							 <input type="text" class="text restaurant" value="Meze" >
+							</li>
+						  </ul>
+						</form>
+						<div class="srch"><button></button></div>
+						</div>
+	    
+				</div>
+			</div>
+		</div>
+</header>
+	<!-- content-section-starts -->
+	<div class="content">
+		<div class="ordering-section" id="Order">
+			<div class="container">
+				<div class="ordering-section-head text-center wow bounceInRight" data-wow-delay="0.4s">
+					<h3>Reserving a table was never so easy</h3>
+					<div class="dotted-line">
+						<h4>Just 3 steps to follow </h4>
+					</div>
+				</div>
+				<div class="ordering-section-grids">
+					<div class="col-md-3 ordering-section-grid">
+						<div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s"">
+							<i class="one"></i><br>
+							<i class="one-icon"></i>
+							<p class="tekst">Choose <span class="tekst">Your Place</span></p>
+							<label class="strelica"></label>
+						</div>
+					</div>
+					<div class="col-md-3 ordering-section-grid">
+						<div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s"">
+							<i class="two"></i><br>
+							<i class="two-icon"></i>
+							<p class="tekst">Choose <span class="tekst">Your Time and Table</span></p>
+							<label class="strelica"></label>
+						</div>
+					</div>
+					<div class="col-md-3 ordering-section-grid">
+						<div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s"">
+							<i class="three"></i><br>
+							<i class="three-icon"></i>
+							<p class="tekst">Enjoy <span class="tekst">Your Time</span></p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="special-offers-section">
+			<div class="container">
+				<div class="special-offers-section-head text-center dotted-line">
+					<h4>Upcoming Events</h4>
+				</div>
+				<div class="special-offers-section-grids">
+				   <div class="container-slide">
+					  <!--<ul id="flexiselDemo3">
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="images/p1.jpg" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Olister Combo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Reserve">
+									<span></span>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</li>
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="images/p2.jpg" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Chicken Jumbo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Reserve">
+									<span></span>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</li>
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="images/p1.jpg" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Crab Combo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Reserve">
+									<span></span>
+								</div>
+								
+								<div class="clearfix"></div>
+								</div>
+						</li>
+						<li>
+							<div class="offer">
+								<div class="offer-image">	
+									<img src="images/p2.jpg" class="img-responsive" alt=""/>
+								</div>
+								<div class="offer-text">
+									<h4>Chicken Jumbo pack lorem</h4>
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+									<input type="button" value="Reserve">
+									<span></span>
+								</div>
+								
+								<div class="clearfix"></div>
+								</div>
+					    </li>
+					 </ul>
+				 <script type="text/javascript">
+					$(window).load(function() {
+						
+						$("#flexiselDemo3").flexisel({
+							visibleItems: 3,
+							animationSpeed: 1000,
+							autoPlay: false,
+							autoPlaySpeed: 3000,    		
+							pauseOnHover: true,
+							enableResponsiveBreakpoints: true,
+							responsiveBreakpoints: { 
+								portrait: { 
+									changePoint:480,
+									visibleItems: 1
+								}, 
+								landscape: { 
+									changePoint:640,
+									visibleItems: 2
+								},
+								tablet: { 
+									changePoint:768,
+									visibleItems: 3
+								}
+							}
+						});
+						
+					});
+				    </script>
+				    <script type="text/javascript" src="js/jquery.flexisel.js"></script>-->
+					@if(@Model.ListaDog.Count!=0)
+					{
+						<div class="slideshow-container">
+							@foreach(var d in @Model.ListaDog)
+							{
+							<div class="slajd">
+  								<img src="@d.Lokal.nazivSlike" class="mySlides fade">
+								<div class="redDog">
+								<div class="text1 fade">Address: @d.Lokal.Adresa,@d.Lokal.Grad</div>
+								<div class="text2 fade">Time: @d.Datum</div>
+								<div class="text3 fade">Description: @d.Opis</div>
+								<div class="dugmence"><a type="submit" class="dugme1 fade" asp-page="./Object" asp-route-Id="@d.Lokal.Id">Reserve</a></div>
+								</div>
+							</div>
+							}
+						</div>
+						<br>
+						<div class="tacke" style="text-align:center">
+							@foreach(var d in @Model.ListaDog)
+							{
+								<span class="dot"></span> 
+							}
+						</div>
+					}
+					else
+					{
+						<label>There are no upcoming events!</label>
+					}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="popular-restaurents" id="Popular-Restaurants">
+			<div class="container">
+				<div class="col-md-8 top-cuisines">
+					<div class="top-cuisine-head">
+						<h3>Top-Rated Places</h3>
+					</div>
+
+				<!-- LISTA TOP OBJEKATA -->
+				<table class="table table-naj" id="bootstrap-override-table-naj">
+					@foreach (var o in Model.ListaLok)
+					{
+						<tr class="table-red">
+							<td class="redSlika"><img class="table-naj-slika" src="@o.nazivSlike" style="width:150px;height:150px;"></td>
+							<td class="redIme"><a asp-page="/Object" asp-route-Id="@o.Id">@o.Naziv</a></td>
+							<td class="redAdresa">@o.Adresa,@o.Grad</td>
+							<td class="redReserve"><a class="dugme_u_tabeli" asp-page="/Object" asp-route-Id="@o.Id">Reserve</a></td>
+						</tr>
+					}
+				</table>
+
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="service-section">
+			<div class="service-section-top-row">
+				<div class="container">
+					<div class="service-section-top-row-grids wow bounceInLeft" data-wow-delay="0.4s">
+					<div class="col-md-3 service-section-top-row-grid1">
+						<h3>Enjoy Your Time at Exclusive Places</h3>
+					</div>
+					<div class="col-md-2 service-section-top-row-grid2">
+						<ul>
+							<li><i class="arrow"></i></li>
+							<li class="lists">Music Events</li>
+						</ul>
+						<ul>
+							<li><i class="arrow"></i></li>
+							<li class="lists">Party Events</li>
+						</ul>
+						<ul>
+							<li><i class="arrow"></i></li>
+							<li class="lists">Gala Events</li>
+						</ul>
+					</div>
+					<div class="col-md-5 service-section-top-row-grid3">
+						<img src="images/lunch.png" class="img-responsive" alt="" />
+					</div>
+					<div class="col-md-2 service-section-top-row-grid4 wow swing animated" data-wow-delay= "0.4s">
+						<a asp-page="./ListedObjects"><input type="submit" value="Reserve Now"></a>
+					</div>
+					<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<div class="service-section-bottom-row">
+				<div class="container">
+					<div class="col-md-4 service-section-bottom-grid wow bounceIn "data-wow-delay="0.2s">
+						<div class="icon">
+							<img src="images/icon1.jpg" class="img-responsive" alt="" />
+						</div>
+						<div class="icon-data">
+							<h4>100% Service Guarantee</h4>
+							<p>We are here for you 24 hours 7 days a week. </p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-md-4 service-section-bottom-grid wow bounceIn "data-wow-delay="0.2s">
+						<div class="icon">
+							<img src="images/icon2.jpg" class="img-responsive" alt="" />
+						</div>
+						<div class="icon-data">
+							<h4>Fully Secure Data</h4>
+							<p>Your data is safe with us! </p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-md-4 service-section-bottom-grid wow bounceIn "data-wow-delay="0.2s">
+						<div class="icon">
+							<img src="images/icon3.jpg" class="img-responsive" alt="" />
+						</div>
+						<div class="icon-data">
+							<h4>Cancel Your Reservation</h4>
+							<p>If you made a mistake, we are here to resolve it. </p>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="contact-section" id="contact">
+			<div class="container">
+				<div class="contact-section-grids">
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a asp-page="./Contact">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a asp-page="./Contact">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a asp-page="./Help">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a asp-page="./Help">Help</a></li>
+						</ul>
+					</div>
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+						<h4>Follow Us On...</h4>
+						<ul>
+							<li><i class="fb"></i></li>
+							<li class="data"> <a href="#">  Facebook</a></li>
+						</ul>
+						<ul>
+							<li><i class="tw"></i></li>
+							<li class="data"> <a href="#">Twitter</a></li>
+						</ul>
+						<ul>
+							<li><i class="in"></i></li>
+							<li class="data"><a href="#"> Linkedin</a></li>
+						</ul>
+						<ul>
+							<li><i class="gp"></i></li>
+							<li class="data"><a href="#">Google Plus</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- content-section-ends -->
+	  <script type="text/javascript">
+						$(document).ready(function() {
+							$().UItoTop({ easingType: 'easeOutQuart' });
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<script>
+
+document.querySelector(".srch").onclick=function()
+{
+	let loc;
+	let rest;
+	let locInput=document.querySelector(".navmain .location");
+	let restInput=document.querySelector(".navmain .restaurant");
+	
+	if(window.getComputedStyle(locInput).color=='rgb(192, 192, 192)'&&window.getComputedStyle(locInput).fontWeight==400&&locInput.value=="Niš")
+	{
+		loc="";
+		console.log("prvi prosao");
+	}
+	else 
+	loc=locInput.value;
+
+	if(window.getComputedStyle(restInput).color=='rgb(192, 192, 192)'&&window.getComputedStyle(restInput).fontWeight==400&&restInput.value=="Meze")
+	{
+		rest="";
+		console.log("drugi prosao");
+	}
+	else 
+	rest=restInput.value;
+	console.log(loc+":loc "+rest+":rest")
+let str=`https://localhost:5001/ListedObjects?city=${loc}&name=${rest}`
+window.location.href=str;
+
+}
+</script>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var texts1 = document.getElementsByClassName("text1");
+  var texts2 = document.getElementsByClassName("text2");
+  var texts3 = document.getElementsByClassName("text3");
+  var dots = document.getElementsByClassName("dot");
+  var dugmici = document.getElementsByClassName("dugme1");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (i = 0; i < texts1.length; i++) {
+    texts1[i].style.display = "none";
+	texts2[i].style.display = "none";
+	texts3[i].style.display = "none"; 
+  }
+  for (i = 0; i < dugmici.length; i++) {
+    dugmici[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active1", "");
+  }
+  dugmici[slideIndex-1].style.display="flex";
+  texts1[slideIndex-1].style.display = "block";
+  texts2[slideIndex-1].style.display = "block";
+  texts3[slideIndex-1].style.display = "block";
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active1";
+  setTimeout(showSlides, 8000);
+}
+</script>
+
+<script type="text/javascript" src="js/smartSearchBox.js"></script>

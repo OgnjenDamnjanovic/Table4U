@@ -1,0 +1,173 @@
+﻿@page
+@model MyApp.Namespace.ManagerModel
+@{
+}
+
+<head>
+    <title>Table4U | Business </title>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">--> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+</head>
+
+	</div>
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+  <div class="container">
+    
+    <div class="row1">
+      <div class="column">
+        <div class="card1">
+          <h4>Reservations</h4>
+          <label class="count">@Model.BrRezervacija</label>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card1">
+          <h4>Ratings</h4>
+          <label class="count">@Model.MojLokal.Ocena</label>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card1">
+          <h4>Events</h4>
+          <label class="count">@Model.BrDogadjaja</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-chart">
+    <div class="chart-div">
+      <canvas id="myChart" width="800" height="400"></canvas>
+    </div>
+    </div>
+    <div>
+      <h4 class="predstojece-rez">Latest Reservations</h4>
+      @if(Model.NajnovijeRez.Count==0)
+      {
+        <label class="nema-rez">There are no reservations!</label>
+      }
+      else
+      {
+        @foreach (var rez in Model.NajnovijeRez)
+        {
+          <div class="col-content">
+            <label>@rez.Korisnik.Ime @rez.Korisnik.Prezime</label>
+            <div><span>From date/time: </span><label>@rez.VremeKreiranja.ToString("dd.MM.yyyy, HH:mm")</label></div>
+            <div><span>To date/time: </span><label>@rez.Vreme.ToString("dd.MM.yyyy, HH:mm")</label></div>
+            <div><span>Table name: </span><label>@rez.Sto.oznaka</label></div>
+            <div><span>People: </span><label>@rez.Sto.brojMesta</label></div>
+          </div>
+        }
+      }
+      
+    </div>
+  
+
+  </div>
+</div>   
+<div class="contact-section" id="contact">
+			<div class="container">
+				<div class="contact-section-grids">
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+						<h4>Follow Us On...</h4>
+						<ul>
+							<li><i class="fb"></i></li>
+							<li class="data"> <a href="#">  Facebook</a></li>
+						</ul>
+						<ul>
+							<li><i class="tw"></i></li>
+							<li class="data"> <a href="#">Twitter</a></li>
+						</ul>
+						<ul>
+							<li><i class="in"></i></li>
+							<li class="data"><a href="#"> Linkedin</a></li>
+						</ul>
+						<ul>
+							<li><i class="gp"></i></li>
+							<li class="data"><a href="#">Google Plus</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+
+<script>
+
+var dani = @Html.Raw(Json.Serialize(Model.Lista));
+var podaci = @Html.Raw(Json.Serialize(Model.ListaPodataka));
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: dani,
+        datasets: [{
+            label: '# of Reservations',
+            data: podaci,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<script>
+  $('.count').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 1000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
+    });
+});
+</script>

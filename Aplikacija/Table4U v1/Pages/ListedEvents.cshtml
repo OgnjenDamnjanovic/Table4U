@@ -1,0 +1,239 @@
+﻿@page
+@model MyApp.Namespace.ListedEventsModel
+@{
+}
+<head>
+  <link href="css/all.css" rel="stylesheet"> <!--load all styles -->
+   <title>Table4U | Events</title>
+</head>
+
+<div class="register">
+<form id="signupForm" method="post" action=""> 
+
+<div><h3>EVENT INFORMATION</h3> <a onclick="clearForm()" style="cursor:pointer;">Clear form</a></div>
+<div class="bi-name-type h-container">
+    <span  class="bi-name v-container wow fadeInLeft">
+		<div class="form-element-label">NAME*</div>
+		<input type="text" id="name-val" value="" asp-for="trDogadjaj.Vrsta">
+		<label class="error" style="visibility: hidden;">This field is required.</label>
+    </span>
+	<span class="bi-openTime wow fadeInLeft">
+		<div class="form-element-label">DATE/TIME*</div>
+		<input type="datetime-local" id="date-val" class="datefield" value="" asp-for="trDogadjaj.Datum">
+		<label class="error" style="visibility: hidden;">Enter valid time</label>
+	</span>
+    <div class="bi-description wow fadeInLeft">
+  		<div class="form-element-label">DESCRIPTION</div>
+  		<textarea class="bi-description-val" maxlength="650" id="desc-val" rows="5" asp-for="trDogadjaj.Opis"></textarea>
+		<label class="error" style="visibility: hidden;">This field is required.</label>
+	</div>
+	<input type="hidden" asp-for="trDogadjaj.Id" id="id-val">
+    <div class="bi-buttons wow fadeInLeft">
+        <button type="submit" class="finish-but" id="bi-finish">Finish</button>
+    </div>
+</div>
+
+</form>
+</div>
+
+@foreach (var d in Model.listaDogadjaja)
+{
+	<div class="row2">
+      <div class="column2">
+        <div class="card1">
+		  <input id="ev-id" type="hidden" value=@d.Id>
+          <h4 id="ev-type">@d.Vrsta</h4>  
+		  <a asp-page-handler="Delete" asp-route-id="@d.Id" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fas fa-trash-alt"></i></a>
+		  <br>
+		  <label id="ev-date" date=@d.Datum.ToString("yyyy-MM-ddTHH:mm") >@d.Datum.ToString("dd.MM.yyyy, HH:mm")</label>
+		  <p id="ev-desc">@d.Opis</p>
+          <button type="submit" class="finish-but" id="edit-but" style="margin-left: 0" onclick="editClick(this)">Edit</button>
+		  
+        </div>
+      </div>
+</div>
+}
+
+</div>
+<div class="contact-section" id="contact">
+			<div class="container">
+				<div class="contact-section-grids">
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+						<h4>Follow Us On...</h4>
+						<ul>
+							<li><i class="fb"></i></li>
+							<li class="data"> <a href="#">  Facebook</a></li>
+						</ul>
+						<ul>
+							<li><i class="tw"></i></li>
+							<li class="data"> <a href="#">Twitter</a></li>
+						</ul>
+						<ul>
+							<li><i class="in"></i></li>
+							<li class="data"><a href="#"> Linkedin</a></li>
+						</ul>
+						<ul>
+							<li><i class="gp"></i></li>
+							<li class="data"><a href="#">Google Plus</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+<script>
+	function editClick(button){
+		document.querySelector("#id-val").value = button.parentElement.querySelector("#ev-id").value;
+		document.querySelector("#name-val").value = button.parentElement.querySelector("#ev-type").innerHTML;
+
+		document.querySelector("#date-val").value = button.parentElement.querySelector("#ev-date").getAttribute('date') + ':00';
+
+		document.querySelector("#desc-val").value = button.parentElement.querySelector("#ev-desc").innerHTML;
+	}
+	
+	function clearForm(){
+		document.querySelector("#id-val").value = "";
+		document.querySelector("#name-val").value = "";
+
+		document.querySelector("#date-val").value = "";
+
+		document.querySelector("#desc-val").value = "";
+	}
+</script>
+
+<script>
+    /*var today = new Date();
+    var dd = today.getDate();
+    var MM = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    var hh = today.getHours();
+    var mm = today.getMinutes();
+
+    if(dd<10){
+            dd='0'+dd
+        } 
+    if(MM<10){
+        MM='0'+MM
+    } 
+    if(hh<10){
+        hh='0'+hh;
+    }
+    if(mm<10){
+        mm='0'+mm;
+    }
+
+    today = yyyy+'-'+ MM +'-'+dd+'T'+hh+':'+mm+':00';
+    document.querySelector(".datefield").setAttribute("min", today);  //YYYY-MM-DDThh:mm:ss.ms 
+    //alert(document.querySelector(".datefield").min); 
+    */
+</script>
+
+<script>
+    function autoValidateElement(elementId,elementError)
+	{
+		let element=document.querySelector("#"+elementId);
+		element.onfocus=function()
+		{	
+			this.onblur=()=>{ elementError();}
+		}
+		element.oninput=function(e)
+		{
+			elementError();
+		}
+	}
+    autoValidateElement("name-val",nameError);
+    autoValidateElement("desc-val",descError);
+    autoValidateElement("date-val",dateError);
+
+    function nameError()
+	{
+		let name=document.querySelector("#name-val");
+		if(name.value=="")
+		{
+			name.parentElement.querySelector("label").style.visibility="visible";				
+			return true;
+		}
+		else
+		{
+			name.parentElement.querySelector("label").style.visibility="hidden";				
+			return false;
+		}
+	}
+
+    function descError()
+	{
+		let desc =document.querySelector(".bi-description-val");
+					
+		if(desc.value=="")
+		{
+			desc.parentElement.querySelector("label").style.visibility="visible";
+			return true;
+		}
+		else
+		{
+			desc.parentElement.querySelector("label").style.visibility="hidden";
+			return false;
+		}
+	}
+
+    function convertDateToUTC(date) { 
+        return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); 
+    }
+
+    function dateError()
+    {
+        var dateLocal = document.querySelector("#date-val");
+        var dateTime = convertDateToUTC(new Date(dateLocal.value));
+        var now = new Date();
+        if (dateLocal.value=="" || dateTime<=now) 
+        {
+            dateLocal.parentElement.querySelector("label").style.visibility="visible";
+            return true;
+        }
+        else 
+        {
+            dateLocal.parentElement.querySelector("label").style.visibility="hidden";
+            return false;
+        }
+    }
+
+    
+
+    function formError()
+	{
+		let error=false;
+		if(nameError())
+		    error=true;
+		if(descError())
+		    error=true;
+		if(dateError())
+            error=true;
+
+		return error;				
+	}
+
+    document.querySelector("#signupForm").onsubmit=function submitFormAction(e)
+	{	
+		if(formError())
+		return false;
+    }
+</script>

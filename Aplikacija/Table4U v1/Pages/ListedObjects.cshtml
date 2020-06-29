@@ -1,0 +1,125 @@
+﻿@page
+@model MyApp.Namespace.ListedObjectsModel
+@{
+}
+
+<head>
+    <title>Table4U | Places</title>
+	<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+</head>
+
+@if(string.IsNullOrEmpty(Model.City) || string.IsNullOrEmpty(Model.Name))
+{
+<form method="get">
+	<div class="input-group1">
+		<select asp-for="IzabranaVrsta" asp-items="Model.Lista" class="selectPretraga" id="inputGroupSelect04" aria-label="Example select with button addon">
+			<option value="0">All</option>
+		</select>
+		<div class="input-group-append">
+    		<button class="btnPretraga" type="submit">Search</button>
+  		</div>
+	</div>
+
+
+	<input type="hidden" asp-for="City">
+	<input type="hidden" asp-for="Name">
+</form>
+}
+
+<div class="Popular-Restaurants-content">
+		<div class="Popular-Restaurants-grids">
+			<div class="container">
+
+			@for(int i=0; i<Model.VrsteObjekata.Count(); i++)
+			{
+				<h3 class="r-titles">@Model.VrsteObjekata[i]</h3>
+
+				@foreach (var lok in Model.MatricaLokala[i])
+				{
+					<div class="Popular-Restaurants-grid wow fadeInRight" data-wow-delay="0.4s">
+					<div class="col-md-3 restaurent-logo">
+						<img style="height:250px; width:250px;"src=@lok.nazivSlike class="img-responsive" alt="" />
+					</div>
+					<div class="col-md-2 restaurent-title">
+						<div class="logo-title">
+							<h4><a asp-page="/Object" asp-route-id=@lok.Id>@lok.Naziv</a></h4>
+						</div>
+						<div class="rating">
+							<label>City: @lok.Grad</label>
+							<div><label>Rating: </label>
+							<label>@lok.Ocena</label> <label>(@lok.brOcena)</label></div>
+							<div><label>Open: @lok.openTime.ToString("hh:mm tt")</label> </div>
+							<label>Close: @lok.closeTime.ToString("hh:mm tt")</label>
+						</div>
+					</div>
+					<div class="col-md-7 buy">
+						<a class="morebtn hvr-rectangle-in" asp-page="/Object" asp-route-Id="@lok.Id">Reserve</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				}
+			}
+				
+			<!--<a href="#"> <img src="images/star1.png" class="img-responsive" alt="">(004)</a>-->
+		</div>
+	</div>
+	<div class="contact-section" id="contact">
+			<div class="container">
+			<div class="contact-section-grids">
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+						<h4>Follow Us On...</h4>
+						<ul>
+							<li><i class="fb"></i></li>
+							<li class="data"> <a href="#">  Facebook</a></li>
+						</ul>
+						<ul>
+							<li><i class="tw"></i></li>
+							<li class="data"> <a href="#">Twitter</a></li>
+						</ul>
+						<ul>
+							<li><i class="in"></i></li>
+							<li class="data"><a href="#"> Linkedin</a></li>
+						</ul>
+						<ul>
+							<li><i class="gp"></i></li>
+							<li class="data"><a href="#">Google Plus</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	<!-- content-section-ends -->
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+						$(document).ready(function() {
+							
+							$().UItoTop({ easingType: 'easeOutQuart' });
+							
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+

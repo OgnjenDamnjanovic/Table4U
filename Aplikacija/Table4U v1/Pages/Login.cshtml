@@ -1,0 +1,203 @@
+﻿@page
+@model MyApp.Namespace.LoginModel
+@{
+}
+
+<head>
+    <title>Table4U | Login</title>
+</head>
+
+<div class="content">
+	<div class="container">
+		<div class="login-page">
+			    <div class="dreamcrub">
+			   	 <ul class="breadcrumbs">
+                    <li class="home">
+                       <a href="/Index" title="Go to Home Page">Home</a>&nbsp;
+                       <span>&gt;</span>
+                    </li>
+                    <li class="women">
+                       Login
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+			   </div>
+			   <div class="account_grid">
+			   <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
+			  	 <h3>NEW CUSTOMERS</h3>
+				 <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+				 <a class="acount-btn" asp-page="./Register">Create an Account</a>
+			   </div>
+			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
+			  	<h3>REGISTERED CUSTOMERS</h3>
+				<p>If you have an account with us, please log in.</p>
+				<form method="post" id="signupForm">
+				  <div>
+					<span>Email Address<label>*</label></span>
+					<input type="text" asp-for="eMail" id="email"> 
+					<label class="error" style="visibility: hidden; margin-bottom:0px;">Enter your email address</label>
+				  </div>
+				  <div>
+					<span>Password<label>*</label></span>
+					<input type="password" asp-for="Sifra" id="password"> 
+					<label class="error" style="visibility: hidden; margin-bottom:0px;">Enter valid password.</label>
+				   </div>
+				    <br />
+				  <span class="err-msg">@Model.ErrorMessage</span>
+				   <input type="submit" value="Login" asp-page-handler="Login">
+				  <a class="forgotPass" >Forgot Your Password?</a>
+				  <input value="forgot" class="forgotPassword"type="submit" asp-page-handler="Forgot" style="display:none;">
+				
+			    </form>
+			   </div>	
+			   <div class="clearfix"> </div>
+			 </div>
+		   </div>
+		</div>
+		<script>
+			document.querySelector(".forgotPass").onclick=()=>
+			{
+				document.querySelector(".forgotPassword").click();
+			}
+			let element=document.querySelector("#email");
+					element.onfocus=function()
+					{	
+						this.onblur=()=>{ emailError();}
+					}
+					element.oninput=function(e)
+					{
+						emailError();
+						document.querySelector(".err-msg").value="";
+					} 
+
+					element=document.querySelector("#password");
+					element.onfocus=function()
+					{	
+						this.onblur=()=>{ passwordError();}
+					}
+					element.oninput=function(e)
+					{
+						passwordError();
+						document.querySelector(".err-msg").value="";
+					} 
+				 
+
+					
+					document.querySelector("#signupForm").onsubmit=(e)=>
+					{console.log(e.submitter);
+						if(e.submitter.value=="forgot"&&!emailError())
+						return true
+					
+						let error=false;	
+						if(emailError())
+						error=true;	
+						else if(passwordError())
+						error=true;				
+					
+						if(error)
+						{
+						
+						return false;
+						}
+						return true;
+
+						
+					}
+					
+					function passwordError()
+					{
+						let pass=document.querySelector("#password");
+						if(pass.value==null||pass.value==""||pass.value.length<5)
+						{
+							pass.parentElement.querySelector(".error").style.visibility="visible";
+							return true;
+
+						}
+						else
+						{
+								pass.parentElement.querySelector(".error").style.visibility="hidden";
+							return false;
+						}
+						
+					}
+					function emailError()
+					{
+						let email=document.querySelector("#email");
+						if(validateEmail(email.value))
+						{
+							email.parentElement.querySelector(".error").style.visibility="hidden";
+							return false;
+						}
+						else
+						{
+							
+							email.parentElement.querySelector(".error").style.visibility="visible";
+							return true;
+						}
+					}
+		</script>
+		<script src="js/validateEmail.js"></script>
+
+		<div class="contact-section" id="contact">
+			<div class="container">
+		<div class="contact-section-grids">
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+						<h4>Follow Us On...</h4>
+						<ul>
+							<li><i class="fb"></i></li>
+							<li class="data"> <a href="#">  Facebook</a></li>
+						</ul>
+						<ul>
+							<li><i class="tw"></i></li>
+							<li class="data"> <a href="#">Twitter</a></li>
+						</ul>
+						<ul>
+							<li><i class="in"></i></li>
+							<li class="data"><a href="#"> Linkedin</a></li>
+						</ul>
+						<ul>
+							<li><i class="gp"></i></li>
+							<li class="data"><a href="#">Google Plus</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear' 
+					 		};
+							*/
+							
+							$().UItoTop({ easingType: 'easeOutQuart' });
+							
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>

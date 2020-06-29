@@ -1,0 +1,215 @@
+﻿@page
+@model MyApp.Namespace.ListedReservationsModel
+@{
+}
+
+<head>
+     <title>Table4U | Reservations</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <script src="js/validateEmail.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+
+<script src="//cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>
+</head>
+
+<h4 class="predstojece-rez">Todays reservations</h4>
+<div class="div-tabela">
+<table class="res-table">
+    <thead>
+        
+        @foreach (var vreme in Model.ListaVremena)
+        {
+            <th colspan="4">@vreme</th>
+        }
+    </thead>
+    <tbody>
+        @foreach (var lista in Model.matOznaka)
+        {
+            <tr>
+                @for(int i=0; i<lista.Count(); i++)
+                {
+                    @if(i==0)
+                    {
+                        <td colspan="4">@lista[i]</td>
+                    }
+                    else if(lista[i]=="-")
+                    {
+                        <td>@lista[i]</td>
+                    }
+                    else
+                    {
+                        <td colspan="8" style="background-color: #f2f2f2;">@lista[i]</td>
+                    }
+                    
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+<h4 class="predstojece-rez">Upcoming reservations</h4>
+
+<table id="example" class="display" width="100%">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Date/time</td>
+            <td>People</td>
+            <td>Table</td>
+        </tr>
+    </thead>
+</table>
+
+<!--<h4 class="predstojece-rez">Report users</h4>
+<form id="signupForm">
+    <div class="bi-name-type h-container">
+        <span  class="bi-name v-container wow fadeInLeft">
+            <input id="email" oninput="emailError()"> 
+            <label class="error error-hidden" style="visibility: hidden;">Please enter a valid email address</label>
+            <label>@Model.ErrorMessage</label>
+            <label id="adressTaken"></label>
+    </div>
+    <div class="bi-buttons wow fadeInLeft">
+        <button type="submit" class="finish-but" id="bi-finish">Report</button>
+    </div>
+</form>-->
+
+<h4 class="predstojece-rez">Report users</h4>
+<form id="signupForm" method="post">
+    <div class="bi-name-type h-container">
+        <span  class="bi-name v-container wow fadeInLeft">
+            <input id="email" oninput="emailError()" asp-for="eMailAddress"> 
+            <label class="error error-hidden" style="visibility: hidden;">Please enter a valid email address</label>
+            <label>@Model.ErrorMessage</label>
+            <label id="adressTaken"></label>
+    </div>
+    <div class="bi-buttons wow fadeInLeft">
+        <button type="submit" class="finish-but" id="bi-finish" asp-page-handler="Prijavi" style="margin-bottom: 30px">Report</button>
+    </div>
+</form>
+<div class="contact-section" id="contact">
+			<div class="container">
+				<div class="contact-section-grids">
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+						<h4>Follow Us On...</h4>
+						<ul>
+							<li><i class="fb"></i></li>
+							<li class="data"> <a href="#">  Facebook</a></li>
+						</ul>
+						<ul>
+							<li><i class="tw"></i></li>
+							<li class="data"> <a href="#">Twitter</a></li>
+						</ul>
+						<ul>
+							<li><i class="in"></i></li>
+							<li class="data"><a href="#"> Linkedin</a></li>
+						</ul>
+						<ul>
+							<li><i class="gp"></i></li>
+							<li class="data"><a href="#">Google Plus</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+<script>
+    function emailError()
+	{
+		let email=document.querySelector("#email");
+		if(validateEmail(email.value))
+		{
+			email.parentElement.querySelector(".error").style.visibility="hidden";
+			return false;
+		}
+		else
+		{
+							
+			email.parentElement.querySelector(".error").style.visibility="visible";
+			return true;
+		}
+	}
+
+    document.querySelector("#signupForm").onsubmit=function submitFormAction(e)
+	{	
+		if(emailError())
+		    return false;
+        /*else
+        {
+            let email=document.querySelector("#email").value; 
+            let str=`https://localhost:5001/ListedReservations?handler=Prijavi&email=${email}`
+            window.location.href=str;   
+        }*/
+    }
+</script>
+
+
+
+<script>
+function Rezervacija (ime, adresa, datum, brojMesta, sto) {
+    this.ime=ime;
+    this.adresa=adresa;
+    this.datum=datum;
+    this.brojMesta=brojMesta;
+    this.sto = sto;
+};
+
+var dataSet = new Array();
+var n = @Model.ListaRez.Count();
+var listaImena = @Html.Raw(Json.Serialize(Model.ListaImena));
+var listaAdresa = @Html.Raw(Json.Serialize(Model.ListaAdresa));
+var listaDatuma = @Html.Raw(Json.Serialize(Model.ListaDatuma));
+var listaBrojMesta = @Html.Raw(Json.Serialize(Model.ListaBrojMesta));
+var listaStolova = @Html.Raw(Json.Serialize(Model.ListaStolova));
+
+for(let i=0; i<n; i++){
+    dataSet.push(new Rezervacija(listaImena[i],listaAdresa[i],listaDatuma[i],listaBrojMesta[i],listaStolova[i]));
+}
+//dataSet = JSON.stringify(dataSet);
+//conslole.log(dataSet);
+ $(document).ready(function() {
+ 
+ $.fn.dataTable.moment( 'DD/MM/YYYY HH:mm' );
+    $('#example').DataTable( {
+        data: dataSet,
+        columns: [
+            { data: 'ime' },
+            { data: 'adresa' },
+            { data: 'datum' },
+            { data: 'brojMesta' },
+            { data: 'sto' }
+        ],
+        searching: false,
+         columnDefs: [{
+         target: 2, //index of column
+         type: 'datetime-moment'
+            }],
+            "order": [[2, "asc"]]
+    }
+     );
+} );
+
+</script>

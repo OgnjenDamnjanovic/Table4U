@@ -1,0 +1,170 @@
+﻿@page
+@model MyApp.Namespace.ManageUsersModel
+@{
+}
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <title>Table4U | Manage Users</title>
+    <script src="https://kit.fontawesome.com/42e45ec991.js" crossorigin="anonymous"></script>
+</head><div class="loader-wrapper" style="display: none;">
+   				 <center><div class="loader">
+						
+				</div></center>
+					<center>Deleting user...</center>
+				</div>
+<div class="manageUsers-tab">
+  <button class="manageUsers-tablinks customerLink" onclick="openUser(event, 'customerDiv')">Customers</button>
+  <button class="manageUsers-tablinks managerLink" onclick="openUser(event, 'managerDiv')">Managers</button>
+</div>
+
+<form method="POST">
+    <div class="manageUsers-tabcontent customerDiv">
+        <input type="hidden" asp-for="TKorisnik.passwordHash">
+<table id="manageCustomers" class="display customers">
+    <thead>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Email</th>
+        <th>Reports</th>
+        <th></th>
+    </thead>
+    <tbody>
+@foreach (var klijent in Model.customers)
+{
+    <tr>
+        <td>@klijent.Ime</td>
+        <td>@klijent.Prezime</td>
+        <td class="email">@klijent.eMail</td>
+        <td>@klijent.brojPrijava</td>
+        <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
+    </tr>
+}
+   </tbody>
+</table></div>
+<div class="manageUsers-tabcontent managerDiv">
+<table id="manageManagers" class="display managers">
+ <thead>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Email</th>
+        <th>Business</th>
+        <th></th>
+    </thead>
+    <tbody>
+@foreach (var klijent in Model.managers)
+{
+    <tr>
+        <td>@klijent.Ime</td>
+        <td>@klijent.Prezime</td>
+        <td class="email">@klijent.eMail</td>
+        <td><a style="color:blue;text-decoration:underline;"href=@Model.GetObjectLink(klijent.mojLokal.Id)>@klijent.mojLokal.Naziv</a></td>
+        <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
+    </tr>
+}
+   </tbody>
+   
+</table></div>
+</form>
+<div class="contact-section" id="contact">
+			<div class="container">
+				<div class="contact-section-grids">
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+						<h4>Follow Us On...</h4>
+						<ul>
+							<li><i class="fb"></i></li>
+							<li class="data"> <a href="#">  Facebook</a></li>
+						</ul>
+						<ul>
+							<li><i class="tw"></i></li>
+							<li class="data"> <a href="#">Twitter</a></li>
+						</ul>
+						<ul>
+							<li><i class="in"></i></li>
+							<li class="data"><a href="#"> Linkedin</a></li>
+						</ul>
+						<ul>
+							<li><i class="gp"></i></li>
+							<li class="data"><a href="#">Google Plus</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function () {
+    $('#manageCustomers').DataTable();
+    $('#manageManagers').DataTable();
+} );
+</script>
+<script>
+    document.querySelector("form").onsubmit=(e)=>
+    {
+        let email=e.submitter.parentElement.parentElement.querySelector(".email").innerHTML;
+        if(confirm("You are about to delete user with email:\n"+email+"\n Proceed?"))
+       {document.querySelector(".loader-wrapper").style.display="block";
+						
+    	 $(".loader-wrapper").fadeIn("slow");
+        return true;
+       }
+        else
+        
+        return false;
+
+    }
+    function openUser(evt, userTableName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("manageUsers-tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("manageUsers-tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementsByClassName(userTableName)[0].style.display = "block";
+  evt.currentTarget.className += " active";
+
+}
+
+</script>
+@if(Model.GetHttpContextTypeShown()=="false")
+{
+<script>
+    document.querySelector(".customerLink").click();
+</script>
+}
+else 
+{
+    <script>
+    document.querySelector(".managerLink").click();
+    </script>
+}
+

@@ -1,0 +1,227 @@
+﻿@page
+@model MyApp.Namespace.SeatMapModel
+@{
+}
+<head>
+    <title>Table4U | Tables</title>
+    <link href="css/all.css" rel="stylesheet"> <!--load all styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack.min.css" />
+<link rel="stylesheet" href="css/grid-stack.css"/>
+<script src="https://cdn.jsdelivr.net/npm/gridstack@1.1.1/dist/gridstack.all.js"></script>
+<script src="js/grid-stack.js"></script>
+</head>
+
+
+
+<div class="grid-stack">
+    @foreach (var sto in Model.ListaStolova)
+    {
+        @if(sto.Slobodan==true)
+        {
+            <div class="grid-stack-item" data-gs-x="@sto.gsX" data-gs-y="@sto.gsY" data-gs-width=@sto.gsWidth data-gs-height=@sto.gsHeight  data-gs-auto-position="false">
+                <div class="grid-stack-item-content" onclick="tableClick(this)" tableId=@sto.Id><div>@sto.oznaka</div> <a class="link-res"><i class="fas fa-user-plus fa-2x"></i></a></div>
+            </div>
+        }
+        else
+        {
+            <div class="grid-stack-item" data-gs-x="@sto.gsX" data-gs-y="@sto.gsY" data-gs-width=@sto.gsWidth data-gs-height=@sto.gsHeight  data-gs-auto-position="false">
+                <div class="grid-stack-item-content" onclick="tableClick(this)" tableId=@sto.Id style="background-color: #fe5f55"><div>@sto.oznaka</div> <a class="link-res"><i class="fas fa-user-slash fa-2x"></i></a></div>
+            </div>
+        }
+    }
+
+</div>
+
+
+<div id="myModal" class="modal1">
+
+  <div class="modal-content1">
+    <div class="modal-header1">
+      <span class="close5">&times;</span>
+      <h2>Today reservations</h2>
+    </div>
+    <div class="modal-body1">        
+    </div>    
+  </div>
+
+</div>
+<div class="contact-section" id="contact">
+			<div class="container">
+				<div class="contact-section-grids">
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+						<h4>Site Links</h4>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">About Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Contact Us</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Privacy Policy</a></li>
+						</ul>
+						<ul>
+							<li><i class="point"></i></li>
+							<li class="data"><a href="#">Terms of Use</a></li>
+						</ul>
+					</div>
+					<div style="width:46%;" class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+						<h4>Follow Us On...</h4>
+						<ul>
+							<li><i class="fb"></i></li>
+							<li class="data"> <a href="#">  Facebook</a></li>
+						</ul>
+						<ul>
+							<li><i class="tw"></i></li>
+							<li class="data"> <a href="#">Twitter</a></li>
+						</ul>
+						<ul>
+							<li><i class="in"></i></li>
+							<li class="data"><a href="#"> Linkedin</a></li>
+						</ul>
+						<ul>
+							<li><i class="gp"></i></li>
+							<li class="data"><a href="#">Google Plus</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+<script>
+    var x = setInterval(function() {
+        $.ajax({
+            type: "GET",
+            url: '/SeatMap?handler=Ref',
+            beforeSend: function (xhr) {
+            xhr.setRequestHeader("XSRF-TOKEN",
+                $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            success: function (response) {
+                var stolovi = document.querySelectorAll(".grid-stack-item-content");
+                for(var i=0; i<stolovi.length; i++)
+                {
+                    stolovi[i].style="background-color: #18bc9c";
+                    //stolovi[i].setAttribute("slobodan","true");
+                    var tableId = stolovi[i].getAttribute('tableId');
+                    var url = "/SeatMap?id="+tableId+"&handler=Reserve";
+                    let a = stolovi[i].querySelector(".link-res");
+                    //a.setAttribute("asp-page-handler","Reserve");
+                    a.setAttribute("href",url); //NOVO NA DOLE
+                    a.innerHTML = "";
+                    let slika = document.createElement("i");
+                    slika.className = "fas fa-user-plus fa-2x";
+                    a.appendChild(slika);
+                }
+                if(response.length!=0)
+                {
+                    for(var i=0; i<stolovi.length; i++)
+                    {
+                        var tableId = stolovi[i].getAttribute('tableId');
+                        for(var j=0;j<response.length;j++)
+                        {
+                            if(tableId == response[j])
+                            {
+                                stolovi[i].style="background-color: #fe5f55";
+                                //stolovi[i].setAttribute("slobodan","false");
+                                var tableId = stolovi[i].getAttribute('tableId');
+                                var url = "/SeatMap?id="+tableId+"&handler=Release";
+                                let a = stolovi[i].querySelector(".link-res");
+                                a.setAttribute("href",url);
+                                //a.innerHTML = "<i class="fas fa-user-slash fa-2x"></i>"; NOVO
+                                a.innerHTML = "";
+                                let slika1 = document.createElement("i");
+                                slika1.className = "fas fa-user-slash fa-2x";
+                                a.appendChild(slika1);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }, 1000); //60000
+    
+</script>
+
+
+<script>
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close5")[0];
+
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+
+<script type="text/javascript">
+    var grid = GridStack.init({
+        float: true,
+        staticGrid: true
+    });
+    //grid.movable('.grid-stack-item', false);
+    //grid.resizable('.grid-stack-item', false);
+</script>
+
+<script>
+    function tableClick(object){
+        var tableId = object.getAttribute('tableId');
+        //alert(tableId);
+        $.ajax({
+            type: "GET",
+            url: '/SeatMap?handler=Proveri',
+            beforeSend: function (xhr) {
+            xhr.setRequestHeader("XSRF-TOKEN",
+                $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            data: "Id="+tableId,
+            success: function (response) {
+                var divPrikaz = document.querySelector(".modal-body1");
+                divPrikaz.innerHTML = " ";
+                if(response.length!=0){
+                    for(var i=0;i<response.length;i++)
+                    {
+                        var lab = document.createElement("p");
+                        lab.innerHTML = response[i];
+                        divPrikaz.appendChild(lab);
+                    }
+                }
+                else
+                {
+                    var lab = document.createElement("label");
+                    lab.innerHTML = "No reservations to show!";
+                    divPrikaz.appendChild(lab);
+                }
+            }
+        });
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+
+        //var slobodan = object.getAttribute('slobodan');
+        //var dugme = document.querySelector(".res-butt");
+        //var url = "/SeatMap?id="+tableId+"&handler=";
+        /*if(slobodan=="true")
+        {
+            dugme.innerHTML = "reserve";
+            //url = url + "Reserve";
+            //dugme.setAttribute("href",url);
+            dugme.setAttribute("asp-page-handler","Reserve");
+            dugme.setAttribute("asp-route-id",tableId);
+        }
+        else
+        {
+            dugme.innerHTML = "release";
+            dugme.setAttribute("asp-page-handler","Release");
+            dugme.setAttribute("asp-route-id",tableId);
+        }*/
+    }
+</script>

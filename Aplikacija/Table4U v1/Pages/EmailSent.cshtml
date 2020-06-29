@@ -1,0 +1,23 @@
+﻿@page
+@model MyApp.Namespace.EmailSentModel
+@{
+} <head><title>Table4U | Email Sent</title></head>
+<form id="forma" method="POST">
+<br/>
+<br/>
+<br/>
+<br/>
+<h2>Thank you for registration. We will try giving you best possible experience.</h2> 
+
+<br/>
+<br/>
+<br/><br/>
+<h4>An email has been sent to <span>@Model.email</span> with the activation link. <span>@Model.txt</span></h4>
+<br/>
+<br/><br/>
+<h3>Haven't recieved any email? Click <a style="color:blue;text-decoration:underline;" href="javascript:document.getElementById('forma').submit();">here</a> to resend it.</h3>
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<br/>
+<br/>
+
+</form>
