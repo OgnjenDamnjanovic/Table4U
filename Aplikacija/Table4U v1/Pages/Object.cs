@@ -35,6 +35,7 @@ namespace MyApp.Namespace
         public List<int> listabrMesta {get;set;}
         public IList<Lokal> slicniLokali {get;set;}
         public Lokal lokal {get;set;}
+        public IList<Recenzija> recenzije {get;set;} 
         public String Message {get; set;}
         public List<string> listaSlika {get;set;}
         private readonly Table4UContext db;
@@ -52,6 +53,7 @@ namespace MyApp.Namespace
                                 .Include(x=>x.listaDogadjaja).Include(x=>x.listaRezervacija)
                                 .Include(x=>x.listaRecenzija).ToList();
             lokal = ListaLokala.Where(x=>x.Id==Id).FirstOrDefault();
+            recenzije = db.Recenzije.Where(x=>x.LokalId == Id).Include(x=>x.Korisnik).ToList();
             if(lokal.slika1!=null)
                 listaSlika.Add(lokal.slika1);
             if(lokal.slika2!=null)
@@ -131,6 +133,7 @@ namespace MyApp.Namespace
 
         public ActionResult OnGetProveri(int sto, int id, String date)
         {
+            //izvlacimo lokal i broj stolova sa zadatim brojem mesta
             var lokal1 = db.Lokali.Include(x=>x.listaStolova).Include(x=>x.listaRezervacija).Where(x=>x.Id==id).FirstOrDefault();
             var brstolova = lokal1.listaStolova.Where(x=>x.brojMesta==sto).ToList().Count();
             List<string> listakon = new List<string>();
@@ -138,9 +141,13 @@ namespace MyApp.Namespace
 
             if(!date.Equals("Year-0-Day"))
             {
+                //sva moguca vremena
                 List<string> vremena=new List<string>();
+                //vremena rezervacija u lokalu
                 List<string> vremena2 = new List<string>();
+                //svi moguci id-evi
                 List<int> idStolova = new List<int>();
+                //id-evi stolova koji su vezani za rezervacije
                 List<int> idStolova2 = new List<int>();
                 
                 string[] datum = date.Split("-");
@@ -167,6 +174,7 @@ namespace MyApp.Namespace
                     }
                 }
 
+                //kreira se matrica
                 int[,] matrica = new int[vremena.Count,brstolova];
                 for(var i=0;i<vremena.Count;i++){
                     for(var j=0;j<brstolova;j++){
@@ -174,7 +182,7 @@ namespace MyApp.Namespace
                     }
                 }
 
-
+                //u matrici da se oznace elementi
                 for(var i=0;i<vremena2.Count;i++){
                     for(var j=0;j<vremena.Count;j++){
                         if(vremena.ElementAt(j).Equals(vremena2[i]))
@@ -185,6 +193,7 @@ namespace MyApp.Namespace
                     }
                 }
 
+                //2 sata unapred i unazad se provere termini
                 for(var k=8;k<vremena.Count-9;k++){
                     List<int> lista4 = new List<int>();
                     var broj=0;
@@ -209,8 +218,31 @@ namespace MyApp.Namespace
                         listakon.Add(vremena.ElementAt(k));
                 }
                 List<string> listaZaRV = new List<string>();
-                listaZaRV=napuniListu();
+                
+                for(int i=0;i<8;i++)
+                {
+                    listaZaRV.Add(("0a:0"+i).ToString());
+                }
+                string time;
+                string[] cetvrtSat = {"00","15","30","45"};
+                for(int i=10;i<24;i++){
+                    for(int j=0;j<4;j++){
+                        time = (i+":"+cetvrtSat[j]).ToString();
+                        listaZaRV.Add(time);
+                    }
+                }
+                for(int i=0;i<2;i++){
+                    for(int j=0;j<4;j++){
+                        time = ("0"+i+":"+cetvrtSat[j]).ToString();
+                        listaZaRV.Add(time);
+                    }
+                }
+                for(int i=0;i<8;i++)
+                {
+                    listaZaRV.Add(("24:0"+i).ToString());
+                }
 
+                //da se izbace svi termini pre pocetka radnog vremena
                 var start="";
                 if(lokal1.openTime.Minute==0)
                 {
@@ -224,20 +256,31 @@ namespace MyApp.Namespace
                 var index1 = listaZaRV.IndexOf(start);
                 if(index1!=-1)
                 {
-                    for(var i=index1;i>7;i--)
+                    for(var i=index1-1;i>15;i--)
                     {
                         listakon.Add(listaZaRV[i]);
                     }
                 }
 
-                var end="";
+                //da se izbace svi termini posle kraja radnog vremena
+                var pomocniEnd="";
                 if(lokal1.closeTime.Minute==0)
                 {
-                    end = (lokal1.closeTime.Hour + ":00").ToString();
+                    pomocniEnd = (lokal1.closeTime.Hour + ":00").ToString();
                 }
                 else
                 {
-                    end = (lokal1.closeTime.Hour +":"+ lokal1.closeTime.Minute).ToString();
+                    pomocniEnd = (lokal1.closeTime.Hour +":"+ lokal1.closeTime.Minute).ToString();
+                }
+
+                var end="";
+                if(lokal1.closeTime.Hour<10)
+                {
+                    end=("0"+pomocniEnd).ToString();
+                }
+                else
+                {
+                    end=pomocniEnd;
                 }
 
                 var index2 = listaZaRV.IndexOf(end);
@@ -250,6 +293,35 @@ namespace MyApp.Namespace
                     for(var i=index2;i<(listaZaRV.Count)-9;i++)
                     {
                         listakon.Add(listaZaRV.ElementAt(i));
+                    }
+                }
+
+                //da se izbace svi termini pre trenutnog vremena i termini za naredna 2 sata
+                DateTime d = new DateTime();
+                d=DateTime.Now;
+                if(d.Day.Equals(dan) && d.Month == mesec && d.Year.Equals(godina))
+                {
+                    string p="";
+                    if(d.Minute>0 && d.Minute<15)
+                        p="00";
+                    else if(d.Minute>15 && d.Minute<30)
+                        p="15";
+                    else if(d.Minute>30 && d.Minute<45)
+                        p="30";
+                    else
+                        p="45";
+                    string vremeTrenutno = (d.Hour+":"+p).ToString();
+                    var index3 = listaZaRV.IndexOf(vremeTrenutno);
+                    if(index3!=-1)
+                    {
+                        for(int i=index3;i<index3+9;i++)
+                        {
+                            listakon.Add(listaZaRV.ElementAt(i));
+                        }
+                        for(int i=index3;i>15;i--)
+                        {
+                            listakon.Add(listaZaRV.ElementAt(i));
+                        }
                     }
                 }
                 var konacnaLista=listakon.Distinct().OrderBy(x=>x);
@@ -396,8 +468,8 @@ namespace MyApp.Namespace
                         idStolova.Remove(rezervacije.ElementAt(k).Sto.Id);
             }
             
-            /*if(idStolova.Count==0)
-            neko je u medjuvremenu rezervisao*/
+            if(idStolova.Count==0)
+                return RedirectToPage(("/Object?Id="+idObj).ToString());
 
             if(TKorisnik==null)
                 return RedirectToPage("./Login");
@@ -454,30 +526,38 @@ namespace MyApp.Namespace
             else
             {
                 Lokal Lokal = db.Lokali.Where(x=>x.Id==idObj).FirstOrDefault();
-                NovaRecenzija = new Recenzija();
-                NovaRecenzija.Komentar=komentar;
-                NovaRecenzija.Datum=DateTime.Now;
-                NovaRecenzija.Ocena=rejting;
-                NovaRecenzija.LokalId=idObj;
-                NovaRecenzija.Lokal=Lokal;
-                NovaRecenzija.KorisnikId=TKorisnik.Id;
-                NovaRecenzija.Korisnik=db.Korisnici.Where(x=>x.Id==TKorisnik.Id).FirstOrDefault();
-            
-                db.Recenzije.Add(NovaRecenzija);
-                await db.SaveChangesAsync();
+                var recenzija = db.Recenzije.Where(x=>x.LokalId==idObj && x.KorisnikId==TKorisnik.Id).FirstOrDefault();
+                if(recenzija==null)
+                {
+                    NovaRecenzija = new Recenzija();
+                    NovaRecenzija.Komentar=komentar;
+                    NovaRecenzija.Datum=DateTime.Now;
+                    NovaRecenzija.Ocena=rejting;
+                    NovaRecenzija.LokalId=idObj;
+                    NovaRecenzija.Lokal=Lokal;
+                    NovaRecenzija.KorisnikId=TKorisnik.Id;
+                    NovaRecenzija.Korisnik=db.Korisnici.Where(x=>x.Id==TKorisnik.Id).FirstOrDefault();
+                
+                    db.Recenzije.Add(NovaRecenzija);
+                    await db.SaveChangesAsync();
 
-                var ocene = db.Recenzije.Where(x=>x.LokalId==idObj).ToList();
-                float ukupno = 0;
-                for(var i =0;i<ocene.Count;i++)
-                    ukupno = ukupno+ocene[i].Ocena;
-                float ocena = ukupno/(Lokal.brOcena+1);
-                float ocena1 = (float)Math.Round(ocena,2);
-                Lokal.Ocena=ocena1;
-                Lokal.brOcena=(Lokal.brOcena)+1;
-                db.Lokali.Update(Lokal);
-                await db.SaveChangesAsync();
+                    var ocene = db.Recenzije.Where(x=>x.LokalId==idObj).ToList();
+                    float ukupno = 0;
+                    for(var i =0;i<ocene.Count;i++)
+                        ukupno = ukupno+ocene[i].Ocena;
+                    float ocena = ukupno/(Lokal.brOcena+1);
+                    float ocena1 = (float)Math.Round(ocena,2);
+                    Lokal.Ocena=ocena1;
+                    Lokal.brOcena=(Lokal.brOcena)+1;
+                    db.Lokali.Update(Lokal);
+                    await db.SaveChangesAsync();
 
-                return Redirect(("/Object?Id="+idObj).ToString());
+                    return Redirect(("/Object?Id="+idObj).ToString());
+                }
+                else
+                {
+                    return Redirect(("/Object?Id="+idObj).ToString());
+                }
             }
         }
     }

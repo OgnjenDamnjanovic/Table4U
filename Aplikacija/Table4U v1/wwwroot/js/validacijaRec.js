@@ -1,5 +1,5 @@
 function ValidacijaRec(){
-    if(komentarError('tekstKom') || selektError('selRating'))
+    if(komentarError('tekstKom') || selektErrorRec('selRating'))
         return false;
 }
 
@@ -24,29 +24,35 @@ el.oninput=function(){
 function komentarError(inputId)
 {
     var el = document.getElementById(inputId);
+    var duzina = el.value;
     if(el.value=="")
     {
-        el.parentElement.querySelector(".error").style.visibility="visible";
-        el.parentElement.querySelector(".error").style.display="block";
+        el.parentElement.querySelector(".error3").style.visibility="visible";
+        el.parentElement.querySelector(".error3").style.display="block";
         return true;
+    }
+    else if(duzina.length < 10)
+    {
+        el.parentElement.querySelector(".error3").style.visibility="visible";
+        el.parentElement.querySelector(".error3").style.display="block";
     }
     else
     {
-        el.parentElement.querySelector(".error").style.visibility="hidden";
+        el.parentElement.querySelector(".error3").style.visibility="hidden";
         return false;
     }
 }
 
 var el1 = document.getElementById('selRating');
 el1.onfocus=function(){
-    this.onblur=()=>{selektError('selRating');}
+    this.onblur=()=>{selektErrorRec('selRating');}
 }
 el1.onchange=function(){
-    selektError('selRating');
+    selektErrorRec('selRating');
 }
 
 
-function selektError(selektId)
+function selektErrorRec(selektId)
 {
     var el = document.getElementById(selektId);
     if(el.selectedIndex == 0 && el.value == 0)

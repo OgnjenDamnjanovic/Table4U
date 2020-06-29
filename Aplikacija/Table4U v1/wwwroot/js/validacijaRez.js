@@ -66,7 +66,6 @@ function selektError1(selektId)
 {
     var d = new Date();
     var el = document.getElementById(selektId);
-    console.log(el);
     var el1 = document.getElementById('godina');
     if(el.selectedIndex == 0 || ((el.selectedIndex)-1 < d.getMonth() && parseInt(el1.value)==d.getFullYear()))
     {
@@ -163,7 +162,6 @@ function selektGodina(selektId)
 {   
     var d = new Date();
     var el = document.getElementById(selektId);
-    console.log(el);
     if(el.selectedIndex == 0)
     {
         el.parentElement.querySelector(".error2").style.visibility="visible";
