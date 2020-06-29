@@ -41,8 +41,13 @@ namespace MyApp.Namespace
             if(MojLokal.listaRezervacija!=null)
                 BrRezervacija = MojLokal.listaRezervacija.Count();
             else BrRezervacija = 0;
-            if(MojLokal.listaDogadjaja!=null)
+            /*if(MojLokal.listaDogadjaja!=null)
                 BrDogadjaja = MojLokal.listaDogadjaja.Count();
+            else BrDogadjaja = 0;*/
+
+            List<Dogadjaj> dogadjaji = db.Dogadjaji.Include(x=>x.Lokal).Where(x=>x.Lokal.Id == MojLokal.Id).ToList();
+            if(dogadjaji!=null)
+                BrDogadjaja = dogadjaji.Count;
             else BrDogadjaja = 0;
 
             Lista = new List<String>();

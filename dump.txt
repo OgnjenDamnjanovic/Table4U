@@ -225,56 +225,62 @@ GO
 
 
 
-INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Tavern', 'Meze', '2020-04-19 08:00', '2020-04-19 00:00', 'Obrenoviceva 10', 'Nis', 43.320320, 21.895080, 100, 0, 4.9, 15, 'images/meze/slika.jpg', 'meze@gmail.com', 'Meze je jedna od najposecenijih kafana u Nisu.', 'images/meze/slika1.jpg', 'images/meze/slika2.jpg', 'images/meze/slika3.jpg');
+
+
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Tavern', 'Krcma', '2020-04-19 08:00', '2020-04-19 01:00', 'Cetinjska 10', 'Beograd', 44.845490, 20.407730, 100, 0, 4.8, 15, 'images/krcma/slika.jpg', 'krcma@gmail.com', 'Krcma je jedna od najposecenijih kafana, koja pruza odlicne usluge.', 'images/krcma/slika1.jpg', 'images/krcma/slika2.jpg', 'images/krcma/slika3.jpg');
+VALUES ('Tavern', 'Meze', '2020-04-19 08:00', '2020-04-19 00:00', 'Obrenoviceva 10', 'Nis', 43.320320, 21.895080, 100, 0, 2.67, 3, 'images/meze/slika.jpg', 'meze@gmail.com', 'Meze je jedna od najposecenijih kafana u Nisu.', 'images/meze/slika1.jpg', 'images/meze/slika2.jpg', 'images/meze/slika3.jpg');
+
+INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
+VALUES ('Tavern', 'Krcma', '2020-04-19 08:00', '2020-04-19 01:00', 'Cetinjska 10', 'Beograd', 44.845490, 20.407730, 100, 0, 2.33, 3, 'images/krcma/slika.jpg', 'krcma@gmail.com', 'Krcma je jedna od najposecenijih kafana, koja pruza odlicne usluge.', 'images/krcma/slika1.jpg', 'images/krcma/slika2.jpg', 'images/krcma/slika3.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3, slika4, slika5)
-VALUES ('Club', 'Tarapana', '2020-04-19 21:00', '2020-04-19 04:00', 'Geteova 22', 'Beograd', 44.841400, 20.376130, 150, 0, 4.85, 15, 'images/tarapana/slika.jpeg', 'tarapana@outlook.com', 'Tarapana je jedan od najposecenijih klubova u Beogradu, sa odlicnom muzikom.', 'images/tarapana/slika1.jpg', 'images/tarapana/slika2.jpg', 'images/tarapana/slika3.jpg', 'images/tarapana/slika4.jpg', 'images/tarapana/slika5.jpg');
+VALUES ('Club', 'Tarapana', '2020-04-19 21:00', '2020-04-19 04:00', 'Geteova 22', 'Beograd', 44.841400, 20.376130, 150, 0, 4.00, 3, 'images/tarapana/slika.jpeg', 'tarapana@outlook.com', 'Tarapana je jedan od najposecenijih klubova u Beogradu, sa odlicnom muzikom.', 'images/tarapana/slika1.jpg', 'images/tarapana/slika2.jpg', 'images/tarapana/slika3.jpg', 'images/tarapana/slika4.jpg', 'images/tarapana/slika5.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Club', 'Leto', '2020-04-19 21:00', '2020-04-19 04:00', 'Hajduk Veljkova 10', 'Novi Sad', 45.250470, 19.825170, 200, 0, 4.54, 15, 'images/leto/slika.jpg', 'leto@hotmail.com', 'Leto je jedan od najboljih klubova u kojem se mozete odlicno provesti.', 'images/leto/slika1.jpg', 'images/leto/slika2.jpg', 'images/leto/slika3.jpg');
+VALUES ('Club', 'Leto', '2020-04-19 21:00', '2020-04-19 04:00', 'Hajduk Veljkova 10', 'Novi Sad', 45.250470, 19.825170, 200, 0, 3.33, 3, 'images/leto/slika.jpg', 'leto@hotmail.com', 'Leto je jedan od najboljih klubova u kojem se mozete odlicno provesti.', 'images/leto/slika1.jpg', 'images/leto/slika2.jpg', 'images/leto/slika3.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Club', 'Freestyler', '2020-04-19 22:00', '2020-04-19 04:00', 'Kumanovska 14', 'Beograd', 44.805010, 20.473070, 100, 0, 4.6, 15, 'images/freestyler/slika.jpg', 'freestyler@gmail.com', 'Freestyler je jedan od najposecenijih klubova u Beogradu.', 'images/freestyler/slika1.jpg', 'images/freestyler/slika2.jpg', 'images/freestyler/slika3.jpg');
+VALUES ('Club', 'Freestyler', '2020-04-19 22:00', '2020-04-19 04:00', 'Kumanovska 14', 'Beograd', 44.805010, 20.473070, 100, 0, 4.33, 3, 'images/freestyler/slika.jpg', 'freestyler@gmail.com', 'Freestyler je jedan od najposecenijih klubova u Beogradu.', 'images/freestyler/slika1.jpg', 'images/freestyler/slika2.jpg', 'images/freestyler/slika3.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3, slika4, slika5)
-VALUES ('Restaurant', 'City Garden', '2020-04-19 08:00', '2020-04-19 00:00', 'Strahinjica Bana 16', 'Nis', 43.322320, 21.897550, 150, 0, 4.78, 15, 'images/city_garden/slika.jpg', 'city_garden@outlook.com', 'City Garden je jedan od najposecenijih restorana, koji pruza odlicne usluge, sa prelepim pogledom na grad.', 'images/city_garden/slika1.jpg', 'images/city_garden/slika2.jpg', 'images/city_garden/slika3.jpg', 'images/city_garden/slika4.jpg', 'images/city_garden/slika5.jpg');
+VALUES ('Restaurant', 'City Garden', '2020-04-19 08:00', '2020-04-19 00:00', 'Strahinjica Bana 16', 'Nis', 43.322320, 21.897550, 150, 0, 3.67, 3, 'images/city_garden/slika.jpg', 'city_garden@outlook.com', 'City Garden je jedan od najposecenijih restorana, koji pruza odlicne usluge, sa prelepim pogledom na grad.', 'images/city_garden/slika1.jpg', 'images/city_garden/slika2.jpg', 'images/city_garden/slika3.jpg', 'images/city_garden/slika4.jpg', 'images/city_garden/slika5.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3, slika4)
-VALUES ('Restaurant', 'Savanova', '2020-04-19 09:00', '2020-04-19 01:00', 'Lamartinova 5', 'Beograd', 44.794000, 20.467640, 200, 0, 4.7, 15, 'images/savanova/slika.jpg', 'savanova@hotmail.com', 'Savanova je jedan od novootvorenih lokala u Beogradu sa modernim ambijentom i vrhunskom uslugom.', 'images/savanova/slika1.jpg', 'images/savanova/slika2.jpg', 'images/savanova/slika3.jpg', 'images/savanova/slika4.jpg');
+VALUES ('Restaurant', 'Savanova', '2020-04-19 09:00', '2020-04-19 01:00', 'Lamartinova 5', 'Beograd', 44.794000, 20.467640, 200, 0, 3.00, 3, 'images/savanova/slika.jpg', 'savanova@hotmail.com', 'Savanova je jedan od novootvorenih lokala u Beogradu sa modernim ambijentom i vrhunskom uslugom.', 'images/savanova/slika1.jpg', 'images/savanova/slika2.jpg', 'images/savanova/slika3.jpg', 'images/savanova/slika4.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Restaurant', 'Salon 1905', '2020-04-19 08:00', '2020-04-19 00:30', 'Bore Prodanovica 20', 'Novi Sad', 45.254350, 19.830900, 150, 0, 4.9, 15, 'images/salon/slika.jpg', 'salon1905@yahoo.com', 'Salon je restoran u srcu Novog Sada u kome mozete uzivati uz najbolju hranu u najprijatnijem ambijentu.', 'images/salon/slika1.jpg', 'images/salon/slika2.jpg', 'images/salon/slika3.jpg');
+VALUES ('Restaurant', 'Salon 1905', '2020-04-19 08:00', '2020-04-19 00:30', 'Bore Prodanovica 20', 'Novi Sad', 45.254350, 19.830900, 150, 0, 3.67, 3, 'images/salon/slika.jpg', 'salon1905@yahoo.com', 'Salon je restoran u srcu Novog Sada u kome mozete uzivati uz najbolju hranu u najprijatnijem ambijentu.', 'images/salon/slika1.jpg', 'images/salon/slika2.jpg', 'images/salon/slika3.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Cafe', 'Cross', '2020-04-19 08:00', '2020-04-19 23:00', 'Branka Radicevica 12', 'Kragujevac', 44.011240, 20.912330, 300, 0, 4.93, 15, 'images/cross/slika.jpg', 'cross@outlook.com', 'Cross kafic je jedan od najposecenijih u Kragujevcu, sa odlicnim ambijentom i osobljem.', 'images/cross/slika1.jpg', 'images/cross/slika2.jpg', 'images/cross/slika3.jpg');
+VALUES ('Cafe', 'Cross', '2020-04-19 08:00', '2020-04-19 23:00', 'Branka Radicevica 12', 'Kragujevac', 44.011240, 20.912330, 300, 0, 3.00, 3, 'images/cross/slika.jpg', 'cross@outlook.com', 'Cross kafic je jedan od najposecenijih u Kragujevcu, sa odlicnim ambijentom i osobljem.', 'images/cross/slika1.jpg', 'images/cross/slika2.jpg', 'images/cross/slika3.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Cafe', 'Flo', '2020-04-19 08:00', '2020-04-19 01:00', 'Kneza Milosa 3', 'Kragujevac', 44.012770, 20.912640, 300, 0, 4.85, 15, 'images/flo/slika.jpg', 'flo@outlook.com', 'Flo je jedan od najposecenijih kafica u Kragujevcu, osoblje pruza odlicne usluge.', 'images/flo/slika1.jpg', 'images/flo/slika2.jpg', 'images/flo/slika3.jpg');
+VALUES ('Cafe', 'Flo', '2020-04-19 08:00', '2020-04-19 01:00', 'Kneza Milosa 3', 'Kragujevac', 44.012770, 20.912640, 300, 0, 4.00, 3, 'images/flo/slika.jpg', 'flo@outlook.com', 'Flo je jedan od najposecenijih kafica u Kragujevcu, osoblje pruza odlicne usluge.', 'images/flo/slika1.jpg', 'images/flo/slika2.jpg', 'images/flo/slika3.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3, slika4)
-VALUES ('Cafe', 'Divino', '2020-04-19 08:00', '2020-04-19 01:00', 'Oblakovska 11', 'Beograd', 44.791010, 20.465690, 300, 0, 4.75, 15, 'images/divino/slika.jpg', 'divino@gmail.com', 'Divino kafic se nalazi u srcu Beograda, sa prijatnim osobljem i atmosferom.', 'images/divino/slika1.jpg', 'images/divino/slika2.jpg', 'images/divino/slika3.jpg', 'images/divino/slika4.jpg');
+VALUES ('Cafe', 'Divino', '2020-04-19 08:00', '2020-04-19 01:00', 'Oblakovska 11', 'Beograd', 44.791010, 20.465690, 300, 0, 0, 0, 'images/divino/slika.jpg', 'divino@gmail.com', 'Divino kafic se nalazi u srcu Beograda, sa prijatnim osobljem i atmosferom.', 'images/divino/slika1.jpg', 'images/divino/slika2.jpg', 'images/divino/slika3.jpg', 'images/divino/slika4.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3, slika4)
-VALUES ('Cafe', 'Jazz', '2020-04-19 08:00', '2020-04-19 01:00', 'Arse Teodorovica 15', 'Novi Sad', 45.256360, 19.839750, 300, 0, 4.97, 15, 'images/jazz/slika.jpg', 'jazz@gmail.com', 'Jazz kafic se nalazi u srcu Beograda, sa prijatnim osobljem i atmosferom.', 'images/jazz/slika1.jpg', 'images/jazz/slika2.jpg', 'images/jazz/slika3.jpg', 'images/jazz/slika4.jpg');
+VALUES ('Cafe', 'Jazz', '2020-04-19 08:00', '2020-04-19 01:00', 'Arse Teodorovica 15', 'Novi Sad', 45.256360, 19.839750, 300, 0, 0, 0, 'images/jazz/slika.jpg', 'jazz@gmail.com', 'Jazz kafic se nalazi u srcu Beograda, sa prijatnim osobljem i atmosferom.', 'images/jazz/slika1.jpg', 'images/jazz/slika2.jpg', 'images/jazz/slika3.jpg', 'images/jazz/slika4.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Cafe', 'No Stress', '2020-04-19 08:00', '2020-04-19 00:00', 'Svetozara Markovica 18', 'Nis', 43.319660, 21.895990, 300, 0, 4.15, 15, 'images/no_stress/slika.jpg', 'no_stress@gmail.com', 'No Stress kafic se nalazi u srcu Nisa, sa lepim pogledom na grad i vrlo prijatnim osobljem.', 'images/no_stress/slika1.jpg', 'images/no_stress/slika2.jpg', 'images/no_stress/slika3.jpg');
+VALUES ('Cafe', 'No Stress', '2020-04-19 08:00', '2020-04-19 00:00', 'Svetozara Markovica 18', 'Nis', 43.319660, 21.895990, 300, 0, 0, 0, 'images/no_stress/slika.jpg', 'no_stress@gmail.com', 'No Stress kafic se nalazi u srcu Nisa, sa lepim pogledom na grad i vrlo prijatnim osobljem.', 'images/no_stress/slika1.jpg', 'images/no_stress/slika2.jpg', 'images/no_stress/slika3.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3, slika4)
-VALUES ('Bar', 'Industrija', '2020-04-19 08:00', '2020-04-19 02:00', 'Nade Tomic 10', 'Nis', 43.319760, 21.896350, 300, 0, 4.25, 15, 'images/industrija/slika.jpg', 'industrija@gmail.com', 'Industrija bar se nalazi u srcu Nisa, sa lepim pogledom na grad i odlicnom atmosferom.', 'images/industrija/slika1.jpg', 'images/industrija/slika2.jpg', 'images/industrija/slika3.jpg', 'images/industrija/slika4.jpg');
+VALUES ('Bar', 'Industrija', '2020-04-19 08:00', '2020-04-19 02:00', 'Nade Tomic 10', 'Nis', 43.319760, 21.896350, 300, 0, 0, 0, 'images/industrija/slika.jpg', 'industrija@gmail.com', 'Industrija bar se nalazi u srcu Nisa, sa lepim pogledom na grad i odlicnom atmosferom.', 'images/industrija/slika1.jpg', 'images/industrija/slika2.jpg', 'images/industrija/slika3.jpg', 'images/industrija/slika4.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Pub', 'Old London', '2020-04-19 08:00', '2020-04-19 02:00', 'Pavla Papa 22', 'Novi Sad', 45.255110, 19.838490, 300, 0, 4.95, 15, 'images/old_london/slika.jpg', 'old_london@gmail.com', 'Old London pub je jedini pravi pub u gradu, u kome cete se osecati kao da ste u Londonu.', 'images/old_london/slika1.jpg', 'images/old_london/slika2.jpg', 'images/old_london/slika3.jpg');
+VALUES ('Pub', 'Old London', '2020-04-19 08:00', '2020-04-19 02:00', 'Pavla Papa 22', 'Novi Sad', 45.255110, 19.838490, 300, 0, 0, 0, 'images/old_london/slika.jpg', 'old_london@gmail.com', 'Old London pub je jedini pravi pub u gradu, u kome cete se osecati kao da ste u Londonu.', 'images/old_london/slika1.jpg', 'images/old_london/slika2.jpg', 'images/old_london/slika3.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Pub', 'Lager', '2020-04-19 08:00', '2020-04-19 02:00', 'Vaska Pope 13', 'Beograd', 44.769460, 20.460250, 300, 0, 4.65, 15, 'images/lager/slika.jpg', 'lager@gmail.com', 'Lager pub je jedini pravi pub u gradu.', 'images/lager/slika1.jpg', 'images/lager/slika2.jpg', 'images/lager/slika3.jpg');
+VALUES ('Pub', 'Lager', '2020-04-19 08:00', '2020-04-19 02:00', 'Vaska Pope 13', 'Beograd', 44.769460, 20.460250, 300, 0, 0, 0, 'images/lager/slika.jpg', 'lager@gmail.com', 'Lager pub je jedini pravi pub u gradu.', 'images/lager/slika1.jpg', 'images/lager/slika2.jpg', 'images/lager/slika3.jpg');
 
 INSERT INTO Lokali (Tip, Naziv, openTime, closeTime, Adresa, Grad, latitude, longitude, maxKapacitet, trenutniKapacitet, ocena, brOcena, nazivSlike, email, opis, slika1, slika2, slika3)
-VALUES ('Pub', 'Pivara', '2020-04-19 08:00', '2020-04-19 02:00', 'Cara Dusana 15', 'Nis', 43.317180, 21.895420, 300, 0, 4.65, 15, 'images/pivara/slika.jpg', 'lager@gmail.com', 'Pivara je jedini pravi pub u gradu, sa velikim izborom piva.', 'images/pivara/slika1.jpg', 'images/pivara/slika2.jpg', 'images/pivara/slika3.jpg');
+VALUES ('Pub', 'Pivara', '2020-04-19 08:00', '2020-04-19 02:00', 'Cara Dusana 15', 'Nis', 43.317180, 21.895420, 300, 0, 0, 0, 'images/pivara/slika.jpg', 'lager@gmail.com', 'Pivara je jedini pravi pub u gradu, sa velikim izborom piva.', 'images/pivara/slika1.jpg', 'images/pivara/slika2.jpg', 'images/pivara/slika3.jpg');
+
+
+
 
 
 
@@ -343,6 +349,8 @@ VALUES ('Akustika', 'Ovaj dogadjaj je jedan od najpopularnijih.', '2020-07-13 20
 
 
 
+
+
 INSERT INTO Korisnici (tipKorisnika, Ime, Prezime, eMail, Sifra, mojLokalId, brojPrijava, validanNalog, hash)
 VALUES ('Gost', 'Uros', 'Ilic', 'uros.ilic1@elfak.rs', 'uros123', NULL, 0, 1, '9b338a45-ccbe-4d32-88ac-8770b41a6ad0');
 
@@ -353,7 +361,7 @@ INSERT INTO Korisnici (tipKorisnika, Ime, Prezime, eMail, Sifra, mojLokalId, bro
 VALUES ('Gost', 'Nikola', 'Vidanovic', 'nikola.vidanovic1@elfak.rs', 'nikola123', NULL, 1, 1, '9b338a45-ccbe-4d32-88ac-8770b41a6ad2');
 
 INSERT INTO Korisnici (tipKorisnika, Ime, Prezime, eMail, Sifra, mojLokalId, brojPrijava, validanNalog, hash)
-VALUES ('Gost', 'Ognjen', 'Damnjanovic', 'ognjen.damnjanovic1@elfak.rs', 'ognjen123', NULL, 0, 1, '4c8dcab1-f7f3-452a-bd6f-8770b41a6ad3');
+VALUES ('Gost', 'Ognjen', 'Damnjanovic', 'ognjen.damnjanovic@elfak.rs', '12345', NULL, 0, 1, '4c8dcab1-f7f3-452a-bd6f-8770b41a6ad3');
 
 INSERT INTO Korisnici (tipKorisnika, Ime, Prezime, eMail, Sifra, mojLokalId, brojPrijava, validanNalog, hash)
 VALUES ('Gost', 'Marko', 'Markovic', 'marko.markovic@elfak.rs', 'marko123', NULL, 1, 1, '9b338a45-ccbe-4d32-88ac-8770b41a6ad4');
@@ -422,7 +430,11 @@ INSERT INTO Korisnici (tipKorisnika, Ime, Prezime, eMail, Sifra, mojLokalId, bro
 VALUES ('Menadzer', 'Andrija', 'Gavrilovic', 'andrija.gavrilovic@elfak.rs', 'andrija123', 16, 6, 1, '12345bc5-caae-1232-gabg-87a22446622');
 
 INSERT INTO Korisnici (tipKorisnika, Ime, Prezime, eMail, Sifra, mojLokalId, brojPrijava, validanNalog, hash)
-VALUES ('Menadzer', 'Dejan', 'Milic', 'dejan.milic@elfak.rs', 'dejan123', 17, 0, 1, 'sr5habc5-caae-1232-gabg-87a22446622');
+VALUES ('Menadzer', 'Dejan', 'Milic', 'dejan.milic1@elfak.rs', 'dejan123', 17, 0, 1, 'sr5habc5-caae-1232-gabg-87a22446622');
+
+INSERT INTO Korisnici (tipKorisnika, Ime, Prezime, eMail, Sifra, mojLokalId, brojPrijava, validanNalog, hash)
+VALUES ('Admin', 'Ognjen', 'Damnjanovic', 'ognjen@elfak.rs', '12345', NULL, 0, 1, '9b338a45-ccbe-4d32-88ac-8220b41a6ad0');
+
 
 
 
@@ -516,6 +528,7 @@ VALUES (5, 'Cista desetka!', 4, '2020-04-14 22:40', 3);
 
 INSERT INTO Recenzije (Ocena, Komentar, KorisnikId, Datum, LokalId)
 VALUES (3, 'Moze bolje..', 3, '2020-04-11 22:23', 9);
+
 
 
 
@@ -858,259 +871,302 @@ VALUES (8, 0, 17, 6, 5, 4, 2, 2);
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 1, '2020-06-28 10:00', '2020-06-27 10:00', 1);
+VALUES (1, 1, '2020-06-29 10:00', '2020-06-27 10:00', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 1, '2020-06-28 10:30', '2020-06-27 12:55', 2);
+VALUES (2, 1, '2020-06-29 10:30', '2020-06-27 12:55', 2);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 1, '2020-06-28 09:15', '2020-06-27 16:53', 3);
+VALUES (3, 1, '2020-06-29 09:15', '2020-06-27 16:53', 3);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 1, '2020-06-28 12:00', '2020-06-27 11:05', 1);
+VALUES (4, 1, '2020-06-29 12:00', '2020-06-27 11:05', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (5, 1, '2020-06-28 16:00', '2020-06-27 09:32', 1);
+VALUES (5, 1, '2020-06-29 16:00', '2020-06-27 09:32', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 1, '2020-06-28 20:00', '2020-06-27 16:53', 1);
+VALUES (6, 1, '2020-06-29 20:00', '2020-06-27 16:53', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 1, '2020-06-28 12:00', '2020-06-27 16:03', 4);
+VALUES (7, 1, '2020-06-29 12:00', '2020-06-27 16:03', 4);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 1, '2020-06-28 11:00', '2020-06-27 09:53', 5);
+VALUES (8, 1, '2020-06-29 11:00', '2020-06-27 09:53', 5);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 1, '2020-06-28 11:00', '2020-06-27 17:15', 6);
+VALUES (9, 1, '2020-06-29 11:00', '2020-06-27 17:15', 6);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 1, '2020-06-28 20:00', '2020-06-27 18:41', 2);
-
-
-
-
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 1, '2020-06-29 10:00', '2020-06-27 17:53', 1);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 1, '2020-06-29 10:30', '2020-06-27 16:15', 2);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 1, '2020-06-29 12:30', '2020-06-27 17:53', 2);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 1, '2020-06-29 09:15', '2020-06-27 11:53', 3);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 1, '2020-06-29 12:00', '2020-06-27 12:23', 1);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (5, 1, '2020-06-29 16:00', '2020-06-27 16:20', 1);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 1, '2020-06-29 20:00', '2020-06-27 16:09', 1);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 1, '2020-06-29 12:00', '2020-06-27 14:01', 4);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 1, '2020-06-29 11:00', '2020-06-27 11:53', 5);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 1, '2020-06-29 11:00', '2020-06-27 16:53', 6);
-
-INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 1, '2020-06-29 20:00', '2020-06-27 16:00', 2);
+VALUES (10, 1, '2020-06-29 20:00', '2020-06-27 18:41', 2);
 
 
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 1, '2020-06-30 10:00', '2020-06-27 16:23', 1);
+VALUES (1, 1, '2020-06-30 10:00', '2020-06-27 10:00', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 1, '2020-06-30 10:30', '2020-06-27 21:34', 2);
+VALUES (2, 1, '2020-06-30 10:30', '2020-06-27 12:55', 2);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
 VALUES (3, 1, '2020-06-30 09:15', '2020-06-27 16:53', 3);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 1, '2020-06-30 12:00', '2020-06-27 16:12', 1);
+VALUES (4, 1, '2020-06-30 12:00', '2020-06-27 11:05', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (5, 1, '2020-06-30 16:00', '2020-06-27 21:21', 1);
+VALUES (5, 1, '2020-06-30 16:00', '2020-06-27 09:32', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 1, '2020-06-30 20:00', '2020-06-27 14:15', 1);
+VALUES (6, 1, '2020-06-30 20:00', '2020-06-27 16:53', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 1, '2020-06-30 12:00', '2020-06-27 12:27', 4);
+VALUES (7, 1, '2020-06-30 12:00', '2020-06-27 16:03', 4);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 1, '2020-06-30 11:00', '2020-06-27 22:37', 6);
+VALUES (8, 1, '2020-06-30 11:00', '2020-06-27 09:53', 5);
 
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (9, 1, '2020-06-30 11:00', '2020-06-27 17:15', 6);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (10, 1, '2020-06-30 20:00', '2020-06-27 18:41', 2);
+
+
+
+
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (1, 1, '2020-07-01 10:00', '2020-06-27 17:53', 1);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (2, 1, '2020-07-01 10:30', '2020-06-27 16:15', 2);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (2, 1, '2020-07-01 12:30', '2020-06-27 17:53', 2);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (3, 1, '2020-07-01 09:15', '2020-06-27 11:53', 3);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (4, 1, '2020-07-01 12:00', '2020-06-27 12:23', 1);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (5, 1, '2020-07-01 16:00', '2020-06-27 16:20', 1);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (6, 1, '2020-07-01 20:00', '2020-06-27 16:09', 1);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (7, 1, '2020-07-01 12:00', '2020-06-27 14:01', 4);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (8, 1, '2020-07-01 11:00', '2020-06-27 11:53', 5);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (9, 1, '2020-07-01 11:00', '2020-06-27 16:53', 6);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (10, 1, '2020-07-01 20:00', '2020-06-27 16:00', 2);
+
+
+
 
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (1, 1, '2020-07-02 10:00', '2020-06-27 16:23', 1);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (2, 1, '2020-07-02 10:30', '2020-06-27 21:34', 2);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (3, 1, '2020-07-02 09:15', '2020-06-27 16:53', 3);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (4, 1, '2020-07-02 12:00', '2020-06-27 16:12', 1);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (5, 1, '2020-07-02 16:00', '2020-06-27 21:21', 1);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (6, 1, '2020-07-02 20:00', '2020-06-27 14:15', 1);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (7, 1, '2020-07-02 12:00', '2020-06-27 12:27', 4);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (9, 1, '2020-07-02 11:00', '2020-06-27 22:37', 6);
+
 
 
+
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 1, '2020-07-01 10:00', '2020-06-27 10:00', 1);
+VALUES (1, 1, '2020-07-03 10:00', '2020-06-27 10:00', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 1, '2020-07-01 10:30', '2020-06-27 12:55', 2);
+VALUES (2, 1, '2020-07-03 10:30', '2020-06-27 12:55', 2);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 1, '2020-07-01 09:15', '2020-06-27 16:53', 3);
+VALUES (3, 1, '2020-07-03 09:15', '2020-06-27 16:53', 3);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 1, '2020-07-01 12:00', '2020-06-27 16:03', 4);
+VALUES (7, 1, '2020-07-03 12:00', '2020-06-27 16:03', 4);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 1, '2020-07-01 11:00', '2020-06-27 09:53', 5);
+VALUES (8, 1, '2020-07-03 11:00', '2020-06-27 09:53', 5);
 
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 1, '2020-07-02 10:00', '2020-06-27 10:00', 1);
+VALUES (1, 1, '2020-07-04 10:00', '2020-06-27 10:00', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 1, '2020-07-02 12:00', '2020-06-27 11:05', 1);
+VALUES (4, 1, '2020-07-04 12:00', '2020-06-27 11:05', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (5, 1, '2020-07-02 16:00', '2020-06-27 09:32', 1);
+VALUES (5, 1, '2020-07-04 16:00', '2020-06-27 09:32', 1);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 1, '2020-07-02 20:00', '2020-06-27 18:41', 2);
+VALUES (10, 1, '2020-07-04 20:00', '2020-06-27 18:41', 2);
+
 
 
 
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 7, '2020-06-28 10:00', '2020-06-27 17:34', 42);
+VALUES (1, 7, '2020-06-29 10:00', '2020-06-27 17:34', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 7, '2020-06-28 9:30', '2020-06-27 18:23', 43);
+VALUES (4, 7, '2020-06-29 9:30', '2020-06-27 18:23', 43);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 7, '2020-06-28 10:45', '2020-06-27 22:11', 44);
+VALUES (9, 7, '2020-06-29 10:45', '2020-06-27 22:11', 44);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 7, '2020-06-28 11:15', '2020-06-27 16:53', 45);
+VALUES (6, 7, '2020-06-29 11:15', '2020-06-27 16:53', 45);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 7, '2020-06-28 14:00', '2020-06-27 08:53', 42);
+VALUES (2, 7, '2020-06-29 14:00', '2020-06-27 08:53', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 7, '2020-06-28 16:30', '2020-06-27 16:56', 43);
+VALUES (3, 7, '2020-06-29 16:30', '2020-06-27 16:56', 43);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (5, 7, '2020-06-28 20:00', '2020-06-27 09:03', 44);
+VALUES (5, 7, '2020-06-29 20:00', '2020-06-27 09:03', 44);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 7, '2020-06-28 21:45', '2020-06-27 23:53', 45);
+VALUES (7, 7, '2020-06-29 21:45', '2020-06-27 23:53', 45);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 7, '2020-06-28 20:00', '2020-06-27 16:00', 42);
+VALUES (8, 7, '2020-06-29 20:00', '2020-06-27 16:00', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 7, '2020-06-28 12:15', '2020-06-27 16:34', 43);
+VALUES (10, 7, '2020-06-29 12:15', '2020-06-27 16:34', 43);
+
+
 
 
 
+
+
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (1, 7, '2020-06-30 10:00', '2020-06-27 17:34', 42);
 
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (4, 7, '2020-06-30 9:30', '2020-06-27 18:23', 43);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 7, '2020-06-29 10:00', '2020-06-20 12:34', 42);
+VALUES (9, 7, '2020-06-30 10:45', '2020-06-27 22:11', 44);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 7, '2020-06-29 9:30', '2020-06-27 16:05', 43);
+VALUES (6, 7, '2020-06-30 11:15', '2020-06-27 16:53', 45);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 7, '2020-06-29 10:45', '2020-06-28 14:07', 44);
+VALUES (2, 7, '2020-06-30 14:00', '2020-06-27 08:53', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 7, '2020-06-29 11:15', '2020-06-20 20:34', 45);
+VALUES (3, 7, '2020-06-30 16:30', '2020-06-27 16:56', 43);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 7, '2020-06-29 14:00', '2020-06-28 22:52', 42);
+VALUES (5, 7, '2020-06-30 20:00', '2020-06-27 09:03', 44);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 7, '2020-06-29 16:30', '2020-06-20 09:09', 43);
+VALUES (7, 7, '2020-06-30 21:45', '2020-06-27 23:53', 45);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (5, 7, '2020-06-29 20:00', '2020-06-27 23:25', 44);
+VALUES (8, 7, '2020-06-30 20:00', '2020-06-27 16:00', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 7, '2020-06-29 21:45', '2020-06-28 08:53', 45);
+VALUES (10, 7, '2020-06-30 12:15', '2020-06-27 16:34', 43);
 
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 7, '2020-06-30 10:00', '2020-06-27 13:53', 42);
+VALUES (1, 7, '2020-07-01 10:00', '2020-06-27 13:53', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 7, '2020-06-30 9:30', '2020-06-27 16:25', 43);
+VALUES (4, 7, '2020-07-01 9:30', '2020-06-27 16:25', 43);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 7, '2020-06-30 10:45', '2020-06-27 16:43', 44);
+VALUES (9, 7, '2020-07-01 10:45', '2020-06-27 16:43', 44);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 7, '2020-06-30 11:15', '2020-06-27 22:51', 45);
+VALUES (6, 7, '2020-07-01 11:15', '2020-06-27 22:51', 45);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 7, '2020-06-30 14:00', '2020-06-27 16:58', 42);
+VALUES (2, 7, '2020-07-01 14:00', '2020-06-27 16:58', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 7, '2020-06-30 16:30', '2020-06-27 23:09', 43);
+VALUES (3, 7, '2020-07-01 16:30', '2020-06-27 23:09', 43);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 7, '2020-06-30 21:45', '2020-06-27 09:33', 45);
+VALUES (7, 7, '2020-07-01 21:45', '2020-06-27 09:33', 45);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 7, '2020-06-30 20:00', '2020-06-27 10:07', 42);
+VALUES (8, 7, '2020-07-01 20:00', '2020-06-27 10:07', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 7, '2020-06-30 12:15', '2020-06-27 16:00', 43);
+VALUES (10, 7, '2020-07-01 12:15', '2020-06-27 16:00', 43);
 
 
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 7, '2020-07-01 10:00', '2020-06-01 17:34', 42);
+VALUES (1, 7, '2020-07-02 10:00', '2020-06-01 17:34', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 7, '2020-07-01 9:30', '2020-06-01 18:23', 43);
+VALUES (4, 7, '2020-07-02 9:30', '2020-06-01 18:23', 43);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 7, '2020-07-01 10:45', '2020-06-01 22:11', 44);
+VALUES (9, 7, '2020-07-02 10:45', '2020-06-01 22:11', 44);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 7, '2020-07-01 11:15', '2020-06-01 16:53', 45);
+VALUES (6, 7, '2020-07-02 11:15', '2020-06-01 16:53', 45);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 7, '2020-07-01 14:00', '2020-06-01 08:53', 42);
+VALUES (2, 7, '2020-07-02 14:00', '2020-06-01 08:53', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 7, '2020-07-01 12:15', '2020-06-01 16:34', 43);
+VALUES (10, 7, '2020-07-02 12:15', '2020-06-01 16:34', 43);
 
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 7, '2020-07-02 10:00', '2020-06-27 17:34', 42);
+VALUES (1, 7, '2020-07-03 10:00', '2020-06-27 17:34', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 7, '2020-07-02 9:30', '2020-06-27 18:23', 43);
+VALUES (4, 7, '2020-07-03 9:30', '2020-06-27 18:23', 43);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 7, '2020-07-02 10:45', '2020-06-27 22:11', 44);
+VALUES (9, 7, '2020-07-03 10:45', '2020-06-27 22:11', 44);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 7, '2020-07-02 20:00', '2020-06-27 16:00', 42);
+VALUES (8, 7, '2020-07-03 20:00', '2020-06-27 16:00', 42);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 7, '2020-07-02 12:15', '2020-06-27 16:34', 43);
+VALUES (10, 7, '2020-07-03 12:15', '2020-06-27 16:34', 43);
 
 
 
@@ -1119,141 +1175,152 @@ VALUES (10, 7, '2020-07-02 12:15', '2020-06-27 16:34', 43);
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 2, '2020-06-28 10:00', '2020-06-20 16:53', 24);
+VALUES (1, 2, '2020-06-29 10:00', '2020-06-20 16:53', 24);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 2, '2020-06-28 10:30', '2020-06-18 16:45', 25);
+VALUES (2, 2, '2020-06-29 10:30', '2020-06-18 16:45', 25);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 2, '2020-06-28 09:30', '2020-06-14 12:23', 26);
+VALUES (3, 2, '2020-06-29 09:30', '2020-06-14 12:23', 26);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 2, '2020-06-28 09:45', '2020-06-22 16:33', 27);
+VALUES (4, 2, '2020-06-29 09:45', '2020-06-22 16:33', 27);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (5, 2, '2020-06-28 11:30', '2020-06-26 14:55', 28);
+VALUES (5, 2, '2020-06-29 11:30', '2020-06-26 14:55', 28);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 2, '2020-06-28 13:00', '2020-06-26 16:34', 29);
+VALUES (6, 2, '2020-06-29 13:00', '2020-06-26 16:34', 29);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 2, '2020-06-28 14:30', '2020-06-27 16:53', 24);
+VALUES (7, 2, '2020-06-29 14:30', '2020-06-27 16:53', 24);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 2, '2020-06-28 13:00', '2020-06-25 20:53', 25);
+VALUES (8, 2, '2020-06-29 13:00', '2020-06-25 20:53', 25);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 2, '2020-06-28 17:00', '2020-06-20 12:23', 26);
+VALUES (9, 2, '2020-06-29 17:00', '2020-06-20 12:23', 26);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 2, '2020-06-28 17:00', '2020-06-20 22:53', 27);
+VALUES (9, 2, '2020-06-29 17:00', '2020-06-20 22:53', 27);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 2, '2020-06-28 20:00', '2020-06-20 16:43', 28);
+VALUES (10, 2, '2020-06-29 20:00', '2020-06-20 16:43', 28);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 2, '2020-06-28 20:00', '2020-06-24 12:53', 29);
+VALUES (10, 2, '2020-06-29 20:00', '2020-06-24 12:53', 29);
+
+
+
 
 
 
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (1, 2, '2020-06-30 10:00', '2020-06-20 16:53', 24);
+
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (2, 2, '2020-06-30 10:30', '2020-06-18 16:45', 25);
 
+INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
+VALUES (3, 2, '2020-06-30 09:30', '2020-06-14 12:23', 26);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 2, '2020-06-29 10:00', '2020-06-27 16:53', 24);
+VALUES (4, 2, '2020-06-30 09:45', '2020-06-22 16:33', 27);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 2, '2020-06-29 10:30', '2020-06-27 16:53', 25);
+VALUES (5, 2, '2020-06-30 11:30', '2020-06-26 14:55', 28);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 2, '2020-06-29 09:30', '2020-06-28 16:53', 26);
+VALUES (6, 2, '2020-06-30 13:00', '2020-06-26 16:34', 29);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 2, '2020-06-29 09:45', '2020-06-28 07:53', 27);
+VALUES (7, 2, '2020-06-30 14:30', '2020-06-27 16:53', 24);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (5, 2, '2020-06-29 11:30', '2020-06-20 16:53', 28);
+VALUES (8, 2, '2020-06-30 13:00', '2020-06-25 20:53', 25);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 2, '2020-06-29 13:00', '2020-06-20 06:23', 29);
+VALUES (9, 2, '2020-06-30 17:00', '2020-06-20 12:23', 26);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 2, '2020-06-29 14:30', '2020-06-26 16:14', 24);
+VALUES (9, 2, '2020-06-30 17:00', '2020-06-20 22:53', 27);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 2, '2020-06-29 13:00', '2020-06-20 16:25', 25);
+VALUES (10, 2, '2020-06-30 20:00', '2020-06-20 16:43', 28);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 2, '2020-06-29 20:00', '2020-06-21 14:27', 29);
+VALUES (10, 2, '2020-06-30 20:00', '2020-06-24 12:53', 29);
+
 
 
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 2, '2020-06-30 10:00', '2020-06-26 16:22', 24);
+VALUES (1, 2, '2020-07-01 10:00', '2020-06-26 16:22', 24);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 2, '2020-06-30 10:30', '2020-06-26 16:55', 25);
+VALUES (2, 2, '2020-07-01 10:30', '2020-06-26 16:55', 25);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 2, '2020-06-30 09:30', '2020-06-26 16:53', 26);
+VALUES (3, 2, '2020-07-01 09:30', '2020-06-26 16:53', 26);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 2, '2020-06-30 09:45', '2020-06-26 10:53', 27);
+VALUES (4, 2, '2020-07-01 09:45', '2020-06-26 10:53', 27);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (5, 2, '2020-06-30 11:30', '2020-06-26 16:53', 28);
+VALUES (5, 2, '2020-07-01 11:30', '2020-06-26 16:53', 28);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (6, 2, '2020-06-30 13:00', '2020-06-26 10:53', 29);
+VALUES (6, 2, '2020-07-01 13:00', '2020-06-26 10:53', 29);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 2, '2020-06-30 14:30', '2020-06-26 07:53', 24);
+VALUES (7, 2, '2020-07-01 14:30', '2020-06-26 07:53', 24);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 2, '2020-06-30 13:00', '2020-06-26 18:56', 25);
+VALUES (8, 2, '2020-07-01 13:00', '2020-06-26 18:56', 25);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 2, '2020-06-30 17:00', '2020-06-26 06:56', 26);
+VALUES (9, 2, '2020-07-01 17:00', '2020-06-26 06:56', 26);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 2, '2020-06-30 17:00', '2020-06-26 13:34', 27);
+VALUES (9, 2, '2020-07-01 17:00', '2020-06-26 13:34', 27);
 
 
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 2, '2020-07-01 10:00', '2020-06-20 16:53', 24);
+VALUES (1, 2, '2020-07-02 10:00', '2020-06-20 16:53', 24);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 2, '2020-07-01 10:30', '2020-06-18 16:45', 25);
+VALUES (2, 2, '2020-07-02 10:30', '2020-06-18 16:45', 25);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 2, '2020-07-01 09:30', '2020-06-14 12:23', 26);
+VALUES (3, 2, '2020-07-02 09:30', '2020-06-14 12:23', 26);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (4, 2, '2020-07-01 09:45', '2020-06-22 16:33', 27);
+VALUES (4, 2, '2020-07-02 09:45', '2020-06-22 16:33', 27);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (8, 2, '2020-07-01 13:00', '2020-06-25 20:53', 25);
+VALUES (8, 2, '2020-07-02 13:00', '2020-06-25 20:53', 25);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (9, 2, '2020-07-01 17:00', '2020-06-20 12:23', 26);
+VALUES (9, 2, '2020-07-02 17:00', '2020-06-20 12:23', 26);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (10, 2, '2020-07-01 20:00', '2020-06-24 12:53', 29);
+VALUES (10, 2, '2020-07-02 20:00', '2020-06-24 12:53', 29);
 
 
 
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (1, 2, '2020-07-02 10:00', '2020-06-27 16:53', 24);
+VALUES (1, 2, '2020-07-03 10:00', '2020-06-27 16:53', 24);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (2, 2, '2020-07-02 10:30', '2020-06-27 16:53', 25);
+VALUES (2, 2, '2020-07-03 10:30', '2020-06-27 16:53', 25);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (3, 2, '2020-07-02 09:30', '2020-06-28 16:53', 26);
+VALUES (3, 2, '2020-07-03 09:30', '2020-06-28 16:53', 26);
 
 INSERT INTO Rezervacije (KorisnikId, LokalId, Vreme, VremeKreiranja, StoId)
-VALUES (7, 2, '2020-07-02 14:30', '2020-06-26 16:14', 24);
+VALUES (7, 2, '2020-07-03 14:30', '2020-06-26 16:14', 24);
 

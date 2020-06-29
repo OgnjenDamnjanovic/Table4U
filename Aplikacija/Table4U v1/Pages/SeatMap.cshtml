@@ -62,7 +62,11 @@
                     var url = "/SeatMap?id="+tableId+"&handler=Reserve";
                     let a = stolovi[i].querySelector(".link-res");
                     //a.setAttribute("asp-page-handler","Reserve");
-                    a.setAttribute("href",url);
+                    a.setAttribute("href",url); //NOVO NA DOLE
+                    a.innerHTML = "";
+                    let slika = document.createElement("i");
+                    slika.className = "fas fa-user-plus fa-2x";
+                    a.appendChild(slika);
                 }
                 if(response.length!=0)
                 {
@@ -79,6 +83,11 @@
                                 var url = "/SeatMap?id="+tableId+"&handler=Release";
                                 let a = stolovi[i].querySelector(".link-res");
                                 a.setAttribute("href",url);
+                                //a.innerHTML = "<i class="fas fa-user-slash fa-2x"></i>"; NOVO
+                                a.innerHTML = "";
+                                let slika1 = document.createElement("i");
+                                slika1.className = "fas fa-user-slash fa-2x";
+                                a.appendChild(slika1);
                             }
                         }
                     }
