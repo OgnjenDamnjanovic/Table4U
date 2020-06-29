@@ -4,12 +4,13 @@
 }
 
 <head>
+	
 		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 	  
-	<title>Table4U | Business register</title>
+	<title>Table4U | Edit Business</title>
 	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="  crossorigin=""/>
      <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="       crossorigin=""></script>
 	 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
@@ -670,9 +671,10 @@ window.onload = function(){
 			
 
 					function nameError()
-					{
+					{	
 						let name=document.querySelector("#name-val");
-						if(name.value=="")
+						
+						if(name.value==""||name.value.replace(/ /g,"").length==0)
 						{
 							name.parentElement.querySelector("label").style.visibility="visible";
 							
@@ -688,7 +690,7 @@ window.onload = function(){
 					function addressError()
 					{
 							let address=document.querySelector("#address-val");
-						if(address.value=="")
+						if(address.value==""||address.value.replace(/ /g,"").length==0)
 						{
 							address.parentElement.querySelector("label").style.visibility="visible";
 							
@@ -704,7 +706,7 @@ window.onload = function(){
 					function cityError()
 					{
 						let city=document.querySelector("#city-val");
-						if(city.value=="")
+						if(city.value==""||city.value.replace(/ /g,"").length==0)
 						{
 							city.parentElement.querySelector("label").style.visibility="visible";
 								return true;
@@ -794,7 +796,7 @@ window.onload = function(){
 					{
 						let desc =document.querySelector(".bi-description-val");
 					
-						if(desc.value=="")
+						if(desc.value==""||desc.value.replace(/ /g,"").length==0)
 						{
 							desc.parentElement.querySelector("label").style.visibility="visible";
 							return true;
@@ -986,77 +988,8 @@ window.onload = function(){
 	     </div>
 	    </div>
 
-<div class="clearfix"></div>
-		<div class="contact-section" id="contact">
-			<div class="container">
-				<div class="contact-section-grids">
-					<div class="col-md-3 contact-section-grid">
-						<h4>Site Links</h4>
-						<ul>
-							<li><i class="point"></i></li>
-							<li class="data"><a href="#">About Us</a></li>
-						</ul>
-						<ul>
-							<li><i class="point"></i></li>
-							<li class="data"><a href="#">Contact Us</a></li>
-						</ul>
-						<ul>
-							<li><i class="point"></i></li>
-							<li class="data"><a href="#">Privacy Policy</a></li>
-						</ul>
-						<ul>
-							<li><i class="point"></i></li>
-							<li class="data"><a href="#">Terms of Use</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3 contact-section-grid">
-						<h4>Site Links</h4>
-						<ul>
-							<li><i class="point"></i></li>
-							<li class="data"><a href="#">About Us</a></li>
-						</ul>
-						<ul>
-							<li><i class="point"></i></li>
-							<li class="data"><a href="#">Contact Us</a></li>
-						</ul>
-						<ul>
-							<li><i class="point"></i></li>
-							<li class="data"><a href="#">Privacy Policy</a></li>
-						</ul>
-						<ul>
-							<li><i class="point"></i></li>
-							<li class="data"><a href="#">Terms of Use</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3 contact-section-grid">
-						<h4>Follow Us On...</h4>
-						<ul>
-							<li><i class="fb"></i></li>
-							<li class="data"> <a href="#">  Facebook</a></li>
-						</ul>
-						<ul>
-							<li><i class="tw"></i></li>
-							<li class="data"> <a href="#">Twitter</a></li>
-						</ul>
-						<ul>
-							<li><i class="in"></i></li>
-							<li class="data"><a href="#"> Linkedin</a></li>
-						</ul>
-						<ul>
-							<li><i class="gp"></i></li>
-							<li class="data"><a href="#">Google Plus</a></li>
-						</ul>
-					</div>
-					<div class="col-md-3 contact-section-grid nth-grid">
-						<h4>Subscribe Newsletter</h4>
-						<p>To get latest updates and food deals every week</p>
-						<input type="text" class="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-						<input type="submit" value="submit">
-						</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>
+
+	
 	</div>
 	<!-- content-section-ends -->
     <!--<script type="text/javascript">

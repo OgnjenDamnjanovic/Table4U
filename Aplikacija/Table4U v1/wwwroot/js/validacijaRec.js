@@ -24,19 +24,14 @@ el.oninput=function(){
 function komentarError(inputId)
 {
     var el = document.getElementById(inputId);
-    var duzina = el.value;
+   
     if(el.value=="")
     {
         el.parentElement.querySelector(".error3").style.visibility="visible";
         el.parentElement.querySelector(".error3").style.display="block";
         return true;
     }
-    else if(duzina.length < 10)
-    {
-        el.parentElement.querySelector(".error3").style.visibility="visible";
-        el.parentElement.querySelector(".error3").style.display="block";
-    }
-    else
+    else 
     {
         el.parentElement.querySelector(".error3").style.visibility="hidden";
         return false;

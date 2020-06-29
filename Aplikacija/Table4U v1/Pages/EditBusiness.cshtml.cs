@@ -183,11 +183,34 @@ namespace MyApp.Namespace
          {
              RedirectToPage("/Error?errorCode="+fe);
          }
-           if(DateTime.Compare(noviLokal.openTime,noviLokal.closeTime)==0)
-         {
-           noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-1);
-         }
+        if(noviLokal.openTime.Minute<15&&noviLokal.openTime.Minute>0)
+        noviLokal.openTime=noviLokal.openTime.AddMinutes(-(noviLokal.openTime.Minute));
+        if(noviLokal.openTime.Minute<30&&noviLokal.openTime.Minute>15)
+        noviLokal.openTime=noviLokal.openTime.AddMinutes(-(noviLokal.openTime.Minute-15));
+         if(noviLokal.openTime.Minute<45&&noviLokal.openTime.Minute>30)
+        noviLokal.openTime=noviLokal.openTime.AddMinutes(-(noviLokal.openTime.Minute-30));
+         if(noviLokal.openTime.Minute>45)
+        noviLokal.openTime=noviLokal.openTime.AddMinutes(-(noviLokal.openTime.Minute-45));
+
+        if(noviLokal.closeTime.Minute<15&&noviLokal.closeTime.Minute>0)
+        noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute));
+        if(noviLokal.closeTime.Minute<30&&noviLokal.closeTime.Minute>15)
+        noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute-15));
+         if(noviLokal.closeTime.Minute<45&&noviLokal.closeTime.Minute>30)
+        noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute-30));
+         if(noviLokal.closeTime.Minute>45)
+        noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute-45));
+        if(DateTime.Compare(noviLokal.openTime,noviLokal.closeTime)==0)
+        {
+          noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-15);
+        }
+        
+        
+        
+        
          string stariLayout="";
+
+
           List<Sto> stariStolovi=db.Stolovi.Where(sto => sto.Lokal.Id==noviLokal.Id).ToList();
             for (int i=0;i<stariStolovi.Count;i++)
             {
@@ -237,7 +260,7 @@ namespace MyApp.Namespace
                      {  if(rez.Vreme>DateTime.Now)
                         {
                           string sadrzajMejla=$"Dear {rez.Korisnik.Ime}, \n\n Your reservation at {noviLokal.Naziv} for {rez.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
-                          RegisterModel.SendEmail("Table4U",/*rez.Korisnik.eMail*/"ognjen.damnjanovic@elfak.rs","Reservation calceled",sadrzajMejla);
+                          RegisterModel.SendEmail("Table4U",/*rez.Korisnik.eMail*/"ognjen.damnjanovic@elfak.rs","Reservation canceled",sadrzajMejla);
                         }
                         db.Remove(rez);
                      }

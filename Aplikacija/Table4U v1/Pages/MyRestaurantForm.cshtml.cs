@@ -146,10 +146,24 @@ namespace MyApp.Namespace
          {
              RedirectToPage("/Error?errorCode="+fe);
          }
-            if(DateTime.Compare(noviLokal.openTime,noviLokal.closeTime)==0)
-         {
-           noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-1);
-         }
+              if(noviLokal.openTime.Minute<15&&noviLokal.openTime.Minute>0)
+        noviLokal.openTime=noviLokal.openTime.AddMinutes(-(noviLokal.openTime.Minute));
+        if(noviLokal.openTime.Minute<30&&noviLokal.openTime.Minute>15)
+        noviLokal.openTime=noviLokal.openTime.AddMinutes(-(noviLokal.openTime.Minute-15));
+         if(noviLokal.openTime.Minute<45&&noviLokal.openTime.Minute>30)
+        noviLokal.openTime=noviLokal.openTime.AddMinutes(-(noviLokal.openTime.Minute-30));
+         if(noviLokal.openTime.Minute>45)
+        noviLokal.openTime=noviLokal.openTime.AddMinutes(-(noviLokal.openTime.Minute-45));
+
+        if(noviLokal.closeTime.Minute<15&&noviLokal.closeTime.Minute>0)
+        noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute));
+        if(noviLokal.closeTime.Minute<30&&noviLokal.closeTime.Minute>15)
+        noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute-15));
+         if(noviLokal.closeTime.Minute<45&&noviLokal.closeTime.Minute>30)
+        noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute-30));
+         if(noviLokal.closeTime.Minute>45)
+        noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute-45));
+        
          int counter=1;
          List<Sto> noviStolovi=new List<Sto>(tableLayout.Split('~').Length);
          int objectSeatsCount=0;

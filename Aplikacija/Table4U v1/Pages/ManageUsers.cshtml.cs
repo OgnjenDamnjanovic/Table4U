@@ -84,7 +84,7 @@ namespace MyApp.Namespace
                     {      if(rez.Vreme>DateTime.Now)
                         {                 
                             string sadrzajMejla=$"Dear {rez.Korisnik.Ime}, \n\n Your reservation at {rez.Lokal.Naziv} for {rez.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
-                            RegisterModel.SendEmail("Table4U",/*,rez.Korisnik.eMail*/"ognjen.damnjanovic@elfak.rs","Your reservation has been canceled",sadrzajMejla);
+                            RegisterModel.SendEmail("Table4U",/*,rez.Korisnik.eMail*/"ognjen.damnjanovic@elfak.rs","Reservation canceled",sadrzajMejla);
                         }
                    
                     }
