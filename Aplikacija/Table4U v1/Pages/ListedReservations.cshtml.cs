@@ -67,7 +67,7 @@ namespace MyApp.Namespace
             {
                 ListaImena.Add(r.Korisnik.Ime + " " + r.Korisnik.Prezime);
                 ListaAdresa.Add(r.Korisnik.eMail);
-                ListaDatuma.Add(r.Vreme.ToString("dd.MM.yyyy, HH:mm"));
+                ListaDatuma.Add(r.Vreme.ToString("dd/MM/yyyy HH:mm"));
                 ListaBrojMesta.Add(r.Sto.brojMesta.ToString());
                 ListaStolova.Add(r.Sto.oznaka.ToString());
             }                   

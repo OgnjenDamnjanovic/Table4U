@@ -46,7 +46,6 @@
         <th>Prezime</th>
         <th>Email</th>
         <th>Business</th>
-        <th>Reports</th>
         <th></th>
     </thead>
     <tbody>
@@ -57,7 +56,6 @@
         <td>@klijent.Prezime</td>
         <td class="email">@klijent.eMail</td>
         <td><a style="color:blue;text-decoration:underline;"href=@Model.GetObjectLink(klijent.mojLokal.Id)>@klijent.mojLokal.Naziv</a></td>
-        <td>@klijent.brojPrijava</td>
         <td><button asp-route-id="@klijent.Id"><i class="fas fa-trash-alt" aria-hidden="true"></i></button></td>
     </tr>
 }

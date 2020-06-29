@@ -399,6 +399,7 @@ window.onload = function(){
 							<i id="bi-open-layout-creator"class="fas fa-table""></i>
 						</span>
 						<label class="error" style="visibility: hidden;">Place at least one table.</label>
+						<label class="error labelss" style="visibility: hidden;">Table names must be unique.</label>
 					</span>
 				</div>
 
@@ -782,7 +783,28 @@ window.onload = function(){
 					}
 					function tableError()
 					{
-						let brSolova=document.querySelectorAll(".addedTable").length;
+						let stolovi=document.querySelectorAll(".addedTable");
+				
+						let brSolova=stolovi.length;
+						let niz=new Array();
+
+						for(let i=0;i<brSolova;i++)
+						{	let sto=stolovi[i];
+							if(niz[sto.querySelector(".table-label").innerHTML]==null)
+							{
+								console.log("dodajem");
+									document.querySelectorAll(".bi-table-layout .error")[1].style.visibility="hidden";
+									niz[sto.querySelector(".table-label").innerHTML]=1;
+							}
+							else
+							{
+								console.log("duplikat");
+								document.querySelectorAll(".bi-table-layout .error")[1].style.visibility="visible";
+								return true;
+							}
+							
+							
+						}
 						if(brSolova>0)
 						{
 							document.querySelector(".bi-table-layout .error").style.visibility="hidden";

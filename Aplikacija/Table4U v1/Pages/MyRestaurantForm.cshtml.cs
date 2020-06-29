@@ -146,7 +146,10 @@ namespace MyApp.Namespace
          {
              RedirectToPage("/Error?errorCode="+fe);
          }
-         
+            if(DateTime.Compare(noviLokal.openTime,noviLokal.closeTime)==0)
+         {
+           noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-1);
+         }
          int counter=1;
          List<Sto> noviStolovi=new List<Sto>(tableLayout.Split('~').Length);
          int objectSeatsCount=0;

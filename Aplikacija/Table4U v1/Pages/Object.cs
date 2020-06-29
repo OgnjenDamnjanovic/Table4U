@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SWEProject.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace MyApp.Namespace
 {
@@ -39,10 +41,11 @@ namespace MyApp.Namespace
         public String Message {get; set;}
         public List<string> listaSlika {get;set;}
         private readonly Table4UContext db;
-        
-        public ObjectModel(Table4UContext dataBase)
+        private IWebHostEnvironment  _environment;
+        public ObjectModel(IWebHostEnvironment environment,Table4UContext dataBase)
         {
             db = dataBase;
+             _environment=environment;
         }
         
         public void OnGet(int Id)
@@ -365,6 +368,11 @@ namespace MyApp.Namespace
                 {
                     foreach(var b in rezervacije)
                     {
+                        if(b.Vreme>DateTime.Now)
+                        {
+                         string sadrzajMejla=$"Dear {db.Korisnici.Find(b.KorisnikId).Ime}, \n\n Your reservation at {lokal.Naziv} for {b.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
+                          RegisterModel.SendEmail("Table4U",/*,rez.Korisnik.eMail*/"ognjen.damnjanovic@elfak.rs","Your reservation has been canceled",sadrzajMejla);
+                        }
                         db.Rezervacije.Remove(b);
                         await db.SaveChangesAsync();
                     }
@@ -390,6 +398,14 @@ namespace MyApp.Namespace
                 {
                     db.Korisnici.Remove(k);
                     await db.SaveChangesAsync();
+                }
+                 try{
+                    var file = Path.Combine(_environment.ContentRootPath, "wwwroot/images/"+lokal.nazivSlike.Split("/")[1]);
+                   System.IO.Directory.Delete(file,true) ;
+               }
+                catch (IOException ex)
+                {
+                  return RedirectToPage("/Error?code="+ex.ToString());
                 }
                 db.Lokali.Remove(lokal);
                 await db.SaveChangesAsync();

@@ -4,10 +4,13 @@
 }
 
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
     <script src="js/validateEmail.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>
 </head>
 
 <h4 class="predstojece-rez">Todays reservations</h4>
@@ -142,8 +145,9 @@ for(let i=0; i<n; i++){
 }
 //dataSet = JSON.stringify(dataSet);
 //conslole.log(dataSet);
+ $(document).ready(function() {
  
-$(document).ready(function() {
+ $.fn.dataTable.moment( 'DD/MM/YYYY HH:mm' );
     $('#example').DataTable( {
         data: dataSet,
         columns: [
@@ -153,7 +157,14 @@ $(document).ready(function() {
             { data: 'brojMesta' },
             { data: 'sto' }
         ],
-        searching: false
-    } );
+        searching: false,
+         columnDefs: [{
+         target: 2, //index of column
+         type: 'datetime-moment'
+            }],
+            "order": [[2, "asc"]]
+    }
+     );
 } );
+
 </script>

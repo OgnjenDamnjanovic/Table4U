@@ -1,5 +1,5 @@
 {
-  "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Table4U.csproj",
+  "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Table4U.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -14364,123 +14364,123 @@
   "RootNamespace": "Table4U",
   "Documents": [
     {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Login.cshtml",
-      "TargetPath": "Pages\\Login.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Contact.cshtml",
-      "TargetPath": "Pages\\Contact.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Pages\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Success.cshtml",
-      "TargetPath": "Pages\\Success.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\EmailSent.cshtml",
-      "TargetPath": "Pages\\EmailSent.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Manager.cshtml",
-      "TargetPath": "Pages\\Manager.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ForgotPassword.cshtml",
-      "TargetPath": "Pages\\ForgotPassword.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Index.cshtml",
-      "TargetPath": "Pages\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Register.cshtml",
-      "TargetPath": "Pages\\Register.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ListedReservations.cshtml",
-      "TargetPath": "Pages\\ListedReservations.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\User.cshtml",
-      "TargetPath": "Pages\\User.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Help.cshtml",
-      "TargetPath": "Pages\\Help.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ManageUsers.cshtml",
-      "TargetPath": "Pages\\ManageUsers.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\_ViewStart.cshtml",
-      "TargetPath": "Pages\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\EditBusiness.cshtml",
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\EditBusiness.cshtml",
       "TargetPath": "Pages\\EditBusiness.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ListedObjects.cshtml",
-      "TargetPath": "Pages\\ListedObjects.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ListedEvents.cshtml",
-      "TargetPath": "Pages\\ListedEvents.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\MyRestaurantForm.cshtml",
-      "TargetPath": "Pages\\MyRestaurantForm.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\SeatMap.cshtml",
-      "TargetPath": "Pages\\SeatMap.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Error.cshtml",
-      "TargetPath": "Pages\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Object.cshtml",
-      "TargetPath": "Pages\\Object.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Privacy.cshtml",
-      "TargetPath": "Pages\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Shared\\_Layout.cshtml",
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Shared\\_Layout.cshtml",
       "TargetPath": "Pages\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\_ViewImports.cshtml",
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Login.cshtml",
+      "TargetPath": "Pages\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\SeatMap.cshtml",
+      "TargetPath": "Pages\\SeatMap.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\_ViewImports.cshtml",
       "TargetPath": "Pages\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ListedObjects.cshtml",
+      "TargetPath": "Pages\\ListedObjects.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ForgotPassword.cshtml",
+      "TargetPath": "Pages\\ForgotPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Error.cshtml",
+      "TargetPath": "Pages\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ManageUsers.cshtml",
+      "TargetPath": "Pages\\ManageUsers.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\EmailSent.cshtml",
+      "TargetPath": "Pages\\EmailSent.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ListedEvents.cshtml",
+      "TargetPath": "Pages\\ListedEvents.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Manager.cshtml",
+      "TargetPath": "Pages\\Manager.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Success.cshtml",
+      "TargetPath": "Pages\\Success.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Register.cshtml",
+      "TargetPath": "Pages\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Help.cshtml",
+      "TargetPath": "Pages\\Help.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\_ViewStart.cshtml",
+      "TargetPath": "Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\User.cshtml",
+      "TargetPath": "Pages\\User.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Privacy.cshtml",
+      "TargetPath": "Pages\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Contact.cshtml",
+      "TargetPath": "Pages\\Contact.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\MyRestaurantForm.cshtml",
+      "TargetPath": "Pages\\MyRestaurantForm.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Object.cshtml",
+      "TargetPath": "Pages\\Object.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\ListedReservations.cshtml",
+      "TargetPath": "Pages\\ListedReservations.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Pages\\Index.cshtml",
+      "TargetPath": "Pages\\Index.cshtml",
       "FileKind": "mvc"
     }
   ],

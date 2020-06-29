@@ -183,7 +183,10 @@ namespace MyApp.Namespace
          {
              RedirectToPage("/Error?errorCode="+fe);
          }
-          
+           if(DateTime.Compare(noviLokal.openTime,noviLokal.closeTime)==0)
+         {
+           noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-1);
+         }
          string stariLayout="";
           List<Sto> stariStolovi=db.Stolovi.Where(sto => sto.Lokal.Id==noviLokal.Id).ToList();
             for (int i=0;i<stariStolovi.Count;i++)
@@ -230,11 +233,11 @@ namespace MyApp.Namespace
                   
                   foreach(Sto sto in stariStolovi)
                   { 
-                      foreach(Rezervacija rez in db.Rezervacije.Where(rezer => rezer.Sto.Id==sto.Id).ToList())
+                      foreach(Rezervacija rez in db.Rezervacije.Where(rezer => rezer.Sto.Id==sto.Id).Include(x=>x.Korisnik).ToList())
                      {  if(rez.Vreme>DateTime.Now)
                         {
-                          string sadrzajMejla=$"Dear {rez.Korisnik.Ime}, \n\n Your reservation at {rez.Lokal.Naziv} for {rez.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
-                          RegisterModel.SendEmail("Table4U",rez.Korisnik.eMail,"Reservation calceled",sadrzajMejla);
+                          string sadrzajMejla=$"Dear {rez.Korisnik.Ime}, \n\n Your reservation at {noviLokal.Naziv} for {rez.Vreme} has been canceled. Sorry for inconvenience.\n\n Check out our website for other places to make reservations at.\n\n\n Table4U";
+                          RegisterModel.SendEmail("Table4U",/*rez.Korisnik.eMail*/"ognjen.damnjanovic@elfak.rs","Reservation calceled",sadrzajMejla);
                         }
                         db.Remove(rez);
                      }
@@ -275,7 +278,7 @@ namespace MyApp.Namespace
             return imgName+".jpg";
         }
         public bool validTableLayout(string serializedTableLayout)
-        {
+        { 
           string[] splitted=serializedTableLayout.Split(new char[]{'`','~'});
           int counter=1;
           foreach(string tableInfo in splitted )

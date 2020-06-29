@@ -5252,19 +5252,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nikola\\.nuget\\packages\\": {}
+    "C:\\Users\\Flash-PC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Table4U.csproj",
+      "projectUniqueName": "C:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Table4U.csproj",
       "projectName": "Table4U",
-      "projectPath": "E:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Table4U.csproj",
-      "packagesPath": "C:\\Users\\Nikola\\.nuget\\packages\\",
-      "outputPath": "E:\\Bitbucket\\si.20.09.table4u\\Aplikacija\\Table4U v1\\obj\\",
+      "projectPath": "C:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\Table4U.csproj",
+      "packagesPath": "C:\\Users\\Flash-PC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Flash-PC\\Desktop\\SWEProject\\si.20.09.table4u\\Aplikacija\\Table4U v1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Nikola\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Flash-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5328,7 +5328,7 @@
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.0.3, 3.0.3]"
+            "version": "[3.0.2, 3.0.2]"
           }
         ],
         "frameworkReferences": {
@@ -5339,7 +5339,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
