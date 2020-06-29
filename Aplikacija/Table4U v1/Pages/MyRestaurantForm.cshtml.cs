@@ -163,7 +163,10 @@ namespace MyApp.Namespace
         noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute-30));
          if(noviLokal.closeTime.Minute>45)
         noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-(noviLokal.closeTime.Minute-45));
-        
+         if(DateTime.Compare(noviLokal.openTime,noviLokal.closeTime)==0)
+        {
+          noviLokal.closeTime=noviLokal.closeTime.AddMinutes(-15);
+        }
          int counter=1;
          List<Sto> noviStolovi=new List<Sto>(tableLayout.Split('~').Length);
          int objectSeatsCount=0;
